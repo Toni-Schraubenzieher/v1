@@ -157,7 +157,7 @@ export default function HowWeWork() {
       className="how-we-work py-16 lg:py-24"
     >
       <div className="mx-auto max-w-[1400px] px-4">
-        <div className="rounded-3xl bg-[#161616] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
+        <div className="rounded-3xl bg-[#101010] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
           {/* Header */}
           <div ref={headerRef} className="mb-16 lg:mb-20">
             <div className="flex items-center gap-3 mb-4">

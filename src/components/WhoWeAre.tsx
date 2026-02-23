@@ -76,7 +76,7 @@ export default function WhoWeAre() {
     >
       <div className="px-4 max-w-[1400px] mx-auto">
         <div ref={headerRef} className="mb-12 lg:mb-16">
-          <h2 className="font-heading text-3xl lg:text-4xl font-bold tracking-tight text-[#161616]">
+          <h2 className="font-heading text-3xl lg:text-4xl font-bold tracking-tight text-white">
             Trusted by industry leaders
           </h2>
         </div>
@@ -87,7 +87,7 @@ export default function WhoWeAre() {
         >
           {/* Column 1: Two stacked image cards */}
           <div className="row-span-2 flex flex-col gap-4">
-            <div className="relative flex-1 w-full overflow-hidden rounded-2xl bg-[#161616] flex items-center justify-center min-h-[200px]">
+            <div className="relative flex-1 w-full overflow-hidden rounded-2xl bg-[#101010] flex items-center justify-center min-h-[200px]">
               <div className="text-center p-6">
                 <div className="w-16 h-16 rounded-full bg-accent-warm/20 mx-auto mb-4 flex items-center justify-center">
                   <span className="font-heading text-2xl font-bold text-accent-warm">K</span>
@@ -95,7 +95,7 @@ export default function WhoWeAre() {
                 <p className="text-white/50 text-sm">Founded 2022</p>
               </div>
             </div>
-            <div className="relative flex-1 w-full overflow-hidden rounded-2xl bg-[#161616] flex items-center justify-center min-h-[200px]">
+            <div className="relative flex-1 w-full overflow-hidden rounded-2xl bg-[#101010] flex items-center justify-center min-h-[200px]">
               <div className="text-center p-6">
                 <p className="font-heading text-4xl font-bold text-white">30+</p>
                 <p className="text-white/50 text-sm mt-1">Countries in our network</p>
@@ -104,7 +104,7 @@ export default function WhoWeAre() {
           </div>
 
           {/* Column 2-3: Quote card */}
-          <div className="lg:col-span-2 row-span-2 bg-[#161616] rounded-2xl p-8 flex flex-col">
+          <div className="lg:col-span-2 row-span-2 bg-[#101010] rounded-2xl p-8 flex flex-col">
             <div>
               <QuoteIcon className="w-10 h-10 text-white/20 mb-6" />
               <blockquote className="text-2xl lg:text-3xl font-medium leading-snug text-white">
@@ -123,7 +123,7 @@ export default function WhoWeAre() {
           </div>
 
           {/* Column 4: Two stat cards */}
-          <div className="bg-[#161616] rounded-2xl p-6 flex flex-col">
+          <div className="bg-[#101010] rounded-2xl p-6 flex flex-col">
             <div className="flex-1">
               <p className="text-3xl font-heading font-bold text-white">
                 $120M
@@ -134,7 +134,7 @@ export default function WhoWeAre() {
             </div>
           </div>
 
-          <div className="bg-[#161616] rounded-2xl p-6 flex flex-col">
+          <div className="bg-[#101010] rounded-2xl p-6 flex flex-col">
             <div className="flex-1">
               <p className="text-3xl font-heading font-bold text-accent-mint">
                 6x
@@ -146,7 +146,7 @@ export default function WhoWeAre() {
           </div>
 
           {/* Bottom row: stats card + mission card */}
-          <div className="bg-[#161616] rounded-2xl p-8 flex flex-col">
+          <div className="bg-[#101010] rounded-2xl p-8 flex flex-col">
             <div className="flex-1">
               <p className="text-3xl lg:text-4xl font-heading font-bold text-white">
                 40+
@@ -164,7 +164,7 @@ export default function WhoWeAre() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 bg-[#161616] rounded-2xl p-8 flex flex-col">
+          <div className="lg:col-span-3 bg-[#101010] rounded-2xl p-8 flex flex-col">
             <p className="text-xl lg:text-2xl font-medium leading-relaxed text-white max-w-3xl flex-1">
               We partner with visionary founders at the earliest stages, providing capital, 
               strategic guidance, and access to our global network to build category-defining companies.

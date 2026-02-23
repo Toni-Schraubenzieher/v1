@@ -302,7 +302,7 @@ export default function Portfolio() {
       className="portfolio"
     >
       <div className="mx-auto max-w-[1400px] px-4">
-        <div className="rounded-3xl bg-[#161616] overflow-hidden py-16 lg:py-24">
+        <div className="rounded-3xl bg-[#101010] overflow-hidden py-16 lg:py-24">
           {/* Header */}
           <div ref={headerRef} className="flex items-center justify-between px-8 sm:px-12 mb-12 lg:mb-16">
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
