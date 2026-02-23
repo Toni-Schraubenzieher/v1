@@ -34,6 +34,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# template reference
+public/agency
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
