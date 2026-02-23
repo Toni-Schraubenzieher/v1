@@ -1,94 +1,146 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Process", href: "#process" },
+const sections = [
+  { id: "hero", label: "Home" },
+  { id: "who-we-are", label: "Who we are" },
+  { id: "how-we-work", label: "How we work" },
+  { id: "portfolio", label: "Portfolio" },
+  { id: "about-us", label: "About Us" },
+];
+
+const menuItems = [
+  { label: "Home", href: "#" },
+  { label: "Who we are", href: "#who-we-are" },
+  { label: "How we work", href: "#how-we-work" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Team", href: "#team" },
+  { label: "About Us", href: "#about-us" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("Home");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (!section) continue;
+        const element =
+          document.querySelector(`.${section.id}`) ||
+          document.getElementById(section.id);
+        if (element) {
+          const { offsetTop } = element as HTMLElement;
+          if (scrollPosition >= offsetTop) {
+            setActiveSection(section.label);
+            return;
+          }
+        }
+      }
+      if (sections[0]) {
+        setActiveSection(sections[0].label);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#101010]/80 backdrop-blur-xl border-b border-white/5"
-          : "bg-transparent"
-      }`}
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 px-4 py-4 sm:px-8 sm:py-6"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="font-heading text-2xl font-bold tracking-tight text-white">
-            Kensho
-            <span className="text-accent-warm">.</span>
-          </a>
-
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-white/60 transition-colors hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#team"
-              className="rounded-full bg-accent-warm px-5 py-2.5 text-sm font-semibold text-[#101010] transition-all hover:brightness-110 hover:scale-105"
-            >
-              Get in Touch
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            aria-label="Toggle menu"
+      <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-4">
+        {/* Menu dropdown */}
+        <div className="relative h-12 sm:h-14">
+          <motion.div
+            className="absolute top-0 right-0 w-48 sm:w-56 bg-[#161616]/90 backdrop-blur-lg rounded-2xl shadow-lg overflow-hidden"
+            animate={{
+              height: isMenuOpen ? "auto" : isMobile ? 48 : 56,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
-            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="md:hidden pb-6 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-base font-medium text-white/70 transition-colors hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#team"
-              onClick={() => setMobileOpen(false)}
-              className="rounded-full bg-accent-warm px-5 py-2.5 text-sm font-semibold text-[#101010] w-fit transition-all hover:brightness-110"
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex h-12 sm:h-14 w-full items-center justify-between gap-4 px-4 sm:px-5 text-white"
             >
-              Get in Touch
-            </a>
-          </div>
-        )}
+              <span className="text-sm sm:text-base font-medium">
+                {activeSection}
+              </span>
+              <motion.div
+                className="relative h-5 w-5"
+                animate={{ rotate: isMenuOpen ? 45 : 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="absolute left-1/2 top-0 h-5 w-[1.5px] -translate-x-1/2 bg-current" />
+                <span className="absolute left-0 top-1/2 h-[1.5px] w-5 -translate-y-1/2 bg-current" />
+              </motion.div>
+            </button>
+
+            <AnimatePresence>
+              {isMenuOpen && (
+                <motion.nav
+                  className="px-5 pb-5"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2, delay: 0.1 }}
+                >
+                  <ul className="flex flex-col gap-1">
+                    {menuItems.map((item, index) => (
+                      <motion.li
+                        key={item.label}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: 0.05 * index,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      >
+                        <a
+                          href={item.href}
+                          onClick={() => {
+                            setIsMenuOpen(false);
+                            setActiveSection(item.label);
+                          }}
+                          className={`block py-1.5 text-base font-medium transition-colors hover:text-white ${
+                            activeSection === item.label
+                              ? "text-white"
+                              : "text-white/60"
+                          }`}
+                        >
+                          {item.label}
+                        </a>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.nav>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
-    </nav>
+    </motion.header>
   );
 }

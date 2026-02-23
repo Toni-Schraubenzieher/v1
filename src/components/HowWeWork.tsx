@@ -1,100 +1,217 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 const steps = [
   {
-    number: "01",
+    id: 0,
     title: "Discover",
     description:
-      "We actively source and identify exceptional founders at the earliest stages — often before they've raised a single dollar. Our network spans accelerators, universities, and industry hubs worldwide.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-      </svg>
-    ),
+      "We source exceptional founders through our global network — often before they've raised a single dollar.",
+    color: "#FEB180",
   },
   {
-    number: "02",
+    id: 1,
+    title: "Evaluate",
+    description:
+      "Deep-dive into the team, market, and technology. We move with speed and conviction when we believe.",
+    color: "#D4FFEF",
+  },
+  {
+    id: 2,
     title: "Invest",
     description:
-      "We move with conviction and speed. When we believe in a founder's vision, we commit — providing meaningful capital, clear terms, and a partnership built on trust from day one.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-      </svg>
-    ),
+      "Meaningful capital, clear terms, and a partnership built on trust from day one. No games, no delays.",
+    color: "#FEB180",
   },
   {
-    number: "03",
+    id: 3,
     title: "Grow",
     description:
-      "Post-investment, we roll up our sleeves. From hiring key talent and refining go-to-market strategies to introductions that unlock new markets — we're in the trenches with our founders.",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.841m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-      </svg>
-    ),
+      "From hiring key talent to unlocking new markets — we're in the trenches with our founders every step.",
+    color: "#D4FFEF",
   },
 ];
 
-export default function HowWeWork() {
+function KenshoIcon({ activeIndex }: { activeIndex: number }) {
+  const inactiveColor = "rgba(255,255,255,0.08)";
+
+  const parts = [
+    {
+      d: "M55.5204 56.8219L44.2592 45.5103L55.5204 0H119.421V39.7226L55.5204 56.8219Z",
+      index: 0,
+    },
+    {
+      d: "M55.7808 65.2399L43.9961 77.8671L55.7808 121.536H119.681V81.8131L55.7808 65.2399Z",
+      index: 1,
+    },
+    {
+      d: "M0 71.2906V121.799H25.403L35.6165 77.341L23.3079 65.2399L0 71.2906Z",
+      index: 2,
+    },
+    {
+      d: "M36.1398 45.7733L24.8786 56.8219L0.261322 49.7191V0.526184H24.8786L36.1398 45.7733Z",
+      index: 3,
+    },
+  ];
+
   return (
-    <section id="process" className="relative py-32 px-6">
-      {/* Glow */}
-      <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] rounded-full bg-accent-warm/5 blur-[120px] pointer-events-none" />
+    <svg
+      viewBox="0 0 120 122"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full max-w-[320px] lg:max-w-[400px]"
+    >
+      {parts.map((part) => (
+        <path
+          key={part.index}
+          d={part.d}
+          fill={activeIndex === part.index ? steps[part.index]!.color : inactiveColor}
+          style={{
+            transition: "fill 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
+        />
+      ))}
+    </svg>
+  );
+}
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section label */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-px w-12 bg-accent-warm" />
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-warm">
-            How We Work
-          </span>
-        </div>
+export default function HowWeWork() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-        <h2 className="font-heading text-4xl sm:text-5xl font-bold text-white mb-4 max-w-xl">
-          From first meeting to lasting impact
-        </h2>
-        <p className="text-lg text-white/50 mb-16 max-w-xl">
-          Our process is built on speed, transparency, and deep founder alignment.
-        </p>
+  useEffect(() => {
+    if (!sectionRef.current) return;
 
-        {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {steps.map((step, i) => (
-            <div
-              key={step.number}
-              className="group relative glass rounded-3xl p-8 transition-all duration-300 hover:border-white/10 hover:-translate-y-1"
-            >
-              {/* Step number */}
-              <div className="text-sm font-bold text-white/20 mb-6 font-heading">
-                {step.number}
-              </div>
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              end: "top 50%",
+              scrub: 1,
+            },
+          }
+        );
+      }
 
-              {/* Icon */}
-              <div
-                className={`mb-6 inline-flex items-center justify-center w-14 h-14 rounded-2xl ${
-                  i === 0
-                    ? "bg-accent-mint/10 text-accent-mint"
-                    : i === 1
-                    ? "bg-accent-warm/10 text-accent-warm"
-                    : "bg-white/5 text-white/70"
-                }`}
-              >
-                {step.icon}
-              </div>
+      if (contentRef.current) {
+        gsap.fromTo(
+          contentRef.current,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: "top 80%",
+              end: "top 55%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+    }, sectionRef);
 
-              {/* Content */}
-              <h3 className="font-heading text-2xl font-bold text-white mb-3">
-                {step.title}
-              </h3>
-              <p className="text-base text-white/45 leading-relaxed">
-                {step.description}
-              </p>
+    return () => ctx.revert();
+  }, []);
 
-              {/* Decorative connector line on desktop */}
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-white/10" />
-              )}
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % 4);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="how-we-work"
+      className="how-we-work py-16 lg:py-24"
+    >
+      <div className="mx-auto max-w-[1400px] px-4">
+        <div className="rounded-3xl bg-[#161616] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
+          {/* Header */}
+          <div ref={headerRef} className="mb-16 lg:mb-20">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-10 bg-accent-warm" />
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-warm">
+                Our Process
+              </span>
             </div>
-          ))}
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              How we work
+            </h2>
+          </div>
+
+          {/* Content: Steps left, Logo right */}
+          <div ref={contentRef} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+            {/* Left: Steps */}
+            <div className="flex-1 w-full">
+              <div className="flex flex-col">
+                {steps.map((step) => {
+                  const isActive = activeIndex === step.id;
+                  return (
+                    <button
+                      key={step.id}
+                      onClick={() => {
+                        setActiveIndex(step.id);
+                        startTimer();
+                      }}
+                      className="text-left w-full py-4 cursor-pointer flex items-center gap-4"
+                    >
+                      <div
+                        className="w-[3px] h-6 rounded-full shrink-0 transition-all duration-500"
+                        style={{
+                          backgroundColor: isActive ? step.color : "rgba(255,255,255,0.12)",
+                        }}
+                      />
+                      <span
+                        className="font-heading text-xl sm:text-2xl font-medium tracking-tight transition-colors duration-500"
+                        style={{
+                          color: isActive ? "#ffffff" : "rgba(255,255,255,0.3)",
+                        }}
+                      >
+                        {step.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right: Kensho Logo Icon */}
+            <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto">
+              <KenshoIcon activeIndex={activeIndex} />
+            </div>
+          </div>
         </div>
       </div>
     </section>

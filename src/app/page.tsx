@@ -1,21 +1,23 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import LogoCloud from "@/components/LogoCloud";
 import WhoWeAre from "@/components/WhoWeAre";
 import HowWeWork from "@/components/HowWeWork";
-import PortfolioSlider from "@/components/PortfolioSlider";
-import TeamContact from "@/components/TeamContact";
-import Footer from "@/components/Footer";
+import Statement from "@/components/Statement";
+import Portfolio from "@/components/Portfolio";
+import AboutUs from "@/components/AboutUs";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#101010]">
+    <div className="min-h-screen bg-[#E0E0E0]">
       <Navbar />
       <Hero />
+      <LogoCloud />
       <WhoWeAre />
       <HowWeWork />
-      <PortfolioSlider />
-      <TeamContact />
-      <Footer />
+      <Statement />
+      <Portfolio />
+      <AboutUs />
     </div>
   );
 }

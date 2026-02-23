@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #101010;
-  --foreground: #FAFAFA;
+  --background: #E0E0E0;
+  --foreground: #161616;
+  --card-bg: #161616;
   --accent-warm: #FEB180;
   --accent-mint: #D4FFEF;
   --font-satoshi: 'Satoshi', sans-serif;
@@ -10,10 +11,11 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent-warm: var(--accent-warm);
-  --color-accent-mint: var(--accent-mint);
+  --color-background: #E0E0E0;
+  --color-foreground: #161616;
+  --color-card-bg: #161616;
+  --color-accent-warm: #FEB180;
+  --color-accent-mint: #D4FFEF;
   --font-sans: var(--font-jakarta);
   --font-heading: var(--font-satoshi);
 }
@@ -23,50 +25,11 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #E0E0E0;
+  color: #161616;
   font-family: var(--font-jakarta);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-satoshi);
-}
-
-/* Custom scrollbar for dark theme */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #101010;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Glow effects */
-.glow-warm {
-  box-shadow: 0 0 80px 20px rgba(254, 177, 128, 0.15);
-}
-
-.glow-mint {
-  box-shadow: 0 0 80px 20px rgba(212, 255, 239, 0.1);
-}
-
-/* Glass effect */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* Gradient text helper */
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-warm), var(--accent-mint));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
