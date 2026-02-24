@@ -156,7 +156,7 @@ export default function HowWeWork() {
       id="how-we-work"
       className="how-we-work py-16 lg:py-24"
     >
-      <div className="mx-auto max-w-[1400px] px-4">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-8">
         <div className="rounded-3xl bg-[#101010] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
           {/* Header */}
           <div ref={headerRef} className="mb-16 lg:mb-20">

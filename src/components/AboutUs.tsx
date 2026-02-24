@@ -155,7 +155,7 @@ export default function AboutUs() {
       id="about-us"
       className="about-us py-16 lg:py-24"
     >
-      <div className="mx-auto max-w-[1400px] px-4">
+      <div className="mx-auto max-w-[1400px] px-6 sm:px-8">
         <div className="rounded-3xl bg-[#101010] overflow-hidden px-8 sm:px-12 lg:px-16 py-20 lg:py-28">
           {/* Label */}
           <div className="flex items-center gap-3 mb-12 lg:mb-16">

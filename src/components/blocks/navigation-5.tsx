@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronUp, ChevronDown } from "lucide-react";
@@ -45,6 +44,15 @@ export function Navigation5() {
     </svg>
   );
 
+  const KenshoMarkIcon = () => (
+    <svg viewBox="0 0 120 122" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white">
+      <path d="M55.5204 56.8219L44.2592 45.5103L55.5204 0H119.421V39.7226L55.5204 56.8219Z" fill="currentColor" />
+      <path d="M55.7808 65.2399L43.9961 77.8671L55.7808 121.536H119.681V81.8131L55.7808 65.2399Z" fill="currentColor" />
+      <path d="M0 71.2906V121.799H25.403L35.6165 77.341L23.3079 65.2399L0 71.2906Z" fill="currentColor" />
+      <path d="M36.1398 45.7733L24.8786 56.8219L0.261322 49.7191V0.526184H24.8786L36.1398 45.7733Z" fill="currentColor" />
+    </svg>
+  );
+
   return (
     <>
       <AnimatePresence>
@@ -82,9 +90,9 @@ export function Navigation5() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
-                      className="inline-flex w-fit rounded-lg border border-white/15 bg-white/5 px-2 py-1.5"
+                      className="inline-flex w-fit"
                     >
-                      <Image src="/Kensho_Logo.svg" alt="Kensho Logo" width={96} height={23} className="h-[18px] w-auto object-contain" />
+                      <KenshoMarkIcon />
                     </motion.div>
 
                     <motion.div
@@ -141,39 +149,36 @@ export function Navigation5() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: 0.5 }}
-                      className="flex items-center justify-between pt-2"
+                      className="pt-2"
                     >
                       <a href="#" aria-label="LinkedIn" className="inline-flex items-center text-[#FEB180] transition-opacity hover:opacity-85">
                         <LinkedInBrandIcon />
                       </a>
-                      <span className="text-sm font-medium text-white/55">{activeSection}</span>
                     </motion.div>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            <div className="w-full flex items-center justify-between px-5 py-3.5 min-h-[58px]">
-              <div className="flex items-center gap-2 text-white">
-                <button
-                  onClick={() => setIsExpanded((prev) => !prev)}
-                  className="inline-flex items-center gap-2 text-sm font-medium cursor-pointer transition-colors hover:text-white/85"
-                >
-                  {isExpanded ? (
-                    <>
-                      <ChevronDown className="w-4 h-4" />
-                      <span>Close Menu</span>
-                    </>
-                  ) : (
-                    <>
-                      <ChevronUp className="w-4 h-4" />
-                      <span>Open Menu</span>
-                    </>
-                  )}
-                </button>
+            <button
+              onClick={() => setIsExpanded((prev) => !prev)}
+              className="w-full flex items-center justify-between px-5 py-3.5 min-h-[58px] text-left transition-colors hover:bg-white/[0.03]"
+            >
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-white/85">
+                {isExpanded ? (
+                  <>
+                    <ChevronDown className="w-4 h-4" />
+                    <span>Close Menu</span>
+                  </>
+                ) : (
+                  <>
+                    <ChevronUp className="w-4 h-4" />
+                    <span>Open Menu</span>
+                  </>
+                )}
               </div>
               <div className="pointer-events-none text-sm font-medium text-white/55">{activeSection}</div>
-            </div>
+            </button>
           </div>
         </div>
       </motion.nav>
