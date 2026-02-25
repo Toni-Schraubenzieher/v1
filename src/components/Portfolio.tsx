@@ -114,6 +114,8 @@ function PortfolioItem({
   onToggle: () => void;
 }) {
   const itemRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!itemRef.current) return;
@@ -147,14 +149,24 @@ function PortfolioItem({
     >
       <button
         onClick={onToggle}
-        className="flex items-center w-full cursor-pointer px-8 sm:px-12 py-8 md:py-10 text-left group"
+        onMouseEnter={(event) => {
+          setIsHovering(true);
+          const rect = event.currentTarget.getBoundingClientRect();
+          setCursorPos({
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top,
+          });
+        }}
+        onMouseMove={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          setCursorPos({
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top,
+          });
+        }}
+        onMouseLeave={() => setIsHovering(false)}
+        className="relative flex w-full cursor-pointer items-center overflow-hidden px-8 py-8 text-left group sm:px-12 md:py-10"
       >
-        <img
-          src={startup.logo}
-          alt=""
-          className="h-7 sm:h-9 w-auto mr-6 sm:mr-8 shrink-0"
-          style={{ filter: startup.logoFilter }}
-        />
         <span
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-medium tracking-tight text-white transition-colors duration-300 flex-1"
           style={{ ["--hover-color" as string]: startup.accent }}
@@ -175,6 +187,34 @@ function PortfolioItem({
           <span className="absolute left-0 top-1/2 h-[1.5px] w-6 -translate-y-1/2 bg-white/50" />
         </motion.div>
       </button>
+      <AnimatePresence>
+        {isHovering && (
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            className="pointer-events-none absolute left-0 top-0 z-[25] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.28)]"
+            style={{
+              left: cursorPos.x,
+              top: cursorPos.y,
+              backgroundColor: startup.accent,
+            }}
+          >
+            <img
+              src={startup.logo}
+              alt=""
+              className="h-8 w-auto object-contain"
+              style={{
+                filter:
+                  startup.accent === "#D4FFEF"
+                    ? "brightness(0) saturate(100%) invert(0%)"
+                    : "brightness(0) saturate(100%) invert(100%)",
+              }}
+            />
+          </motion.span>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence initial={false}>
         {isOpen && (
@@ -301,17 +341,17 @@ export default function Portfolio() {
       id="portfolio"
       className="portfolio"
     >
-      <div className="mx-auto max-w-[1400px] px-4">
-        <div className="rounded-3xl bg-[#161616] overflow-hidden py-16 lg:py-24">
+      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
+        <div className="rounded-3xl bg-[#101010] overflow-hidden py-16 lg:py-24">
           {/* Header */}
           <div ref={headerRef} className="flex items-center justify-between px-8 sm:px-12 mb-12 lg:mb-16">
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
               Portfolio
             </h2>
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-accent-warm" />
-              <span className="text-sm text-white/50">
-                05 Companies
+              <span className="h-2.5 w-2.5 rounded-full bg-accent-warm animate-pulse" />
+              <span className="text-sm font-medium tracking-[0.01em] text-white/50">
+                05 COMPANIES
               </span>
             </div>
           </div>

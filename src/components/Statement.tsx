@@ -72,11 +72,11 @@ export default function Statement() {
     >
       <div
         ref={contentRef}
-        className="flex min-h-screen items-center justify-center bg-[#E0E0E0] px-6 sm:px-12 lg:px-24"
+        className="flex min-h-screen items-center justify-center bg-[#0A0A0A] px-6 sm:px-12 lg:px-24"
       >
         <h2
           ref={titleRef}
-          className="text-center font-heading text-[clamp(2.5rem,7vw,7rem)] font-bold leading-[1.1] tracking-tight text-[#161616] max-w-[1200px]"
+          className="text-center font-heading text-[clamp(2.5rem,7vw,7rem)] font-bold leading-[1.1] tracking-tight text-white max-w-[1200px]"
         >
           <span className="block"><SplitText>Conviction first.</SplitText></span>
           <span className="block"><SplitText>Capital second.</SplitText></span>

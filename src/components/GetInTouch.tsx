@@ -1,0 +1,70 @@
+import Image from "next/image";
+import SquircleShift from "@/components/SquircleShift";
+
+export default function GetInTouch() {
+  const fadeMaskX =
+    "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)";
+  const fadeMaskY =
+    "linear-gradient(to bottom, transparent 0%, black 10%, black 92%, transparent 100%)";
+
+  return (
+    <section id="get-in-touch" className="px-6 sm:px-8 py-12 lg:py-16">
+      <div className="relative mx-auto max-w-[1320px] min-h-[82vh] overflow-visible pt-10 sm:pt-12 lg:pt-16 pb-24 sm:pb-28">
+        <div
+          className="pointer-events-none absolute inset-y-0 -left-[12%] w-[76%] md:w-[66%] lg:w-[62%]"
+          style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
+        >
+          <div
+            className="h-full w-full"
+            style={{ maskImage: fadeMaskY, WebkitMaskImage: fadeMaskY }}
+          >
+            <SquircleShift
+              width="100%"
+              height="100%"
+              speed={0.3}
+              colorLayers={3}
+              gridFrequency={7}
+              gridIntensity={0.4}
+              lineThickness={0.09}
+              phaseOffset={29}
+              waveSpeed={0.2}
+              waveIntensity={0.3}
+              colorTint="#FEB180"
+              brightness={1}
+              centerX={0}
+              centerY={1}
+            />
+          </div>
+        </div>
+
+        <div className="relative z-10 flex min-h-[68vh] items-center justify-end">
+          <div className="w-full max-w-[520px]">
+            <h2 className="font-heading text-5xl font-bold leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              Get in touch
+            </h2>
+            <p className="mt-7 max-w-[460px] text-base leading-relaxed text-white/65 sm:text-lg">
+              We back ambitious founders early and move with conviction. If you are building
+              transformative technology, let&apos;s talk.
+            </p>
+            <button
+              type="button"
+              className="mt-9 inline-flex items-center rounded-full bg-[#FEB180] px-7 py-3 text-base font-semibold text-[#101010] transition-transform duration-200 hover:scale-[1.03]"
+            >
+              Talk to us
+            </button>
+          </div>
+        </div>
+
+        <div className="absolute bottom-8 left-4 z-10 sm:bottom-10 sm:left-6 lg:bottom-12 lg:left-8">
+          <Image
+            src="/Kensho_Logo.svg"
+            alt="Kensho"
+            width={160}
+            height={38}
+            className="h-auto w-[140px] sm:w-[160px]"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
