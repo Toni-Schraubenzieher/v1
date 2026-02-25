@@ -10,10 +10,10 @@ export function Navigation5() {
 
   const navItems = [
     { title: "Home", href: "#hero" },
-    { title: "Who we are", href: "#who-we-are" },
     { title: "How we work", href: "#how-we-work" },
     { title: "Portfolio", href: "#portfolio" },
-    { title: "About Us", href: "#about-us" },
+    { title: "About us", href: "#who-we-are" },
+    { title: "Team", href: "#team" },
   ];
 
   useEffect(() => {
@@ -105,7 +105,7 @@ export function Navigation5() {
                         This is Kensho
                       </div>
                       <a
-                        href="#about-us"
+                        href="#team"
                         className="px-4 py-2 rounded-sm bg-white text-black text-xs font-medium hover:bg-white/90 transition-colors no-underline"
                       >
                         Let&apos;s talk

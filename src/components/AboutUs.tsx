@@ -1,8 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { createPortal } from "react-dom";
+import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./modal-cards.css";
@@ -16,8 +15,6 @@ interface TeamMember {
   name: string;
   role: string;
   image: string;
-  description: string;
-  linkedin: string;
   accent: string;
 }
 
@@ -27,9 +24,6 @@ const team: TeamMember[] = [
     name: "Wolfgang",
     role: "Managing Partner",
     image: "/Team/Wolfgang.png",
-    description:
-      "With decades of experience in venture capital and deep-tech investing, Wolfgang leads Kensho's investment strategy. His conviction-first approach and extensive network across Europe and beyond help founders scale from breakthrough idea to global impact.",
-    linkedin: "https://linkedin.com",
     accent: "#FEB180",
   },
   {
@@ -37,69 +31,46 @@ const team: TeamMember[] = [
     name: "Anton",
     role: "Partner",
     image: "/Team/Anton.png",
-    description:
-      "Anton drives deal sourcing and portfolio growth at Kensho. With a sharp eye for exceptional founding teams and disruptive technology, he works hands-on with portfolio companies to unlock new markets and accelerate growth.",
-    linkedin: "https://linkedin.com",
     accent: "#D4FFEF",
   },
+  {
+    id: "maya",
+    name: "Maya",
+    role: "Investment Principal",
+    image:
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=900&h=1300&fit=crop",
+    accent: "#FEB180",
+  },
+  {
+    id: "luca",
+    name: "Luca",
+    role: "Platform Lead",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&h=1300&fit=crop",
+    accent: "#D4FFEF",
+  },
+  {
+    id: "sofia",
+    name: "Sofia",
+    role: "Portfolio Operations",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&h=1300&fit=crop",
+    accent: "#FEB180",
+  },
 ];
-
-const springTransition = {
-  type: "spring" as const,
-  stiffness: 300,
-  damping: 30,
-};
-
-const smoothSpring = {
-  type: "spring" as const,
-  stiffness: 390,
-  damping: 36,
-};
-
-const softSpring = {
-  type: "spring" as const,
-  stiffness: 210,
-  damping: 27,
-};
-
-function LinkedInIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  );
-}
 
 export default function AboutUs() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-  const [selectedCard, setSelectedCard] = useState<TeamMember | null>(null);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (selectedCard) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [selectedCard]);
-
-  useEffect(() => {
-    if (!selectedCard) return;
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedCard(null);
-    };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [selectedCard]);
+  const [isDragging, setIsDragging] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [oneSetWidth, setOneSetWidth] = useState(0);
+  const baseVelocity = -18;
+  const baseX = useMotionValue(0);
+  const scrollVelocity = useRef(baseVelocity);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const carouselItems = [...team, ...team, ...team, ...team];
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -125,14 +96,12 @@ export default function AboutUs() {
       }
 
       if (cardsRef.current) {
-        const cards = cardsRef.current.querySelectorAll(".modal-card");
         gsap.fromTo(
-          cards,
-          { y: 80, opacity: 0 },
+          cardsRef.current,
+          { y: 50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            stagger: 0.15,
             duration: 1,
             ease: "power3.out",
             scrollTrigger: {
@@ -149,197 +118,125 @@ export default function AboutUs() {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 640;
+      const itemWidth = isMobile ? 250 : 300;
+      const gap = 20;
+      const width = (itemWidth + gap) * team.length;
+      setOneSetWidth(width);
+      baseX.set(0);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [baseX]);
+
+  useAnimationFrame((_, delta) => {
+    if (!oneSetWidth || isDragging) return;
+
+    scrollVelocity.current = scrollVelocity.current * 0.9 + baseVelocity * 0.1;
+    const moveBy = scrollVelocity.current * (delta / 1000);
+    baseX.set(baseX.get() + moveBy);
+
+    const x = baseX.get();
+    if (x <= -oneSetWidth * 2) {
+      baseX.set(x + oneSetWidth);
+    } else if (x > 0) {
+      baseX.set(x - oneSetWidth);
+    }
+  });
+
   return (
     <section
       ref={sectionRef}
-      id="about-us"
+      id="team"
       className="about-us py-16 lg:py-24"
     >
-      <div className="mx-auto max-w-[1400px] px-6 sm:px-8">
-        <div className="rounded-3xl bg-[#101010] overflow-hidden px-8 sm:px-12 lg:px-16 py-20 lg:py-28">
-          {/* Label */}
-          <div className="flex items-center gap-3 mb-12 lg:mb-16">
-            <div className="h-px w-10 bg-accent-warm" />
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-warm">
-              About Us
-            </span>
-          </div>
+      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
+        {/* Label */}
+        <div className="mb-12 flex items-center gap-3 lg:mb-16">
+          <span className="h-2.5 w-2.5 rounded-full bg-accent-mint animate-pulse" />
+          <span className="text-sm font-medium uppercase tracking-[0.16em] text-white/50">
+            Team
+          </span>
+        </div>
 
-          {/* Big statement */}
-          <h2
-            ref={headingRef}
-            className="font-heading text-[clamp(2rem,5.5vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-white uppercase max-w-[900px] mb-20 lg:mb-28"
+        {/* Big statement */}
+        <h2
+          ref={headingRef}
+          className="mb-16 max-w-[900px] font-heading text-[clamp(2rem,5.5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tight text-white lg:mb-20"
+        >
+          We back founders
+          who build what
+          the world needs
+          next.
+        </h2>
+
+        {/* Infinite team carousel */}
+        <div
+          ref={cardsRef}
+          className="relative left-1/2 w-screen -translate-x-1/2 overflow-x-hidden overflow-y-visible py-6"
+        >
+          <motion.div
+            ref={scrollerRef}
+            className="flex cursor-grab items-end gap-5 px-6 active:cursor-grabbing sm:px-8"
+            style={{ x: baseX }}
+            drag="x"
+            dragElastic={0.04}
+            dragMomentum={false}
+            onDragStart={() => setIsDragging(true)}
+            onDragEnd={(_, info) => {
+              setIsDragging(false);
+              scrollVelocity.current = info.velocity.x;
+            }}
           >
-            We back founders
-            who build what
-            the world needs
-            next.
-          </h2>
-
-          {/* Team modal cards */}
-          <div ref={cardsRef} className="modal-cards-container">
-            <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-end">
-              {team.map((member) => (
-                <motion.div
-                  key={member.id}
-                  layoutId={`card-${member.id}`}
-                  onClick={() => setSelectedCard(member)}
-                  className="modal-card w-full sm:w-[280px] lg:w-[320px]"
-                  whileTap={{ scale: 0.98 }}
-                  transition={smoothSpring}
-                >
-                  <motion.img
-                    layoutId={`image-${member.id}`}
-                    src={member.image}
-                    alt={member.name}
-                    className="modal-card-image"
-                  />
-                  <motion.div
-                    layoutId={`overlay-${member.id}`}
-                    className="modal-card-overlay"
-                  >
-                    <div className="modal-card-content">
-                      <div>
-                        <motion.h3
-                          layoutId={`title-${member.id}`}
-                          className="modal-card-title"
-                        >
-                          {member.name}
-                        </motion.h3>
-                        <p className="modal-card-subtitle">{member.role}</p>
-                      </div>
-                      <motion.div
-                        layoutId={`icon-${member.id}`}
-                        className="modal-card-icon"
-                      >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M8 3V13M3 8H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        </svg>
-                      </motion.div>
+            {carouselItems.map((member, index) => (
+              <motion.div
+                key={`${member.id}-${index}`}
+                className="modal-card team-scroll-card w-[250px] shrink-0 sm:w-[280px] lg:w-[300px]"
+                animate={
+                  hoveredId === `${member.id}-${index}`
+                    ? { scale: 1.03, y: -8 }
+                    : { scale: 1, y: 0 }
+                }
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                onMouseEnter={() => setHoveredId(`${member.id}-${index}`)}
+                onMouseLeave={() => setHoveredId(null)}
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="modal-card-image"
+                  draggable="false"
+                />
+                <div className="modal-card-overlay">
+                  <div className="modal-card-content">
+                    <div>
+                      <h3 className="modal-card-title">{member.name}</h3>
+                      <p className="modal-card-subtitle">{member.role}</p>
                     </div>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                    <div
+                      className="modal-card-icon"
+                      style={{ color: member.accent }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path
+                          d="M8 3V13M3 8H13"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
-
-      {/* Modal portal */}
-      {mounted &&
-        createPortal(
-          <AnimatePresence mode="wait">
-            {selectedCard && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-                  onClick={() => setSelectedCard(null)}
-                  className="modal-backdrop modal-backdrop-clickable"
-                  style={{ background: "rgba(0, 0, 0, 0.85)" }}
-                />
-
-                <div
-                  className="modal-expanded-container"
-                  role="dialog"
-                  aria-modal="true"
-                  aria-label="Team member details"
-                >
-                  <motion.div
-                    layoutId={`card-${selectedCard.id}`}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="modal-expanded-card"
-                    onClick={(e) => e.stopPropagation()}
-                    transition={springTransition}
-                  >
-                    <motion.div className="modal-expanded-image-container">
-                      <motion.img
-                        layoutId={`image-${selectedCard.id}`}
-                        src={selectedCard.image}
-                        alt={selectedCard.name}
-                        className="modal-expanded-image"
-                        transition={springTransition}
-                      />
-                      <motion.div
-                        layoutId={`overlay-${selectedCard.id}`}
-                        className="modal-expanded-overlay"
-                        transition={springTransition}
-                      >
-                        <div className="modal-expanded-overlay-content">
-                          <motion.h3
-                            layoutId={`title-${selectedCard.id}`}
-                            className="modal-expanded-title"
-                            transition={springTransition}
-                          >
-                            {selectedCard.name}
-                          </motion.h3>
-                          <motion.button
-                            layoutId={`icon-${selectedCard.id}`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedCard(null);
-                            }}
-                            className="modal-close-button"
-                            whileHover={{ scale: 1.1, rotate: 90 }}
-                            whileTap={{ scale: 0.9 }}
-                            transition={smoothSpring}
-                            aria-label="Close modal"
-                          >
-                            <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
-                              <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                          </motion.button>
-                        </div>
-                      </motion.div>
-                    </motion.div>
-
-                    <motion.div
-                      className="modal-description"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.15,
-                        ease: [0.32, 0.72, 0, 1],
-                      }}
-                    >
-                      <p className="!text-white/40 text-sm mb-1 font-medium">
-                        {selectedCard.role}
-                      </p>
-                      <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={softSpring}
-                      >
-                        {selectedCard.description}
-                      </motion.p>
-                      <a
-                        href={selectedCard.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="modal-linkedin-btn"
-                        style={{
-                          background: selectedCard.accent,
-                          color: "#161616",
-                        }}
-                      >
-                        <LinkedInIcon />
-                        LinkedIn
-                      </a>
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </>
-            )}
-          </AnimatePresence>,
-          document.body
-        )}
     </section>
   );
 }

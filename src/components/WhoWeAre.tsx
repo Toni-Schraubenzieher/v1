@@ -74,7 +74,7 @@ export default function WhoWeAre() {
       id="who-we-are"
       className="who-we-are py-24 lg:py-32"
     >
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8">
+      <div className="max-w-[1320px] mx-auto px-6 sm:px-8">
         <div ref={headerRef} className="mb-12 lg:mb-16">
           <h2 className="font-heading text-3xl lg:text-4xl font-bold tracking-tight text-white">
             Trusted by industry leaders

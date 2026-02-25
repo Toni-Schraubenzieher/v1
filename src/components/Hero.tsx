@@ -2,14 +2,14 @@ import Image from "next/image";
 import SquircleShift from "@/components/SquircleShift";
 
 export default function Hero() {
-  const fadeMaskX = "linear-gradient(to right, transparent 0%, black 18%, black 84%, transparent 100%)";
+  const fadeMaskX = "linear-gradient(to right, transparent 0%, black 16%, black 74%, transparent 100%)";
   const fadeMaskY = "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)";
 
   return (
     <section id="hero" className="hero px-6 sm:px-8">
-      <div className="relative mx-auto max-w-[1400px] min-h-screen flex flex-col pt-10 sm:pt-12 lg:pt-16 pb-28 sm:pb-32 overflow-hidden">
+      <div className="relative mx-auto max-w-[1320px] min-h-screen flex flex-col pt-10 sm:pt-12 lg:pt-16 pb-28 sm:pb-32 overflow-visible">
         <div
-          className="pointer-events-none absolute inset-y-0 -right-[8%] w-[70%] md:w-[62%] lg:w-[58%]"
+          className="pointer-events-none absolute inset-y-0 -right-[12%] w-[76%] md:w-[66%] lg:w-[62%]"
           style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
         >
           <div className="h-full w-full" style={{ maskImage: fadeMaskY, WebkitMaskImage: fadeMaskY }}>
@@ -43,7 +43,7 @@ export default function Hero() {
           />
         </div>
 
-        <div className="relative z-10 mt-36 sm:mt-44 lg:mt-52 max-w-[980px] ml-4 sm:ml-6">
+        <div className="relative z-10 mt-60 sm:mt-[17rem] lg:mt-[20rem] max-w-[980px] ml-4 sm:ml-6">
           <h1 className="font-heading text-[clamp(4rem,12vw,10.5rem)] font-bold text-white leading-[0.88] tracking-tight">
             Kenshō
           </h1>

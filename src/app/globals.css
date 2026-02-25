@@ -22,12 +22,17 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   background: #0A0A0A;
   color: #FFFFFF;
   font-family: var(--font-jakarta);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {

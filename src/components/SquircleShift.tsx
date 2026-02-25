@@ -21,6 +21,7 @@ export interface SquircleShiftProps {
   centerX?: number;
   centerY?: number;
   colorTint?: string;
+  colorTintSecondary?: string;
   brightness?: number;
   phaseOffset?: number;
 }
@@ -50,6 +51,7 @@ uniform float u_falloff;
 uniform float u_centerX;
 uniform float u_centerY;
 uniform vec3 u_colorTint;
+uniform vec3 u_colorTintSecondary;
 uniform float u_brightness;
 uniform float u_phaseOffset;
 
@@ -102,8 +104,11 @@ void main() {
   }
 
   colorAccum = colorAccum / (dist + u_falloff);
+
   colorAccum *= u_brightness;
-  vec3 tintedColor = colorAccum * u_colorTint;
+  float gradMix = smoothstep(0.2, 0.88, vUv.x);
+  vec3 gradientTint = mix(u_colorTint, u_colorTintSecondary, gradMix);
+  vec3 tintedColor = colorAccum * gradientTint;
   float alpha = clamp(length(colorAccum) * 0.42, 0.0, 1.0);
   gl_FragColor = vec4(tintedColor, alpha);
 }
@@ -122,6 +127,7 @@ interface ShaderPlaneProps {
   centerX: number;
   centerY: number;
   colorTint: string;
+  colorTintSecondary: string;
   brightness: number;
   phaseOffset: number;
 }
@@ -139,6 +145,7 @@ function ShaderPlane({
   centerX,
   centerY,
   colorTint,
+  colorTintSecondary,
   brightness,
   phaseOffset,
 }: ShaderPlaneProps) {
@@ -161,6 +168,7 @@ function ShaderPlane({
       u_centerX: { value: centerX },
       u_centerY: { value: centerY },
       u_colorTint: { value: new THREE.Color(colorTint) },
+      u_colorTintSecondary: { value: new THREE.Color(colorTintSecondary) },
       u_brightness: { value: brightness },
       u_phaseOffset: { value: phaseOffset },
     }),
@@ -184,6 +192,7 @@ function ShaderPlane({
     uniformsCurrent.u_centerX.value = centerX;
     uniformsCurrent.u_centerY.value = centerY;
     uniformsCurrent.u_colorTint.value.set(colorTint);
+    uniformsCurrent.u_colorTintSecondary.value.set(colorTintSecondary);
     uniformsCurrent.u_brightness.value = brightness;
     uniformsCurrent.u_phaseOffset.value = phaseOffset;
   });
@@ -219,6 +228,7 @@ export default function SquircleShift({
   centerX = 1,
   centerY = 1,
   colorTint = "#FEB180",
+  colorTintSecondary = "#D4FFEF",
   brightness = 1.4,
   phaseOffset = 10,
 }: SquircleShiftProps) {
@@ -242,6 +252,7 @@ export default function SquircleShift({
           centerX={centerX}
           centerY={centerY}
           colorTint={colorTint}
+          colorTintSecondary={colorTintSecondary}
           brightness={brightness}
           phaseOffset={phaseOffset}
         />
