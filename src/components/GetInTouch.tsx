@@ -39,8 +39,8 @@ export default function GetInTouch() {
 
         <div className="relative z-10 flex min-h-[68vh] items-center justify-end">
           <div className="w-full max-w-[520px]">
-            <h2 className="font-heading text-5xl font-bold leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Get in touch
+            <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
+              GET IN TOUCH
             </h2>
             <p className="mt-7 max-w-[460px] text-base leading-relaxed text-white/65 sm:text-lg">
               We back ambitious founders early and move with conviction. If you are building

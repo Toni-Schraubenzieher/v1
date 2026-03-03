@@ -7,6 +7,7 @@ import Statement from "@/components/Statement";
 import Portfolio from "@/components/Portfolio";
 import PortfolioOverview from "@/components/PortfolioOverview";
 import AboutUs from "@/components/AboutUs";
+import FAQ from "@/components/FAQ";
 import GetInTouch from "@/components/GetInTouch";
 
 export default function Home() {
@@ -17,10 +18,11 @@ export default function Home() {
       <LogoElementsShowcase />
       <HowWeWork />
       <Statement />
-      <Portfolio />
       <PortfolioOverview />
+      <Portfolio />
       <WhoWeAre />
       <AboutUs />
+      <FAQ />
       <GetInTouch />
     </div>
   );
