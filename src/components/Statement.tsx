@@ -20,7 +20,7 @@ function MovingRow({
   color: string;
 }) {
   const x = useMotionValue(direction === 1 ? -50 : 0);
-  const directionTarget = useMotionValue<1 | -1>(1);
+  const directionTarget = useMotionValue<number>(1);
   const smoothDirection = useSpring(directionTarget, { stiffness: 90, damping: 28, mass: 0.7 });
   const xPercent = useTransform(x, (value) => `${value}%`);
   const { scrollY } = useScroll();
