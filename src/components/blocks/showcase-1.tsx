@@ -64,7 +64,7 @@ export function Showcase1() {
                 {activeId === item.id && (
                   <motion.div
                     layoutId="active-background"
-                    className="absolute inset-0 rounded-lg bg-[#D4FFEF]"
+                    className="absolute inset-0 rounded-lg bg-[#FEB180]"
                     transition={{
                       type: "spring",
                       stiffness: 300,

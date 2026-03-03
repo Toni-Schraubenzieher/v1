@@ -45,7 +45,7 @@ export default function Hero() {
 
         <div className="relative z-10 mt-60 sm:mt-[17rem] lg:mt-[20rem] max-w-[980px] ml-4 sm:ml-6">
           <h1 className="font-heading text-[clamp(4rem,12vw,10.5rem)] font-bold text-white leading-[0.88] tracking-tight">
-            Kenshō
+            KENSHŌ
           </h1>
           <p className="mt-8 max-w-[560px] text-lg sm:text-xl text-white/60 leading-relaxed">
             Early-stage venture capital backing founders building transformative technology.

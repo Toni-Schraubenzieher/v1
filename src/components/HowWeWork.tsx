@@ -71,13 +71,13 @@ export default function HowWeWork() {
           {/* Header */}
           <div ref={headerRef} className="mb-16 lg:mb-20">
             <div className="flex items-center gap-3 mb-4">
-              <span className="h-2.5 w-2.5 rounded-full bg-accent-mint animate-pulse" />
+              <span className="h-2.5 w-2.5 rounded-full bg-accent-warm animate-pulse" />
               <span className="text-sm font-medium uppercase tracking-[0.16em] text-white/50">
                 Our Process
               </span>
             </div>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              How we work
+            <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
+              HOW WE WORK
             </h2>
           </div>
 

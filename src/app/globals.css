@@ -26,6 +26,11 @@ html {
   overflow-x: hidden;
 }
 
+html.lenis,
+html.lenis body {
+  scroll-behavior: auto !important;
+}
+
 body {
   background: #0A0A0A;
   color: #FFFFFF;
@@ -37,4 +42,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-satoshi);
+}
+
+button {
+  font-family: var(--font-jakarta);
 }

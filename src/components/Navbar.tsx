@@ -6,15 +6,54 @@ import { AnimatePresence, motion } from "motion/react";
 const sections = [
   { id: "hero", label: "Home", href: "#hero" },
   { id: "how-we-work", label: "How we work", href: "#how-we-work" },
-  { id: "portfolio", label: "Portfolio", href: "#portfolio" },
+  { id: "portfolio-overview", label: "Portfolio", href: "#portfolio-overview" },
   { id: "who-we-are", label: "About us", href: "#who-we-are" },
   { id: "team", label: "Team", href: "#team" },
   { id: "get-in-touch", label: "Get in touch", href: "#get-in-touch" },
 ];
+const NAV_ORANGE = "#FEB180";
+const NAV_MINT = "#D4FFEF";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
+
+  const animateScrollTo = (targetY: number, durationMs = 1100) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, startY + distance * eased);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  const handleSectionClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    section: (typeof sections)[number]
+  ) => {
+    event.preventDefault();
+    const element = document.getElementById(section.id);
+    setIsOpen(false);
+
+    if (!element) return;
+
+    const targetTop = Math.max(0, element.getBoundingClientRect().top + window.scrollY);
+    animateScrollTo(targetTop, 980);
+    window.history.replaceState(null, "", section.href);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,19 +96,25 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 260, damping: 28 }}
-              className="fixed right-3 top-3 z-[55] h-[calc(100vh-24px)] w-[min(46vw,520px)] min-w-[320px] rounded-3xl bg-[#121214] p-8 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:p-10"
+              className="fixed right-3 top-3 z-[55] h-[calc(100vh-24px)] w-[40vw] min-w-[320px] rounded-3xl bg-[#121214] p-8 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:p-10"
             >
-              <nav className="mt-24 -mx-8 sm:mt-28 sm:-mx-10">
-                <ul className="space-y-0">
-                  {sections.map((section) => (
+              <nav className="-mx-8 flex h-full items-center sm:-mx-10">
+                <ul className="w-full space-y-0">
+                  {sections.map((section, index) => {
+                    const itemColor = index % 2 === 0 ? NAV_ORANGE : NAV_MINT;
+
+                    return (
                     <li key={section.id}>
                       <a
                         href={section.href}
-                        onClick={() => setIsOpen(false)}
-                        className="group relative block overflow-hidden px-8 py-1 sm:px-10 font-heading text-[clamp(2rem,4.4vw,4.4rem)] font-bold leading-[0.95] tracking-tight text-[#D4FFEF] transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#101010]"
+                        onClick={(event) => handleSectionClick(event, section)}
+                        className="group relative block w-full overflow-hidden px-8 py-1 font-heading text-[clamp(1.8rem,3.2vw,3.4rem)] font-bold leading-[0.95] tracking-tight text-white transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#101010] sm:px-10"
                       >
-                        <span className="pointer-events-none absolute inset-0 origin-left scale-x-[0.985] bg-[#D4FFEF] opacity-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-hover:opacity-100" />
-                        <span className="relative z-10 block h-[1.05em] overflow-hidden">
+                        <span
+                          className="pointer-events-none absolute inset-0 origin-left scale-x-[0.985] opacity-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-hover:opacity-100"
+                          style={{ backgroundColor: itemColor }}
+                        />
+                        <span className="relative z-10 mx-auto block h-[1.05em] w-full max-w-[24rem] -translate-x-1 overflow-hidden text-left">
                           <span className="block transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.05em]">
                             {section.label}
                           </span>
@@ -79,7 +124,8 @@ export default function Navbar() {
                         </span>
                       </a>
                     </li>
-                  ))}
+                    );
+                  })}
                 </ul>
               </nav>
             </motion.aside>
@@ -94,14 +140,38 @@ export default function Navbar() {
           aria-label="Toggle navigation menu"
         >
           <span className="text-base font-medium">{activeSection}</span>
-          <motion.span
-            animate={{ rotate: isOpen ? 45 : 0 }}
-            transition={{ duration: 0.25 }}
-            className="relative h-5 w-5 text-white"
-          >
-            <span className="absolute left-1/2 top-0 h-5 w-[1.5px] -translate-x-1/2 bg-current" />
-            <span className="absolute left-0 top-1/2 h-[1.5px] w-5 -translate-y-1/2 bg-current" />
-          </motion.span>
+          <span className="relative h-5 w-5 text-white">
+            <motion.span
+              animate={{
+                width: isOpen ? "20px" : "13px",
+                x: isOpen ? 0 : 7,
+                y: isOpen ? 9 : 1.5,
+                rotate: isOpen ? 45 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+              className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+            />
+            <motion.span
+              animate={{
+                width: isOpen ? "0px" : "20px",
+                x: isOpen ? 10 : 0,
+                y: 9,
+                opacity: isOpen ? 0 : 1,
+              }}
+              transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+              className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+            />
+            <motion.span
+              animate={{
+                width: isOpen ? "20px" : "13px",
+                x: isOpen ? 0 : 0,
+                y: isOpen ? 9 : 16.5,
+                rotate: isOpen ? -45 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+              className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+            />
+          </span>
         </button>
       </div>
     </>

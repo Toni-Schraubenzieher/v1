@@ -60,14 +60,13 @@ const stories: StoryItem[] = [
 
 const formAspectRatio: Record<StoryItem["form"], string> = {
   "1": "99 / 156",
-  "2": "208 / 158",
+  "2": "206 / 156",
   "3": "99 / 157",
 };
 
 const formMaskSizing: Record<StoryItem["form"], { size: string; position: string }> = {
   "1": { size: "100% 100%", position: "center" },
-  // Form 2 has built-in left padding in the SVG viewBox, so we scale and pin left.
-  "2": { size: "118% 100%", position: "left center" },
+  "2": { size: "100% 100%", position: "center" },
   "3": { size: "100% 100%", position: "center" },
 };
 
@@ -117,8 +116,8 @@ export default function LogoElementsShowcase() {
                   className="relative overflow-hidden"
                   style={{
                     aspectRatio: formAspectRatio[item.form],
-                    maskImage: `url('/Forms/${item.form}.svg')`,
-                    WebkitMaskImage: `url('/Forms/${item.form}.svg')`,
+                    maskImage: `url('/Forms/${item.form}.svg?v=11')`,
+                    WebkitMaskImage: `url('/Forms/${item.form}.svg?v=11')`,
                     maskRepeat: "no-repeat",
                     WebkitMaskRepeat: "no-repeat",
                     maskPosition: formMaskSizing[item.form].position,
