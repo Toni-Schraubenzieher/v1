@@ -20,7 +20,7 @@ function MovingRow({
   color: string;
 }) {
   const x = useMotionValue(direction === 1 ? -50 : 0);
-  const directionTarget = useMotionValue<1 | -1>(1);
+  const directionTarget = useMotionValue<number>(1);
   const smoothDirection = useSpring(directionTarget, { stiffness: 90, damping: 28, mass: 0.7 });
   const xPercent = useTransform(x, (value) => `${value}%`);
   const { scrollY } = useScroll();
@@ -33,7 +33,7 @@ function MovingRow({
     if (velocityNow > 22) directionTarget.set(1);
     if (velocityNow < -22) directionTarget.set(-1);
 
-    const baseSpeed = 0.9;
+    const baseSpeed = 0.7;
     const speedBoost = velocityFactor.get();
     const signedDirection = direction * smoothDirection.get();
     const moveBy = signedDirection * baseSpeed * (delta / 1000) * (1 + speedBoost);
@@ -75,8 +75,8 @@ export default function Statement() {
   return (
     <section className="py-14 sm:py-16 lg:py-20">
       <div className="w-full space-y-3 sm:space-y-4">
-        <MovingRow text="FOUNDERS FIRST." direction={-1} color="#FEB180" />
-        <MovingRow text="LONG-TERM PARTNERS." direction={1} color="#D4FFEF" />
+        <MovingRow text="SUBSTANCE OVER STORY." direction={-1} color="#FEB180" />
+        <MovingRow text="INFRASTRUCTURE FROM DAY 1." direction={1} color="#D4FFEF" />
       </div>
     </section>
   );

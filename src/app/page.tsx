@@ -1,12 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LogoElementsShowcase from "@/components/LogoElementsShowcase";
-import WhoWeAre from "@/components/WhoWeAre";
-import HowWeWork from "@/components/HowWeWork";
 import Statement from "@/components/Statement";
 import Portfolio from "@/components/Portfolio";
 import PortfolioOverview from "@/components/PortfolioOverview";
 import AboutUs from "@/components/AboutUs";
+import Stats from "@/components/Stats";
 import FAQ from "@/components/FAQ";
 import GetInTouch from "@/components/GetInTouch";
 
@@ -16,11 +15,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <LogoElementsShowcase />
-      <HowWeWork />
       <Statement />
       <PortfolioOverview />
       <Portfolio />
-      <WhoWeAre />
+      <Stats />
       <AboutUs />
       <FAQ />
       <GetInTouch />

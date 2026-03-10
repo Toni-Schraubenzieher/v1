@@ -10,7 +10,6 @@ export function Navigation5() {
 
   const navItems = [
     { title: "Home", href: "#hero" },
-    { title: "How we work", href: "#how-we-work" },
     { title: "Portfolio", href: "#portfolio" },
     { title: "About us", href: "#who-we-are" },
     { title: "Team", href: "#team" },

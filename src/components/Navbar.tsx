@@ -4,19 +4,20 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 const sections = [
-  { id: "hero", label: "Home", href: "#hero" },
-  { id: "how-we-work", label: "How we work", href: "#how-we-work" },
-  { id: "portfolio-overview", label: "Portfolio", href: "#portfolio-overview" },
-  { id: "who-we-are", label: "About us", href: "#who-we-are" },
-  { id: "team", label: "Team", href: "#team" },
-  { id: "get-in-touch", label: "Get in touch", href: "#get-in-touch" },
+  { id: "hero", label: "HOME", href: "#hero" },
+  { id: "venture-stories", label: "THIS IS KENSHO", href: "#venture-stories" },
+  { id: "portfolio-overview", label: "PORTFOLIO", href: "#portfolio-overview" },
+  { id: "who-we-are", label: "ABOUT US", href: "#who-we-are" },
+  { id: "team", label: "TEAM", href: "#team" },
+  { id: "faq", label: "FAQ", href: "#faq" },
+  { id: "get-in-touch", label: "GET IN TOUCH", href: "#get-in-touch" },
 ];
 const NAV_ORANGE = "#FEB180";
 const NAV_MINT = "#D4FFEF";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("Home");
+  const [activeSection, setActiveSection] = useState("HOME");
 
   const animateScrollTo = (targetY: number, durationMs = 1100) => {
     const startY = window.scrollY;
@@ -69,7 +70,7 @@ export default function Navbar() {
           return;
         }
       }
-      setActiveSection("Home");
+      setActiveSection("HOME");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -108,17 +109,17 @@ export default function Navbar() {
                       <a
                         href={section.href}
                         onClick={(event) => handleSectionClick(event, section)}
-                        className="group relative block w-full overflow-hidden px-8 py-1 font-heading text-[clamp(1.8rem,3.2vw,3.4rem)] font-bold leading-[0.95] tracking-tight text-white transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#101010] sm:px-10"
+                        className="group relative block w-full overflow-hidden px-8 py-1 font-heading text-[clamp(1.8rem,3.4vw,4.2rem)] font-bold leading-[0.95] tracking-tight text-white transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#101010] sm:px-10"
                       >
                         <span
                           className="pointer-events-none absolute inset-0 origin-left scale-x-[0.985] opacity-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-hover:opacity-100"
                           style={{ backgroundColor: itemColor }}
                         />
-                        <span className="relative z-10 mx-auto block h-[1.05em] w-full max-w-[24rem] -translate-x-1 overflow-hidden text-left">
-                          <span className="block transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.05em]">
+                        <span className="relative z-10 mx-auto block h-[1.15em] w-full max-w-[32rem] overflow-hidden text-left">
+                          <span className="block whitespace-nowrap transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.15em]">
                             {section.label}
                           </span>
-                          <span className="absolute left-0 top-[1.05em] block transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.05em]">
+                          <span className="absolute left-0 top-[1.15em] block whitespace-nowrap transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.15em]">
                             {section.label}
                           </span>
                         </span>

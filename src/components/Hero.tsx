@@ -48,7 +48,7 @@ export default function Hero() {
             KENSHŌ
           </h1>
           <p className="mt-8 max-w-[560px] text-lg sm:text-xl text-white/60 leading-relaxed">
-            Early-stage venture capital backing founders building transformative technology.
+            We invest in European resilience technologies - robotics, cybersecurity, quantum, industrial AI. Understood at first principles. Backed with patient capital and the infrastructure to scale.
           </p>
         </div>
       </div>

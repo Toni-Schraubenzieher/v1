@@ -33,37 +33,37 @@ const team: TeamMember[] = [
   {
     id: "wolfgang",
     name: "Wolfgang",
-    role: "Managing Partner",
+    role: "General Partner · PhD, Deep-Tech Investor",
     image: "/Team/Wolfgang.png",
     accent: "#FEB180",
   },
   {
     id: "anton",
     name: "Anton",
-    role: "Partner",
+    role: "Principal · B2B Lead Generation",
     image: "/Team/Anton_Apricot.png",
     accent: "#FEB180",
   },
   {
-    id: "maya",
-    name: "Maya",
-    role: "Investment Principal",
-    image:
-      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=900&h=1300&fit=crop",
-    accent: "#D4FFEF",
-  },
-  {
-    id: "luca",
-    name: "Luca",
-    role: "Platform Lead",
+    id: "marc",
+    name: "Marc",
+    role: "GP Advisor · B2B Sales",
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&h=1300&fit=crop",
     accent: "#D4FFEF",
   },
   {
-    id: "sofia",
-    name: "Sofia",
-    role: "Portfolio Operations",
+    id: "david",
+    name: "David",
+    role: "Advisor · Cryptographic Algorithms",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&h=1300&fit=crop",
+    accent: "#D4FFEF",
+  },
+  {
+    id: "linda",
+    name: "Linda",
+    role: "Advisor · AI Research & Legal/Tech",
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&h=1300&fit=crop",
     accent: "#D4FFEF",
@@ -220,23 +220,14 @@ export default function AboutUs() {
       className="about-us py-16 lg:py-24"
     >
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
-        {/* Label */}
-        <div className="mb-12 flex items-center gap-3 lg:mb-16">
-          <span className="h-2.5 w-2.5 rounded-full bg-accent-mint animate-pulse" />
-          <span className="text-sm font-medium uppercase tracking-[0.16em] text-white/50">
-            Team
-          </span>
-        </div>
-
         {/* Big statement */}
         <h2
           ref={headingRef}
           className="mb-16 max-w-[900px] font-heading text-[clamp(2rem,5.5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tight text-white lg:mb-20"
         >
-          We back founders
-          who build what
-          the world needs
-          next.
+          Built for founders
+          <br />
+          who build what matters.
         </h2>
 
         {/* Infinite team carousel */}

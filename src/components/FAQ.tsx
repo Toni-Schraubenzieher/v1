@@ -5,29 +5,40 @@ import { AnimatePresence, motion } from "motion/react";
 
 const faqs = [
   {
-    question: "What stage do you invest in?",
+    question: "What's the best way to reach out?",
     answer:
-      "We primarily invest at pre-seed and seed stage, backing ambitious founders early when conviction and speed matter most.",
+      "Come introduced through someone we know. That works best. You can also use the form below - but we are honest: fewer than 1 in 20 cold submissions lead to an investment. That is true for every VC, we just say it.",
+    highlight: "MOST OF OUR PORTFOLIO STARTED WITH US REACHING OUT FIRST.",
   },
   {
-    question: "Which sectors are you focused on?",
+    question: "How fast do you make decisions?",
     answer:
-      "Our focus is on Robotics, Enabling Technologies, Cybersecurity / Dual use, and Computation, while staying open to exceptional outliers.",
+      "Our GP evaluates the research directly - technical deep-dive, reference checks, advisory review. No black box. Throughout the process, we tell you where we stand: what we find strong, where we see risks, and what we need to understand better.",
+    highlight: "IF IT IS A FIT, YOU WILL KNOW. IF IT IS NOT, YOU WILL KNOW THAT TOO.",
   },
   {
-    question: "How quickly can you make an investment decision?",
+    question: "What do you actually do after you invest?",
     answer:
-      "We move fast. Once we align on team, market, and product potential, we can complete diligence and provide a decision in a short timeframe.",
+      "We deploy commercial infrastructure from Day 1. For Qambria, that meant 3,250 B2B leads and introductions to three add-on investors. For Diffraqtion, an intro to the Head of Defense Research in Munich.",
+    highlight: "WE BUILD YOUR PIPELINE AND YOUR INVESTOR NETWORK SO YOU CAN FOCUS ON THE TECHNOLOGY.",
   },
   {
-    question: "Do you lead rounds or co-invest?",
+    question: "Why a small fund?",
     answer:
-      "We can lead or co-invest depending on the round structure and founder needs, always with a practical, founder-first approach.",
+      "By design. 20 companies, EUR 500K first checks. A small fund means we can commit fully: dedicated lead generation, direct customer introductions, hands-on operational support. That is harder with 80 companies in a portfolio.",
+    highlight: "WE CHOSE DEPTH OVER BREADTH.",
   },
   {
-    question: "How can founders get in touch?",
+    question: "What won't you invest in?",
     answer:
-      "Reach out via our contact section and include a short overview of your product, traction, and round details. We review every inbound carefully.",
+      "Business models. We back hard technology - systems where the defensibility is in the architecture, not the go-to-market. No SaaS, no marketplaces, no consumer apps. If your moat is a network effect rather than a technical breakthrough, we are the wrong fund.",
+    highlight: "AND THAT IS FINE.",
+  },
+  {
+    question: "What kind of founders are you looking for?",
+    answer:
+      "Technical founders who can sell - or are coachable enough to learn. We look for what we call Double PMF: proof of fit in one focused use case, plus visibility into a larger market. We do not need a finished company.",
+    highlight: "WE NEED DEFENSIBLE TECHNOLOGY WITH GLOBAL POTENTIAL.",
   },
 ] as const;
 
@@ -37,38 +48,56 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
-        <div className="mb-10 flex items-center gap-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-accent-mint animate-pulse" />
-          <span className="text-sm font-medium uppercase tracking-[0.16em] text-white/50">FAQ</span>
-        </div>
-
-        <h2 className="mb-10 font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
-          FREQUENTLY ASKED QUESTIONS
+        <h2 className="mb-12 font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight" style={{ color: "#FEB180" }}>
+          WHAT FOUNDERS
+          <br />
+          ASK US
         </h2>
 
-        <div className="space-y-3">
+        <div className="space-y-0">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <div
-                key={item.question}
-                className="overflow-hidden rounded-2xl border border-white/10 bg-[#101010]"
-              >
+              <div key={item.question}>
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left sm:px-8"
+                  className="flex w-full items-center justify-between gap-6 py-9 text-left sm:py-10 lg:py-12"
                 >
-                  <span className="font-heading text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                  <span className="font-heading text-3xl font-medium tracking-tight text-white sm:text-4xl lg:text-5xl">
                     {item.question}
                   </span>
-                  <span
-                    className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-white/15 text-lg transition-colors ${
-                      isOpen ? "bg-[#FEB180] text-[#101010]" : "bg-white/5 text-white"
-                    }`}
-                  >
-                    {isOpen ? "−" : "+"}
+                  <span className="relative h-5 w-5 shrink-0">
+                    {/* Horizontal line (always visible) */}
+                    <motion.span
+                      className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+                      animate={{
+                        width: "20px",
+                        x: 0,
+                        y: 9,
+                      }}
+                      style={{
+                        color: isOpen ? "#D4FFEF" : "#FEB180"
+                      }}
+                      transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+                    />
+                    {/* Vertical line (rotated horizontal, only for +) */}
+                    <motion.span
+                      className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+                      animate={{
+                        width: "20px",
+                        x: 0,
+                        y: 9,
+                        rotate: isOpen ? 0 : 90,
+                        opacity: isOpen ? 0 : 1,
+                      }}
+                      style={{
+                        color: isOpen ? "#D4FFEF" : "#FEB180",
+                        transformOrigin: "center",
+                      }}
+                      transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+                    />
                   </span>
                 </button>
 
@@ -78,15 +107,30 @@ export default function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{
+                        duration: 0.5,
+                        ease: [0.22, 1, 0.36, 1],
+                        opacity: { duration: 0.3 }
+                      }}
                       className="overflow-hidden"
                     >
-                      <p className="px-6 pb-6 text-base leading-relaxed text-white/70 sm:px-8">
-                        {item.answer}
-                      </p>
+                      <div className="pb-9 sm:pb-10 lg:pb-12">
+                        <p className="text-base leading-relaxed text-white/70 sm:text-lg">
+                          {item.answer}
+                        </p>
+                        {"highlight" in item && item.highlight && (
+                          <p className="mt-4 text-xl font-semibold leading-relaxed sm:text-2xl lg:text-3xl" style={{ color: "#FEB180" }}>
+                            {item.highlight}
+                          </p>
+                        )}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {index < faqs.length - 1 && (
+                  <div className="h-px bg-white/10" />
+                )}
               </div>
             );
           })}
