@@ -46,6 +46,11 @@ const companies = [
     logo: "/Logos+Font/Quality_Match.svg",
     vertical: "Computation",
   },
+  {
+    name: "Qambria",
+    logo: "/Logo_loop/Qambria.svg",
+    vertical: "Computation",
+  },
 ] as const;
 
 const logoSizePresets = {
@@ -62,6 +67,7 @@ const companyLogoPreset: Record<(typeof companies)[number]["name"], keyof typeof
   "Pixel Photonics": "wordmarkCompact",
   "CryptoNext Security": "wordmarkCrypto",
   "Quality Match": "wordmarkTall",
+  Qambria: "wordmarkBalanced",
 };
 
 export default function PortfolioOverview() {
@@ -71,16 +77,16 @@ export default function PortfolioOverview() {
     <section id="portfolio-overview" className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
         <div className="mx-auto max-w-[920px] text-center">
-          <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
+          <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight" style={{ color: "#FEB180" }}>
             PORTFOLIO OVERVIEW
           </h2>
           <p className="mt-4 text-base text-white/55 sm:text-lg">
-            Explore our portfolio by verticals.
+            Resilience technologies across four verticals.
           </p>
         </div>
 
         <div className="mt-10 flex justify-center">
-          <div className="inline-flex flex-wrap items-center justify-center gap-1.5 rounded-full bg-white/[0.07] p-2">
+          <div className="inline-flex flex-wrap items-center justify-center gap-1.5 rounded-full bg-[#181818] p-2">
             {verticals.map((vertical) => {
               const isActive = activeVertical === vertical;
               const isColorPillActive = isActive && vertical !== "All";

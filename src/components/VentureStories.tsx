@@ -8,46 +8,38 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const steps = [
+const areas = [
   {
     id: 1,
-    number: "01",
     title: "Robotics",
     description:
       "We source exceptional founders through our global network — often before they've raised a single dollar.",
     color: "#FEB180",
-    formNumber: "1",
   },
   {
     id: 2,
-    number: "02",
     title: "Enabling Technologies",
     description:
       "Deep-dive into the team, market, and technology. We move with speed and conviction when we believe.",
     color: "#D4FFEF",
-    formNumber: "2",
   },
   {
     id: 3,
-    number: "03",
     title: "Cybersecurity / Dual use",
     description:
       "Meaningful capital, clear terms, and a partnership built on trust from day one. No games, no delays.",
     color: "#FEB180",
-    formNumber: "3",
   },
   {
     id: 4,
-    number: "04",
     title: "Computation",
     description:
       "From hiring key talent to unlocking new markets — we're in the trenches with our founders every step.",
     color: "#D4FFEF",
-    formNumber: "4",
   },
 ];
 
-export default function HowWeWork() {
+export default function VentureStories() {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -102,8 +94,8 @@ export default function HowWeWork() {
   return (
     <section
       ref={sectionRef}
-      id="how-we-work"
-      className="how-we-work py-16 lg:py-24"
+      id="venture-stories"
+      className="py-16 lg:py-24"
     >
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
         <div className="rounded-3xl bg-[#101010] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
@@ -112,68 +104,59 @@ export default function HowWeWork() {
             <div className="flex items-center gap-3 mb-4">
               <span className="h-2.5 w-2.5 rounded-full bg-accent-warm animate-pulse" />
               <span className="text-sm font-medium uppercase tracking-[0.16em] text-white/50">
-                Our Process
+                Investment Focus
               </span>
             </div>
             <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
-              HOW WE WORK
+              THIS IS KENSHO
             </h2>
           </div>
 
-          {/* Content: Grid with 4 cards */}
-          <div
-            ref={contentRef}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
-          >
-            {steps.map((step, index) => (
-              <button
-                key={step.id}
-                onClick={() => setActiveIndex(index)}
-                className="group relative text-left rounded-2xl bg-[#0A0A0A] p-8 overflow-hidden transition-all duration-300 hover:scale-[1.02]"
-              >
-                {/* Form SVG Background */}
-                <div className="absolute inset-0 opacity-5 pointer-events-none">
-                  <img
-                    src={`/Forms/${step.formNumber}.svg`}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    style={{ filter: "brightness(1.5)" }}
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10">
+          {/* Content: Items left, Image right */}
+          <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 lg:gap-16 items-center">
+            {/* Left: Clickable Items */}
+            <div className="flex flex-col">
+              {areas.map((area, index) => (
+                <button
+                  key={area.id}
+                  onClick={() => setActiveIndex(index)}
+                  className="group relative text-left py-6 sm:py-8 cursor-pointer flex items-center gap-4"
+                >
                   <div
-                    className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-4"
+                    className="w-[3px] h-12 rounded-full shrink-0 transition-all duration-500"
                     style={{
-                      backgroundColor: `${step.color}20`,
-                      color: step.color,
+                      backgroundColor: activeIndex === index ? area.color : "rgba(255,255,255,0.12)",
                     }}
-                  >
-                    {step.number}
+                  />
+                  <div className="flex-1">
+                    <h3
+                      className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold mb-2 transition-colors duration-500"
+                      style={{
+                        color: activeIndex === index ? area.color : "rgba(255,255,255,0.3)",
+                      }}
+                    >
+                      {area.title}
+                    </h3>
+                    {activeIndex === index && (
+                      <p className="text-white/60 text-sm sm:text-base leading-relaxed">
+                        {area.description}
+                      </p>
+                    )}
                   </div>
-                  <h3
-                    className="font-heading text-2xl lg:text-3xl font-bold mb-3 transition-colors duration-300"
-                    style={{
-                      color: activeIndex === index ? step.color : "#ffffff",
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="text-white/60 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                </button>
+              ))}
+            </div>
 
-                {/* Decorative element */}
-                <div
-                  className="absolute bottom-0 right-0 w-24 h-24 opacity-10"
-                  style={{
-                    background: `radial-gradient(circle at center, ${step.color}, transparent 70%)`,
-                  }}
+            {/* Right: Kensho Form 4 Image */}
+            <div className="flex items-center justify-center">
+              <div className="relative w-full max-w-[320px] lg:max-w-[400px] aspect-[208/154]">
+                <img
+                  src="/Forms/4.svg"
+                  alt="Kensho"
+                  className="w-full h-full object-contain"
                 />
-              </button>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
