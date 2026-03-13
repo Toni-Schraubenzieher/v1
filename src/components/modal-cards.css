@@ -49,9 +49,16 @@
 }
 
 .modal-card-subtitle {
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
   margin-top: 0.125rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  .modal-card-subtitle {
+    font-size: 1.125rem;
+  }
 }
 
 .modal-card-icon {

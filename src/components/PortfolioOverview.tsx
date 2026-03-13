@@ -7,8 +7,8 @@ const verticals = [
   "All",
   "Robotics",
   "Enabling Technologies",
-  "Cybersecurity / Dual use",
   "Computation",
+  "Cybersecurity / Dual use",
 ] as const;
 
 type Vertical = (typeof verticals)[number];
@@ -16,40 +16,40 @@ type Vertical = (typeof verticals)[number];
 const verticalPillColor: Record<Exclude<Vertical, "All">, string> = {
   Robotics: "#FEB180",
   "Enabling Technologies": "#D4FFEF",
-  "Cybersecurity / Dual use": "#FEB180",
-  Computation: "#D4FFEF",
+  "Computation": "#FEB180",
+  "Cybersecurity / Dual use": "#D4FFEF",
 };
 
 const companies = [
-  {
-    name: "Hefring",
-    logo: "/Logos+Font/Hefring.svg",
-    vertical: "Enabling Technologies",
-  },
   {
     name: "Energy Robotics",
     logo: "/Logos+Font/Energy_Robotics.svg",
     vertical: "Robotics",
   },
   {
-    name: "Pixel Photonics",
-    logo: "/Logos+Font/Pixel_Photonics.svg",
+    name: "Hefring",
+    logo: "/Logos+Font/Hefring.svg",
     vertical: "Enabling Technologies",
   },
   {
-    name: "CryptoNext Security",
-    logo: "/Logos+Font/CryptoNext.svg",
-    vertical: "Cybersecurity / Dual use",
+    name: "Pixel Photonics",
+    logo: "/Logos+Font/Pixel_Photonics.svg",
+    vertical: "Computation",
   },
   {
     name: "Quality Match",
     logo: "/Logos+Font/Quality_Match.svg",
-    vertical: "Computation",
+    vertical: "Enabling Technologies",
   },
   {
     name: "Qambria",
     logo: "/Logo_loop/Qambria.svg",
     vertical: "Computation",
+  },
+  {
+    name: "CryptoNext Security",
+    logo: "/Logos+Font/CryptoNext.svg",
+    vertical: "Cybersecurity / Dual use",
   },
 ] as const;
 
@@ -80,7 +80,7 @@ export default function PortfolioOverview() {
           <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight" style={{ color: "#FEB180" }}>
             PORTFOLIO OVERVIEW
           </h2>
-          <p className="mt-4 text-base text-white/55 sm:text-lg">
+          <p className="mt-4 text-base text-white/80 sm:text-lg">
             Resilience technologies across four verticals.
           </p>
         </div>
@@ -96,7 +96,7 @@ export default function PortfolioOverview() {
                   key={vertical}
                   onClick={() => setActiveVertical(vertical)}
                   className={`relative rounded-full px-6 py-3 text-[1.05rem] font-semibold leading-none transition-colors duration-200 sm:px-8 sm:py-3.5 ${
-                    isColorPillActive ? "text-[#101010]" : isActive ? "text-white" : "text-white/60 hover:text-white"
+                    isColorPillActive ? "text-[#101010]" : isActive ? "text-white" : "text-white/80 hover:text-white"
                   }`}
                 >
                   {isActive && (

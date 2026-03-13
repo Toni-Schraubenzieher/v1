@@ -18,6 +18,7 @@ const NAV_MINT = "#D4FFEF";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("HOME");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const animateScrollTo = (targetY: number, durationMs = 1100) => {
     const startY = window.scrollY;
@@ -60,6 +61,9 @@ export default function Navbar() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight * 0.35;
 
+      // Check if scrolled down
+      setIsScrolled(window.scrollY > 50);
+
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (!section) continue;
@@ -80,6 +84,56 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Logo + Text - Top Left */}
+      <div className="fixed left-0 top-10 z-[60] sm:top-12 w-full px-6 sm:px-8">
+        <div className="mx-auto max-w-[1320px]">
+          <div className="ml-4 sm:ml-6 flex items-center gap-4">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                const heroSection = document.getElementById('hero');
+                if (!heroSection) return;
+                const targetTop = Math.max(0, heroSection.getBoundingClientRect().top + window.scrollY);
+                animateScrollTo(targetTop, 980);
+                window.history.replaceState(null, "", '#hero');
+              }}
+              className="relative inline-flex items-center justify-center cursor-pointer"
+            >
+              {/* Orange Circle Background - appears on scroll */}
+              <motion.div
+                className="absolute inset-0 -m-5 rounded-full"
+                style={{ backgroundColor: '#FEB180' }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{
+                  scale: isScrolled ? 1 : 0,
+                  opacity: isScrolled ? 1 : 0
+                }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              />
+
+              {/* Kensho Logo */}
+              <img
+                src="/Logo_hero.svg?v=2"
+                alt="Kensho"
+                className="relative z-10 h-auto w-[32px] sm:w-[36px]"
+              />
+            </button>
+
+            {/* "KENSHŌ" Text - fades out on scroll */}
+            <motion.span
+              className="font-heading text-lg font-medium text-white tracking-tight sm:text-xl"
+              animate={{
+                opacity: isScrolled ? 0 : 1,
+                x: isScrolled ? -20 : 0
+              }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              KENSHŌ
+            </motion.span>
+          </div>
+        </div>
+      </div>
+
       <AnimatePresence>
         {isOpen && (
           <>
@@ -109,13 +163,13 @@ export default function Navbar() {
                       <a
                         href={section.href}
                         onClick={(event) => handleSectionClick(event, section)}
-                        className="group relative block w-full overflow-hidden px-8 py-1 font-heading text-[clamp(1.8rem,3.4vw,4.2rem)] font-bold leading-[0.95] tracking-tight text-white transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#101010] sm:px-10"
+                        className="group relative flex items-center w-full overflow-hidden px-8 py-2.5 font-heading text-[clamp(1.8rem,3.4vw,4.2rem)] font-bold leading-none tracking-tight text-white transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#101010] sm:px-10"
                       >
                         <span
                           className="pointer-events-none absolute inset-0 origin-left scale-x-[0.985] opacity-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-hover:opacity-100"
                           style={{ backgroundColor: itemColor }}
                         />
-                        <span className="relative z-10 mx-auto block h-[1.15em] w-full max-w-[32rem] overflow-hidden text-left">
+                        <span className="relative z-10 mx-auto block h-[1.15em] w-full max-w-[32rem] overflow-hidden text-left translate-y-[0.08em]">
                           <span className="block whitespace-nowrap transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.15em]">
                             {section.label}
                           </span>
@@ -134,7 +188,7 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      <div className="fixed right-6 top-6 z-[60] sm:right-8 sm:top-8">
+      <div className="fixed right-6 top-10 z-[60] sm:right-8 sm:top-12">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="flex h-12 min-w-[210px] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)]"

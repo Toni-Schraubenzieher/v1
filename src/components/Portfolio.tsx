@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -16,56 +16,43 @@ const FILTER_WARM =
 
 const startups = [
   {
-    id: 1,
-    name: "Hefring",
-    logo: "/Logos_Portfolio/Hefring.svg",
-    wordmarkLogo: "/Logos+Font/Hefring.svg",
-    accent: "#D4FFEF",
-    logoFilter: FILTER_MINT,
-    category: "AI / EDGE COMPUTING",
-    description:
-      "Hefring built IMASP, an AI-powered maritime intelligence platform that unifies data from navigation, propulsion, and environmental sensors across entire vessel fleets. Edge computing onboard, cloud analytics off-ship, delivering real-time safety guidance, fuel optimization, predictive maintenance, and regulatory compliance. The system is hardware-agnostic, designed to operate across commercial shipping, defense, and leisure maritime, integrating with existing protocols and third-party equipment. Founded by a team with 50+ years of combined expertise in maritime operations, corporate development, and condition monitoring.",
-    points: [],
-    image: "https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?w=600&h=400&fit=crop",
-  },
-  {
     id: 2,
     name: "Energy Robotics",
     logo: "/Logos_Portfolio/Energy_Robotocs.svg",
     wordmarkLogo: "/Logos+Font/Energy_Robotics.svg",
     accent: "#FEB180",
     logoFilter: FILTER_WARM,
-    category: "ROBOTICS / AI",
+    category: "ROBOTICS",
     description:
       "Energy Robotics builds the leading platform for autonomous robot and drone inspection, hardware-agnostic software that turns any robot into an autonomous inspection system for industrial facilities. Using AI and digital twin technology, the platform transforms raw sensor data into actionable insights. 20,000+ km of autonomous inspection rounds completed across 4 continents. Founded by robotics prize with backgrounds spanning RoboCup and the DARPA Robotics Challenge.",
     points: [],
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
   },
   {
+    id: 1,
+    name: "Hefring",
+    logo: "/Logos_Portfolio/Hefring.svg",
+    wordmarkLogo: "/Logos+Font/Hefring.svg",
+    accent: "#D4FFEF",
+    logoFilter: FILTER_MINT,
+    category: "ENABLING TECHNOLOGIES",
+    description:
+      "Hefring built IMASP, an AI-powered maritime intelligence platform that unifies data from navigation, propulsion, and environmental sensors across entire vessel fleets. Edge computing onboard, cloud analytics off-ship, delivering real-time safety guidance, fuel optimization, predictive maintenance, and regulatory compliance. The system is hardware-agnostic, designed to operate across commercial shipping, defense, and leisure maritime, integrating with existing protocols and third-party equipment. Founded by a team with 50+ years of combined expertise in maritime operations, corporate development, and condition monitoring.",
+    points: [],
+    image: "https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?w=600&h=400&fit=crop",
+  },
+  {
     id: 3,
     name: "Pixel Photonics",
     logo: "/Logos_Portfolio/Pixel_Photonics.svg",
     wordmarkLogo: "/Logos+Font/Pixel_Photonics.svg",
-    accent: "#D4FFEF",
-    logoFilter: FILTER_MINT,
-    category: "QUANTUM / PHOTONICS",
+    accent: "#FEB180",
+    logoFilter: FILTER_WARM,
+    category: "COMPUTATION",
     description:
       "Pixel Photonics develops superconducting nanowire single-photon detectors (SNSPDs), the enabling hardware for quantum computing, secure communications, and advanced sensing. Their waveguide-integrated architecture is globally unique: 1000+ detection channels where competitors max out at 24, with 25% higher device density. A 12-year R&D effort spun out of Uni Münster, now 35 strong with 8 PhDs. €11M revenue in 2024, €11M qualified pipeline, systems deployed with Fortune 500 and Nasdaq-listed defense companies. Backed by HTGF, QuantonNation, and SPRIND-D.",
     points: [],
     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop",
-  },
-  {
-    id: 4,
-    name: "CryptoNext Security",
-    logo: "/Logos_Portfolio/CryptoNext.svg",
-    wordmarkLogo: "/Logos+Font/CryptoNext.svg",
-    accent: "#FEB180",
-    logoFilter: FILTER_WARM,
-    category: "POST-QUANTUM CYBERSECURITY",
-    description:
-      "CryptoNext provides a complete suite of products and services to manage the transition to quantum-safe security, protecting critical data against the 'harvest now, decrypt later' threat before quantum computers break current public-key cryptography. Their technology covers the full migration: discovery, transition, and ongoing quantum-safe encryption for enterprises and government agencies. Already deployed through pilots with NATO, European Commission, Banque de France, and Société Générale across Europe and the US. CTO and founder Jean-Charles Faugère, former INRIA Research Director and École Normale Supérieure graduate, co-authored several NIST post-quantum standard algorithms and holds the Seymour Cray Prize.",
-    points: [],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
   },
   {
     id: 5,
@@ -74,7 +61,7 @@ const startups = [
     wordmarkLogo: "/Logos+Font/Quality_Match.svg",
     accent: "#D4FFEF",
     logoFilter: FILTER_MINT,
-    category: "COMPUTER VISION / AI - EXIT",
+    category: "ENABLING TECHNOLOGIES",
     description:
       "Quality Match built AI-powered visual quality inspection that cut QA costs by 90% while drastically improving labeled data accuracy across manufacturing. Their technology capitalized on the industry shift from data quantity to data quality, making QA accessible to a far broader customer base as the EU AI Act raised provable data standards. Founded by Dr. Daniel Kondermann, who previously sold Pallas Ludens to Apple and led their data science team. Acquired by Wayve.",
     points: [],
@@ -87,9 +74,22 @@ const startups = [
     wordmarkLogo: "/Logo_loop/Qambria.svg",
     accent: "#FEB180",
     logoFilter: FILTER_WARM,
-    category: "QUANTUM COMPUTING / HPC",
+    category: "COMPUTATION",
     description:
       "Qambria is building the integration layer between quantum and classical computing, treating quantum processors as specialized accelerators within existing HPC environments, not as standalone research instruments. Hardware-agnostic and vendor-neutral, their platform eliminates lock-in while making quantum practically accessible across pharma, AI, and scientific workloads. The vision: quantum computers as standard nodes in enterprise data centers. Founded by Dominik Ulmer (30+ years supercomputing leadership at CRAY and HPE) and Marco Szalay (Quantum Engineer #4 at Google Quantum AI), with additional expertise from IBM Research and Argonne National Lab.",
+    points: [],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+  },
+  {
+    id: 4,
+    name: "CryptoNext Security",
+    logo: "/Logos_Portfolio/CryptoNext.svg",
+    wordmarkLogo: "/Logos+Font/CryptoNext.svg",
+    accent: "#D4FFEF",
+    logoFilter: FILTER_MINT,
+    category: "CYBERSECURITY / DUAL USE",
+    description:
+      "CryptoNext provides a complete suite of products and services to manage the transition to quantum-safe security, protecting critical data against the 'harvest now, decrypt later' threat before quantum computers break current public-key cryptography. Their technology covers the full migration: discovery, transition, and ongoing quantum-safe encryption for enterprises and government agencies. Already deployed through pilots with NATO, European Commission, Banque de France, and Société Générale across Europe and the US. CTO and founder Jean-Charles Faugère, former INRIA Research Director and École Normale Supérieure graduate, co-authored several NIST post-quantum standard algorithms and holds the Seymour Cray Prize.",
     points: [],
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
   },
@@ -98,6 +98,18 @@ const startups = [
 const socialProofItems = [
   {
     id: 1,
+    founder: "Marc Dassler",
+    company: "Energy Robotics",
+    role: "Founder & CEO, Energy Robotics",
+    quote:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces",
+    accent: "#FEB180",
+    logo: "/Logos_Portfolio/Energy_Robotocs.svg",
+  },
+  {
+    id: 2,
     founder: "Karl Birgir Björnsson",
     company: "Hefring",
     role: "Founder & CEO, Hefring",
@@ -109,7 +121,19 @@ const socialProofItems = [
     logo: "/Logos_Portfolio/Hefring.svg",
   },
   {
-    id: 2,
+    id: 3,
+    founder: "Nicolai Walter",
+    company: "Pixel Photonics",
+    role: "Founder, Pixel Photonics",
+    quote:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+    avatar:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop&crop=faces",
+    accent: "#FEB180",
+    logo: "/Logos_Portfolio/Pixel_Photonics.svg",
+  },
+  {
+    id: 4,
     founder: "Dr. Daniel Kondermann",
     company: "Quality Match",
     role: "Founder, Quality Match",
@@ -119,30 +143,6 @@ const socialProofItems = [
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=faces",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/Quality_Match.svg",
-  },
-  {
-    id: 3,
-    founder: "Jean‑Charles Faugère",
-    company: "CryptoNext",
-    role: "Founder & CTO, CryptoNext Security",
-    quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces",
-    accent: "#FEB180",
-    logo: "/Logos_Portfolio/CryptoNext.svg",
-  },
-  {
-    id: 4,
-    founder: "Nicolai Walter",
-    company: "Pixel Photonics",
-    role: "Founder, Pixel Photonics",
-    quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop&crop=faces",
-    accent: "#D4FFEF",
-    logo: "/Logos_Portfolio/Pixel_Photonics.svg",
   },
   {
     id: 5,
@@ -155,6 +155,18 @@ const socialProofItems = [
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Qambria.svg",
+  },
+  {
+    id: 6,
+    founder: "Jean‑Charles Faugère",
+    company: "CryptoNext",
+    role: "Founder & CTO, CryptoNext Security",
+    quote:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces",
+    accent: "#D4FFEF",
+    logo: "/Logos_Portfolio/CryptoNext.svg",
   },
 ] as const;
 
@@ -186,14 +198,14 @@ function PortfolioItem({
   startup,
   index,
   onOpen,
+  onHoverChange,
 }: {
   startup: (typeof startups)[0];
   index: number;
   onOpen: () => void;
+  onHoverChange: (startup: (typeof startups)[0] | null) => void;
 }) {
   const itemRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!itemRef.current) return;
@@ -223,26 +235,12 @@ function PortfolioItem({
   return (
     <div
       ref={itemRef}
-      className="border-t border-white/10"
+      className={index === 0 ? "" : "border-t border-white/10"}
     >
       <button
         onClick={onOpen}
-        onMouseEnter={(event) => {
-          setIsHovering(true);
-          const rect = event.currentTarget.getBoundingClientRect();
-          setCursorPos({
-            x: event.clientX - rect.left,
-            y: event.clientY - rect.top,
-          });
-        }}
-        onMouseMove={(event) => {
-          const rect = event.currentTarget.getBoundingClientRect();
-          setCursorPos({
-            x: event.clientX - rect.left,
-            y: event.clientY - rect.top,
-          });
-        }}
-        onMouseLeave={() => setIsHovering(false)}
+        onMouseEnter={() => onHoverChange(startup)}
+        onMouseLeave={() => onHoverChange(null)}
         className="relative flex w-full cursor-pointer items-center overflow-hidden px-8 py-8 text-left group sm:px-12 md:py-10"
       >
         <span
@@ -264,35 +262,6 @@ function PortfolioItem({
           <span className="absolute left-0 top-1/2 h-[1.5px] w-6 -translate-y-1/2 bg-white/50" />
         </motion.div>
       </button>
-      <AnimatePresence>
-        {isHovering && (
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none absolute left-0 top-0 z-[25] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.28)]"
-            style={{
-              left: cursorPos.x,
-              top: cursorPos.y,
-              backgroundColor: startup.accent,
-            }}
-          >
-            <img
-              src={startup.logo}
-              alt=""
-              className="h-8 w-auto object-contain"
-              style={{
-                filter:
-                  startup.accent === "#D4FFEF"
-                    ? "brightness(0) saturate(100%) invert(0%)"
-                    : "brightness(0) saturate(100%) invert(100%)",
-              }}
-            />
-          </motion.span>
-        )}
-      </AnimatePresence>
-
     </div>
   );
 }
@@ -300,36 +269,31 @@ function PortfolioItem({
 export default function Portfolio() {
   const [activeId, setActiveId] = useState<number | null>(null);
   const [navigationDirection, setNavigationDirection] = useState<1 | -1>(1);
+  const [hoveredStartup, setHoveredStartup] = useState<(typeof startups)[0] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const lockedScrollYRef = useRef(0);
   const activeIndex = startups.findIndex((s) => s.id === activeId);
   const activeStartup = activeIndex >= 0 ? startups[activeIndex] : null;
 
+  // Cursor tracking for the shared circle
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
+  const x = useSpring(cursorX, springConfig);
+  const y = useSpring(cursorY, springConfig);
+
   useEffect(() => {
-    if (!sectionRef.current || !headerRef.current) return;
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!containerRef.current || !hoveredStartup) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      cursorX.set(event.clientX - rect.left);
+      cursorY.set(event.clientY - rect.top);
+    };
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            end: "top 50%",
-            scrub: 1,
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [hoveredStartup, cursorX, cursorY]);
 
   useEffect(() => {
     const lockEvent = new Event("kensho:lock-scroll");
@@ -383,14 +347,7 @@ export default function Portfolio() {
       className="portfolio"
     >
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
-        <div className="rounded-3xl bg-[#181818] overflow-hidden py-16 lg:py-24">
-          {/* Header */}
-          <div ref={headerRef} className="px-8 sm:px-12 mb-12 lg:mb-16">
-            <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
-              PORTFOLIO
-            </h2>
-          </div>
-
+        <div ref={containerRef} className="rounded-3xl bg-[#181818] overflow-visible relative">
           {/* Startup rows */}
           <div>
             {startups.map((startup, index) => (
@@ -402,11 +359,47 @@ export default function Portfolio() {
                   setNavigationDirection(1);
                   setActiveId(startup.id);
                 }}
+                onHoverChange={setHoveredStartup}
               />
             ))}
-            <div className="border-t border-white/10" />
           </div>
 
+          {/* Shared cursor circle */}
+          <AnimatePresence>
+            {hoveredStartup && (
+              <motion.span
+                initial={{ opacity: 0, filter: "blur(8px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, filter: "blur(8px)" }}
+                transition={{
+                  duration: 0.3,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                className="pointer-events-none absolute left-0 top-0 z-[25] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.28)]"
+                style={{
+                  left: x,
+                  top: y,
+                  backgroundColor: hoveredStartup.accent,
+                }}
+              >
+                <motion.img
+                  key={hoveredStartup.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  src={hoveredStartup.logo}
+                  alt=""
+                  className="h-8 w-auto object-contain"
+                  style={{
+                    filter: hoveredStartup.accent === "#FEB180"
+                      ? "brightness(0) saturate(100%) invert(100%)"
+                      : "brightness(0) saturate(100%) invert(0%)",
+                  }}
+                />
+              </motion.span>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 

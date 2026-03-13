@@ -26,7 +26,7 @@ const stories: StoryItem[] = [
     description:
       "We start with your technology, not your TAM slide. Whether it's post-quantum algorithms, autonomous perception, or photonic detectors, we invest the time to understand what you've actually built. Not to nod along. To challenge it, pressure-test it, and back it with conviction.",
     image:
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1800&h=1300&fit=crop",
+      "/This_is_Kensho/Technical_fluency.png?v=2",
     form: "1",
     accent: "#FEB180",
   },
@@ -61,10 +61,10 @@ const stories: StoryItem[] = [
     index: "04",
     titleMain: "Where we",
     titleAccent: "invest",
-    kicker: "",
+    kicker: "Our four verticals",
     description: "",
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1800&h=1300&fit=crop",
+      "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=1800&h=1300&fit=crop&auto=format&q=80",
     form: "4",
     accent: "#D4FFEF",
   },
@@ -79,6 +79,7 @@ const investmentAreas = [
       "Autonomous systems for industrial and defense applications. From warehouse automation to field robotics. Machines that replace risk, not just labor.",
     color: "#FEB180",
     formNumber: "1",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1800&h=1300&fit=crop&auto=format&q=80",
   },
   {
     id: 2,
@@ -88,24 +89,27 @@ const investmentAreas = [
       "Specialized AI, photonics, and the commercial infrastructure layer that deep tech needs to scale. The substrate - not the application.",
     color: "#D4FFEF",
     formNumber: "2",
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1800&h=1300&fit=crop&auto=format&q=80&sat=-100&bri=20",
   },
   {
     id: 3,
     number: "03",
-    title: "Cybersecurity / Dual Use",
+    title: "Computation",
     description:
-      "Post-quantum cryptography, secure communication, autonomous surveillance. The infrastructure layer of European defense sovereignty.",
+      "Quantum computing, edge computing, HPC, semiconductors. The compute layer underneath every other vertical we invest in, from scientific simulation to real-time autonomous decision-making.",
     color: "#FEB180",
     formNumber: "3",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1800&h=1300&fit=crop&auto=format&q=80",
   },
   {
     id: 4,
     number: "04",
-    title: "Computation",
+    title: "Cybersecurity / Dual Use",
     description:
-      "Quantum computing, edge computing, HPC, semiconductors. The compute layer underneath every other vertical we invest in, from scientific simulation to real-time autonomous decision-making.",
+      "Post-quantum cryptography, secure communication, autonomous surveillance. The infrastructure layer of European defense sovereignty.",
     color: "#D4FFEF",
     formNumber: "4",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1800&h=1300&fit=crop&auto=format&q=80",
   },
 ];
 
@@ -132,12 +136,7 @@ const formSizeClass: Record<StoryItem["form"], string> = {
 
 export default function LogoElementsShowcase() {
   const [activeItem, setActiveItem] = useState<StoryItem | null>(null);
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [activeInvestmentArea, setActiveInvestmentArea] = useState(0);
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const smoothCursorX = useSpring(cursorX, { stiffness: 280, damping: 30, mass: 0.35 });
-  const smoothCursorY = useSpring(cursorY, { stiffness: 280, damping: 30, mass: 0.35 });
 
   return (
     <section id="venture-stories" className="py-10 lg:py-14">
@@ -152,27 +151,15 @@ export default function LogoElementsShowcase() {
                 isEven ? "" : "lg:[&>*:first-child]:order-2"
               }`}
             >
-              <button
-                type="button"
-                onClick={() => setActiveItem(item)}
-                onMouseEnter={(event) => {
-                  setHoveredId(item.id);
-                  cursorX.set(event.clientX);
-                  cursorY.set(event.clientY);
-                }}
-                onMouseMove={(event) => {
-                  cursorX.set(event.clientX);
-                  cursorY.set(event.clientY);
-                }}
-                onMouseLeave={() => setHoveredId((prev) => (prev === item.id ? null : prev))}
-                className={`group relative w-full overflow-visible text-left ${formSizeClass[item.form]}`}
+              <div
+                className={`group relative w-full overflow-visible ${formSizeClass[item.form]}`}
               >
                 <div
                   className="relative overflow-hidden"
                   style={{
                     aspectRatio: formAspectRatio[item.form],
-                    maskImage: `url('/Forms/${item.form}.svg?v=11')`,
-                    WebkitMaskImage: `url('/Forms/${item.form}.svg?v=11')`,
+                    maskImage: `url('/Forms/${item.form}.svg?v=12')`,
+                    WebkitMaskImage: `url('/Forms/${item.form}.svg?v=12')`,
                     maskRepeat: "no-repeat",
                     WebkitMaskRepeat: "no-repeat",
                     maskPosition: formMaskSizing[item.form].position,
@@ -181,14 +168,29 @@ export default function LogoElementsShowcase() {
                     WebkitMaskSize: formMaskSizing[item.form].size,
                   }}
                 >
-                  <img
-                    src={item.image}
-                    alt={`${item.titleMain} ${item.titleAccent}`}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-                  />
+                  {item.index === "04" ? (
+                    <AnimatePresence initial={false}>
+                      <motion.img
+                        key={activeInvestmentArea}
+                        src={investmentAreas[activeInvestmentArea]?.image}
+                        alt={investmentAreas[activeInvestmentArea]?.title}
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                      />
+                    </AnimatePresence>
+                  ) : (
+                    <img
+                      src={item.image}
+                      alt={`${item.titleMain} ${item.titleAccent}`}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                    />
+                  )}
                 </div>
 
-              </button>
+              </div>
 
               <div className="w-full max-w-[520px]">
                 <p className="text-lg font-medium text-white/55">{item.index}</p>
@@ -201,49 +203,65 @@ export default function LogoElementsShowcase() {
                 {item.index === "04" ? (
                   // Investment Areas - Vertical List only
                   <div className="mt-7">
+                    <p className="mb-7 text-base font-semibold text-white/92 sm:text-lg">
+                      {item.kicker}
+                    </p>
                     {/* Clickable Vertical List */}
-                    <div className="flex flex-col gap-2 max-w-[520px] relative" style={{ height: '500px' }}>
+                    <div className="flex flex-col gap-1 max-w-[520px] relative" style={{ height: '500px' }}>
+                      {/* Orange sliding background */}
+                      <motion.div
+                        className="absolute left-0 right-0 rounded-2xl bg-[#FEB180] pointer-events-none"
+                        animate={{
+                          y: (() => {
+                            let totalY = 0;
+                            for (let i = 0; i < activeInvestmentArea; i++) {
+                              totalY += 75 + 4; // height + gap (gap-1 = 4px)
+                            }
+                            return totalY;
+                          })(),
+                          height: '200px'
+                        }}
+                        transition={{
+                          duration: 0.6,
+                          ease: [0.22, 1, 0.36, 1]
+                        }}
+                      />
+
                       {investmentAreas.map((area, areaIndex) => {
                         const isActive = activeInvestmentArea === areaIndex;
                         return (
                           <motion.button
                             key={area.id}
                             onClick={() => setActiveInvestmentArea(areaIndex)}
-                            className="relative text-left cursor-pointer rounded-2xl px-6 overflow-hidden"
+                            className="relative text-left cursor-pointer px-6"
                             initial={false}
                             animate={{
-                              height: isActive ? '225px' : '70px',
+                              height: isActive ? '200px' : '75px',
                             }}
-                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{
+                              height: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+                            }}
                           >
-                            {/* Background for active item */}
-                            <motion.div
-                              className="absolute inset-0 rounded-2xl bg-[#FEB180]"
-                              initial={false}
-                              animate={{
-                                opacity: isActive ? 1 : 0,
-                              }}
-                              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                            />
-
                             <div className="relative z-10 flex items-start gap-4 h-full py-6">
                               <div className="flex-1">
-                                <h4
-                                  className={`font-heading text-2xl sm:text-3xl lg:text-4xl font-bold transition-colors duration-300 ${
-                                    isActive ? 'text-[#101010]' : 'text-white/30'
-                                  }`}
+                                <motion.h4
+                                  className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold"
+                                  animate={{
+                                    color: isActive ? '#101010' : 'rgba(255, 255, 255, 0.3)',
+                                  }}
+                                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                                 >
                                   {area.title}
-                                </h4>
+                                </motion.h4>
 
                                 <AnimatePresence mode="wait">
                                   {isActive && (
                                     <motion.p
                                       key={area.id}
-                                      initial={{ opacity: 0, y: -10 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: -10 }}
-                                      transition={{ duration: 0.3, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                                      initial={{ opacity: 0, filter: "blur(8px)" }}
+                                      animate={{ opacity: 1, filter: "blur(0px)" }}
+                                      exit={{ opacity: 0, filter: "blur(8px)" }}
+                                      transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                                       className="mt-4 text-sm sm:text-base leading-relaxed text-[#101010]/80"
                                     >
                                       {area.description}
@@ -279,21 +297,6 @@ export default function LogoElementsShowcase() {
       </div>
 
       <AnimatePresence>
-        {hoveredId && (
-          <motion.span
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none fixed left-0 top-0 z-[90] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xs font-semibold uppercase tracking-[0.14em] text-[#101010]"
-            style={{ x: smoothCursorX, y: smoothCursorY }}
-          >
-            Open
-          </motion.span>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
         {activeItem && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -312,7 +315,7 @@ export default function LogoElementsShowcase() {
             <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-10 lg:p-12">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-sm font-medium uppercase tracking-[0.16em] text-white/60">
+                  <p className="text-sm font-medium uppercase tracking-[0.16em] text-white/80">
                     {activeItem.index}
                   </p>
                   <h3 className="mt-3 max-w-[560px] font-heading text-5xl font-bold leading-[0.9] text-white sm:text-6xl lg:text-7xl">

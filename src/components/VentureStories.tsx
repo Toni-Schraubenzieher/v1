@@ -138,7 +138,7 @@ export default function VentureStories() {
                       {area.title}
                     </h3>
                     {activeIndex === index && (
-                      <p className="text-white/60 text-sm sm:text-base leading-relaxed">
+                      <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                         {area.description}
                       </p>
                     )}
