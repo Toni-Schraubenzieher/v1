@@ -142,7 +142,7 @@ export default function WhoWeAre() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="text-white/40 group-hover:text-white/60 transition-colors duration-300"
+                    className="text-white/40 group-hover:text-white/80 transition-colors duration-300"
                   >
                     <path d="M7 17L17 7M17 7H9M17 7V15" />
                   </svg>
@@ -157,7 +157,7 @@ export default function WhoWeAre() {
 
         {/* Bottom text */}
         <div className="mt-16 lg:mt-20">
-          <p className="text-lg lg:text-xl text-white/60 leading-relaxed max-w-3xl">
+          <p className="text-lg lg:text-xl text-white/80 leading-relaxed max-w-3xl">
             We partner with visionary founders at the earliest stages, providing capital,
             strategic guidance, and access to our global network to build category-defining companies.
           </p>

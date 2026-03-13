@@ -160,7 +160,7 @@ export default function HowWeWork() {
                   >
                     {step.title}
                   </h3>
-                  <p className="text-white/60 leading-relaxed">
+                  <p className="text-white/80 leading-relaxed">
                     {step.description}
                   </p>
                 </div>

@@ -73,7 +73,7 @@ export default function Stats() {
     >
       {/* Dither Wave Background */}
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%]"
+        className="pointer-events-none absolute inset-0"
         style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
       >
         <div className="h-full w-full" style={{ maskImage: fadeMaskY, WebkitMaskImage: fadeMaskY }}>
@@ -91,7 +91,7 @@ export default function Stats() {
             colorTint="#FEB180"
             brightness={1}
             centerX={0.5}
-            centerY={0.5}
+            centerY={0.3}
           />
         </div>
       </div>
@@ -108,61 +108,61 @@ export default function Stats() {
         <div ref={cardsRef} className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {/* Card: €500K */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-5xl font-bold text-white lg:text-6xl">€500K</div>
-            <p className="mt-3 text-base text-white/60 sm:text-lg">
+            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€500K</div>
+            <p className="mt-3 text-base text-white/80">
               First check · Pre-Seed & Seed
             </p>
           </div>
 
           {/* Card: €50m+ */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-5xl font-bold text-white lg:text-6xl">€50m+</div>
-            <p className="mt-3 text-base text-white/60 sm:text-lg">
+            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€50m+</div>
+            <p className="mt-3 text-base text-white/80">
               Deployed across 15+ deep-tech investments
             </p>
           </div>
 
           {/* Card: Quote */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col justify-center">
-            <p className="text-2xl font-medium leading-relaxed text-white sm:text-3xl lg:text-4xl">
+            <p className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
               "We back the technologies that will define European sovereignty."
             </p>
-            <p className="mt-6 text-sm text-white/50">- Kensho Ventures</p>
+            <p className="mt-6 text-base text-white/80">- Kensho Ventures</p>
           </div>
 
           {/* Card: 2 CVCs */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-5xl font-bold text-white lg:text-6xl">2 CVCs</div>
-            <p className="mt-3 text-base text-white/60 sm:text-lg">
+            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">2 CVCs</div>
+            <p className="mt-3 text-base text-white/80">
               Built from zero - we've been operators, not just investors
             </p>
           </div>
 
           {/* Card: 12 */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-5xl font-bold text-white lg:text-6xl">12</div>
-            <p className="mt-3 text-base text-white/60 sm:text-lg">
+            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">12</div>
+            <p className="mt-3 text-base text-white/80">
               Years deep-tech investing
             </p>
           </div>
 
           {/* Card: Infrastructure, Not Advice */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1">
-            <h3 className="font-heading text-3xl font-bold text-white sm:text-4xl">
+          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-2 flex flex-col">
+            <h3 className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
               Infrastructure, Not Advice
             </h3>
-            <p className="mt-4 text-base leading-relaxed text-white/60 sm:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-white/80">
               We build the commercial engine around your technology. Lead generation, customer access, transatlantic expansion - operational from Day 1.
             </p>
           </div>
 
           {/* Card: 15+ */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-2 flex flex-col">
-            <div className="font-heading text-5xl font-bold text-white lg:text-6xl">15+</div>
-            <p className="mt-3 text-base text-white/60 sm:text-lg">
+          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1">
+            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">15+</div>
+            <p className="mt-3 text-base text-white/80">
               Investments across 4 verticals
             </p>
-            <div className="mt-auto pt-6 text-base font-semibold sm:text-lg" style={{ color: "#FEB180" }}>
+            <div className="mt-auto pt-6 text-base font-semibold text-white/80" style={{ color: "#FEB180" }}>
               Pre-Seed & Seed Focus
             </div>
           </div>

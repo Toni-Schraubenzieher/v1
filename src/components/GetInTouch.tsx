@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SquircleShift from "@/components/SquircleShift";
 
 export default function GetInTouch() {
@@ -53,16 +52,6 @@ export default function GetInTouch() {
               Talk to us
             </button>
           </div>
-        </div>
-
-        <div className="absolute bottom-8 left-4 z-10 sm:bottom-10 sm:left-6 lg:bottom-12 lg:left-8">
-          <Image
-            src="/Kensho_Logo.svg"
-            alt="Kensho"
-            width={160}
-            height={38}
-            className="h-auto w-[140px] sm:w-[160px]"
-          />
         </div>
       </div>
     </section>

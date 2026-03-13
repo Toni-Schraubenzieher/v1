@@ -91,7 +91,7 @@ export function Showcase1() {
                     </h2>
                     <p
                       className={`text-sm sm:text-base ${
-                        activeId === item.id ? "text-[#101010]/75" : "text-white/60"
+                        activeId === item.id ? "text-[#101010]/75" : "text-white/80"
                       }`}
                     >
                       {item.subtitle}

@@ -315,7 +315,7 @@ export default function AboutUs() {
                     >
                       {item.label}
                     </p>
-                    <div className="absolute inset-x-0 bottom-0 z-10 flex justify-center pb-5">
+                    <div className="absolute inset-x-0 bottom-[29px] z-10 flex justify-center">
                       <div
                         className="flex h-8 w-8 items-center justify-center rounded-full bg-white/12 backdrop-blur-md"
                         style={{
@@ -325,11 +325,11 @@ export default function AboutUs() {
                             hoveredId === `${item.id}-${index}` ? item.color : undefined,
                         }}
                       >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path
                             d="M7 17L17 7M17 7H9M17 7V15"
                             stroke="currentColor"
-                            strokeWidth="2"
+                            strokeWidth="2.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           />
