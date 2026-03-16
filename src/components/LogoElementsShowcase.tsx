@@ -1,8 +1,15 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMotionValue, useSpring } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 type StoryItem = {
   id: string;
@@ -26,7 +33,7 @@ const stories: StoryItem[] = [
     description:
       "We start with your technology, not your TAM slide. Whether it's post-quantum algorithms, autonomous perception, or photonic detectors, we invest the time to understand what you've actually built. Not to nod along. To challenge it, pressure-test it, and back it with conviction.",
     image:
-      "/This_is_Kensho/Technical_fluency.png?v=2",
+      "/This_is_Kensho/Technical_fluency.png",
     form: "1",
     accent: "#FEB180",
   },
@@ -134,6 +141,200 @@ const formSizeClass: Record<StoryItem["form"], string> = {
   "4": "max-w-[620px] lg:max-w-[620px]",
 };
 
+function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvestmentArea }: {
+  item: StoryItem;
+  index: number;
+  activeInvestmentArea: number;
+  setActiveInvestmentArea: (index: number) => void;
+}) {
+  const itemRef = useRef<HTMLDivElement>(null);
+  const isEven = index % 2 === 0;
+
+  useEffect(() => {
+    if (!itemRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        itemRef.current,
+        { x: isEven ? -40 : 40, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: itemRef.current,
+            start: "top 95%",
+            end: "top 75%",
+            scrub: 1,
+          },
+        }
+      );
+    }, itemRef);
+
+    return () => ctx.revert();
+  }, [index, isEven]);
+
+  return (
+    <div
+      ref={itemRef}
+      key={item.id}
+      className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ${
+        isEven ? "" : "lg:[&>*:first-child]:order-2"
+      }`}
+    >
+      <div
+        className={`group relative w-full overflow-visible ${formSizeClass[item.form]}`}
+      >
+        <div
+          className="relative overflow-hidden"
+          style={{
+            aspectRatio: formAspectRatio[item.form],
+            maskImage: `url('/Forms/${item.form}.svg')`,
+            WebkitMaskImage: `url('/Forms/${item.form}.svg')`,
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+            maskPosition: formMaskSizing[item.form].position,
+            WebkitMaskPosition: formMaskSizing[item.form].position,
+            maskSize: formMaskSizing[item.form].size,
+            WebkitMaskSize: formMaskSizing[item.form].size,
+          }}
+        >
+          {item.index === "04" ? (
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={activeInvestmentArea}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                className="absolute inset-0 h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+              >
+                <Image
+                  src={investmentAreas[activeInvestmentArea]?.image}
+                  alt={investmentAreas[activeInvestmentArea]?.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 620px"
+                  className="object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
+          ) : (
+            <Image
+              src={item.image}
+              alt={`${item.titleMain} ${item.titleAccent}`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 620px"
+              className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+            />
+          )}
+        </div>
+
+      </div>
+
+      <div className="w-full max-w-[520px]">
+        <p className="text-lg font-medium text-white/55">{item.index}</p>
+        <h3 className="mt-3 font-heading text-5xl font-bold leading-[0.92] text-white sm:text-6xl">
+          {item.titleMain}
+          <br />
+          <span className="font-medium">{item.titleAccent}</span>
+        </h3>
+
+        {item.index === "04" ? (
+          // Investment Areas - Vertical List only
+          <div className="mt-7">
+            <p className="mb-7 text-base font-semibold text-white/92 sm:text-lg">
+              {item.kicker}
+            </p>
+            {/* Clickable Vertical List */}
+            <div className="flex flex-col gap-1 max-w-[520px] relative" style={{ height: '500px' }}>
+              {/* Orange sliding background */}
+              <motion.div
+                className="absolute left-0 right-0 rounded-2xl bg-[#FEB180] pointer-events-none"
+                animate={{
+                  y: (() => {
+                    let totalY = 0;
+                    for (let i = 0; i < activeInvestmentArea; i++) {
+                      totalY += 75 + 4; // height + gap (gap-1 = 4px)
+                    }
+                    return totalY;
+                  })(),
+                  height: '200px'
+                }}
+                transition={{
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+              />
+
+              {investmentAreas.map((area, areaIndex) => {
+                const isActive = activeInvestmentArea === areaIndex;
+                return (
+                  <motion.button
+                    key={area.id}
+                    onClick={() => setActiveInvestmentArea(areaIndex)}
+                    className="relative text-left cursor-pointer px-6"
+                    initial={false}
+                    animate={{
+                      height: isActive ? '200px' : '75px',
+                    }}
+                    transition={{
+                      height: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+                    }}
+                  >
+                    <div className="relative z-10 flex items-start gap-4 h-full py-6">
+                      <div className="flex-1">
+                        <motion.h4
+                          className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold"
+                          animate={{
+                            color: isActive ? '#101010' : 'rgba(255, 255, 255, 0.3)',
+                          }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                          {area.title}
+                        </motion.h4>
+
+                        <AnimatePresence mode="wait">
+                          {isActive && (
+                            <motion.p
+                              key={area.id}
+                              initial={{ opacity: 0, filter: "blur(8px)" }}
+                              animate={{ opacity: 1, filter: "blur(0px)" }}
+                              exit={{ opacity: 0, filter: "blur(8px)" }}
+                              transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                              className="mt-4 text-sm sm:text-base leading-relaxed text-[#101010]/80"
+                            >
+                              {area.description}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          // Normal Layout for other items
+          <>
+            <p className="mt-7 text-base font-semibold text-white/92 sm:text-lg">
+              {item.kicker}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-white/90 sm:text-lg">
+              {item.description}
+            </p>
+            <span
+              className="mt-7 inline-block h-1 w-20 rounded-full"
+              style={{ backgroundColor: item.accent }}
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function LogoElementsShowcase() {
   const [activeItem, setActiveItem] = useState<StoryItem | null>(null);
   const [activeInvestmentArea, setActiveInvestmentArea] = useState(0);
@@ -141,159 +342,15 @@ export default function LogoElementsShowcase() {
   return (
     <section id="venture-stories" className="py-10 lg:py-14">
       <div className="mx-auto flex max-w-[1320px] flex-col gap-24 px-6 sm:px-8 lg:gap-28">
-        {stories.map((item, index) => {
-          const isEven = index % 2 === 0;
-
-          return (
-            <div
-              key={item.id}
-              className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ${
-                isEven ? "" : "lg:[&>*:first-child]:order-2"
-              }`}
-            >
-              <div
-                className={`group relative w-full overflow-visible ${formSizeClass[item.form]}`}
-              >
-                <div
-                  className="relative overflow-hidden"
-                  style={{
-                    aspectRatio: formAspectRatio[item.form],
-                    maskImage: `url('/Forms/${item.form}.svg?v=12')`,
-                    WebkitMaskImage: `url('/Forms/${item.form}.svg?v=12')`,
-                    maskRepeat: "no-repeat",
-                    WebkitMaskRepeat: "no-repeat",
-                    maskPosition: formMaskSizing[item.form].position,
-                    WebkitMaskPosition: formMaskSizing[item.form].position,
-                    maskSize: formMaskSizing[item.form].size,
-                    WebkitMaskSize: formMaskSizing[item.form].size,
-                  }}
-                >
-                  {item.index === "04" ? (
-                    <AnimatePresence initial={false}>
-                      <motion.img
-                        key={activeInvestmentArea}
-                        src={investmentAreas[activeInvestmentArea]?.image}
-                        alt={investmentAreas[activeInvestmentArea]?.title}
-                        initial={{ opacity: 0, scale: 1.05 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-                      />
-                    </AnimatePresence>
-                  ) : (
-                    <img
-                      src={item.image}
-                      alt={`${item.titleMain} ${item.titleAccent}`}
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-                    />
-                  )}
-                </div>
-
-              </div>
-
-              <div className="w-full max-w-[520px]">
-                <p className="text-lg font-medium text-white/55">{item.index}</p>
-                <h3 className="mt-3 font-heading text-5xl font-bold leading-[0.92] text-white sm:text-6xl">
-                  {item.titleMain}
-                  <br />
-                  <span className="font-medium">{item.titleAccent}</span>
-                </h3>
-
-                {item.index === "04" ? (
-                  // Investment Areas - Vertical List only
-                  <div className="mt-7">
-                    <p className="mb-7 text-base font-semibold text-white/92 sm:text-lg">
-                      {item.kicker}
-                    </p>
-                    {/* Clickable Vertical List */}
-                    <div className="flex flex-col gap-1 max-w-[520px] relative" style={{ height: '500px' }}>
-                      {/* Orange sliding background */}
-                      <motion.div
-                        className="absolute left-0 right-0 rounded-2xl bg-[#FEB180] pointer-events-none"
-                        animate={{
-                          y: (() => {
-                            let totalY = 0;
-                            for (let i = 0; i < activeInvestmentArea; i++) {
-                              totalY += 75 + 4; // height + gap (gap-1 = 4px)
-                            }
-                            return totalY;
-                          })(),
-                          height: '200px'
-                        }}
-                        transition={{
-                          duration: 0.6,
-                          ease: [0.22, 1, 0.36, 1]
-                        }}
-                      />
-
-                      {investmentAreas.map((area, areaIndex) => {
-                        const isActive = activeInvestmentArea === areaIndex;
-                        return (
-                          <motion.button
-                            key={area.id}
-                            onClick={() => setActiveInvestmentArea(areaIndex)}
-                            className="relative text-left cursor-pointer px-6"
-                            initial={false}
-                            animate={{
-                              height: isActive ? '200px' : '75px',
-                            }}
-                            transition={{
-                              height: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-                            }}
-                          >
-                            <div className="relative z-10 flex items-start gap-4 h-full py-6">
-                              <div className="flex-1">
-                                <motion.h4
-                                  className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold"
-                                  animate={{
-                                    color: isActive ? '#101010' : 'rgba(255, 255, 255, 0.3)',
-                                  }}
-                                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                                >
-                                  {area.title}
-                                </motion.h4>
-
-                                <AnimatePresence mode="wait">
-                                  {isActive && (
-                                    <motion.p
-                                      key={area.id}
-                                      initial={{ opacity: 0, filter: "blur(8px)" }}
-                                      animate={{ opacity: 1, filter: "blur(0px)" }}
-                                      exit={{ opacity: 0, filter: "blur(8px)" }}
-                                      transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                                      className="mt-4 text-sm sm:text-base leading-relaxed text-[#101010]/80"
-                                    >
-                                      {area.description}
-                                    </motion.p>
-                                  )}
-                                </AnimatePresence>
-                              </div>
-                            </div>
-                          </motion.button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ) : (
-                  // Normal Layout for other items
-                  <>
-                    <p className="mt-7 text-base font-semibold text-white/92 sm:text-lg">
-                      {item.kicker}
-                    </p>
-                    <p className="mt-3 text-base leading-relaxed text-white/62 sm:text-lg">
-                      {item.description}
-                    </p>
-                    <span
-                      className="mt-7 inline-block h-1 w-20 rounded-full"
-                      style={{ backgroundColor: item.accent }}
-                    />
-                  </>
-                )}
-              </div>
-            </div>
-          );
-        })}
+        {stories.map((item, index) => (
+          <StoryItemComponent
+            key={item.id}
+            item={item}
+            index={index}
+            activeInvestmentArea={activeInvestmentArea}
+            setActiveInvestmentArea={setActiveInvestmentArea}
+          />
+        ))}
       </div>
 
       <AnimatePresence>
@@ -304,11 +361,14 @@ export default function LogoElementsShowcase() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-[100] bg-black"
+            style={{ position: "relative" }}
           >
-            <img
+            <Image
               src={activeItem.image}
               alt={`${activeItem.titleMain} ${activeItem.titleAccent}`}
-              className="absolute inset-0 h-full w-full object-cover"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-black/45" />
 

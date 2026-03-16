@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -26,7 +27,7 @@ const startups = [
     description:
       "Energy Robotics builds the leading platform for autonomous robot and drone inspection, hardware-agnostic software that turns any robot into an autonomous inspection system for industrial facilities. Using AI and digital twin technology, the platform transforms raw sensor data into actionable insights. 20,000+ km of autonomous inspection rounds completed across 4 continents. Founded by robotics prize with backgrounds spanning RoboCup and the DARPA Robotics Challenge.",
     points: [],
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
+    image: "/Portfolio_Teams/EnergyRobotics.png",
   },
   {
     id: 1,
@@ -37,9 +38,9 @@ const startups = [
     logoFilter: FILTER_MINT,
     category: "ENABLING TECHNOLOGIES",
     description:
-      "Hefring built IMASP, an AI-powered maritime intelligence platform that unifies data from navigation, propulsion, and environmental sensors across entire vessel fleets. Edge computing onboard, cloud analytics off-ship, delivering real-time safety guidance, fuel optimization, predictive maintenance, and regulatory compliance. The system is hardware-agnostic, designed to operate across commercial shipping, defense, and leisure maritime, integrating with existing protocols and third-party equipment. Founded by a team with 50+ years of combined expertise in maritime operations, corporate development, and condition monitoring.",
+      "Hefring built IMAS®, an AI-powered maritime intelligence platform that unifies data from navigation, propulsion, and environmental sensors across entire vessel fleets. Edge computing onboard, cloud analytics off-ship, delivering real-time safety guidance, fuel optimization, predictive maintenance, and regulatory compliance. The system is hardware-agnostic, designed to operate across commercial shipping, defense, and leisure maritime, integrating with existing protocols and third-party equipment. Founded by a team with 50+ years of combined expertise in maritime operations, corporate development, and condition monitoring.",
     points: [],
-    image: "https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?w=600&h=400&fit=crop",
+    image: "/Portfolio_Teams/Hefring.png",
   },
   {
     id: 3,
@@ -52,7 +53,7 @@ const startups = [
     description:
       "Pixel Photonics develops superconducting nanowire single-photon detectors (SNSPDs), the enabling hardware for quantum computing, secure communications, and advanced sensing. Their waveguide-integrated architecture is globally unique: 1000+ detection channels where competitors max out at 24, with 25% higher device density. A 12-year R&D effort spun out of Uni Münster, now 35 strong with 8 PhDs. €11M revenue in 2024, €11M qualified pipeline, systems deployed with Fortune 500 and Nasdaq-listed defense companies. Backed by HTGF, QuantonNation, and SPRIND-D.",
     points: [],
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop",
+    image: "/Portfolio_Teams/Pixel_Photonics.png",
   },
   {
     id: 5,
@@ -65,7 +66,7 @@ const startups = [
     description:
       "Quality Match built AI-powered visual quality inspection that cut QA costs by 90% while drastically improving labeled data accuracy across manufacturing. Their technology capitalized on the industry shift from data quantity to data quality, making QA accessible to a far broader customer base as the EU AI Act raised provable data standards. Founded by Dr. Daniel Kondermann, who previously sold Pallas Ludens to Apple and led their data science team. Acquired by Wayve.",
     points: [],
-    image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=400&fit=crop",
+    image: "/Portfolio_Teams/Quality Match.png",
   },
   {
     id: 6,
@@ -78,7 +79,7 @@ const startups = [
     description:
       "Qambria is building the integration layer between quantum and classical computing, treating quantum processors as specialized accelerators within existing HPC environments, not as standalone research instruments. Hardware-agnostic and vendor-neutral, their platform eliminates lock-in while making quantum practically accessible across pharma, AI, and scientific workloads. The vision: quantum computers as standard nodes in enterprise data centers. Founded by Dominik Ulmer (30+ years supercomputing leadership at CRAY and HPE) and Marco Szalay (Quantum Engineer #4 at Google Quantum AI), with additional expertise from IBM Research and Argonne National Lab.",
     points: [],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+    image: "/Portfolio_Teams/Qambria.png",
   },
   {
     id: 4,
@@ -91,7 +92,7 @@ const startups = [
     description:
       "CryptoNext provides a complete suite of products and services to manage the transition to quantum-safe security, protecting critical data against the 'harvest now, decrypt later' threat before quantum computers break current public-key cryptography. Their technology covers the full migration: discovery, transition, and ongoing quantum-safe encryption for enterprises and government agencies. Already deployed through pilots with NATO, European Commission, Banque de France, and Société Générale across Europe and the US. CTO and founder Jean-Charles Faugère, former INRIA Research Director and École Normale Supérieure graduate, co-authored several NIST post-quantum standard algorithms and holds the Seymour Cray Prize.",
     points: [],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+    image: "/Portfolio_Teams/CryptoNext.png",
   },
 ];
 
@@ -103,8 +104,7 @@ const socialProofItems = [
     role: "Founder & CEO, Energy Robotics",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces",
+    avatar: "/WOES_PICS/MARC DASSLER.png",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Energy_Robotocs.svg",
   },
@@ -115,8 +115,7 @@ const socialProofItems = [
     role: "Founder & CEO, Hefring",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar:
-      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&h=200&fit=crop&crop=faces",
+    avatar: "/WOES_PICS/Karl Birgir Björnsson.png",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/Hefring.svg",
   },
@@ -127,8 +126,7 @@ const socialProofItems = [
     role: "Founder, Pixel Photonics",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop&crop=faces",
+    avatar: "/WOES_PICS/Nicolai Walter_.png",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Pixel_Photonics.svg",
   },
@@ -139,8 +137,7 @@ const socialProofItems = [
     role: "Founder, Quality Match",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=faces",
+    avatar: "/WOES_PICS/DR.Daniel_Kondermann.png",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/Quality_Match.svg",
   },
@@ -151,8 +148,7 @@ const socialProofItems = [
     role: "Founder & CEO, Qambria",
     quote:
       "Kensho was the first investor of Qambria, realising the visionary potential of our approach. They are extremely helpful and supportive, always available when a startup in its early phase is going through rough times.",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces",
+    avatar: "/WOES_PICS/Dominik Ulmer.png",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Qambria.svg",
   },
@@ -163,8 +159,7 @@ const socialProofItems = [
     role: "Founder & CTO, CryptoNext Security",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces",
+    avatar: "/WOES_PICS/Jean-Charles Faugere.png",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/CryptoNext.svg",
   },
@@ -272,6 +267,7 @@ export default function Portfolio() {
   const [hoveredStartup, setHoveredStartup] = useState<(typeof startups)[0] | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const woesRef = useRef<HTMLDivElement>(null);
   const lockedScrollYRef = useRef(0);
   const activeIndex = startups.findIndex((s) => s.id === activeId);
   const activeStartup = activeIndex >= 0 ? startups[activeIndex] : null;
@@ -340,6 +336,31 @@ export default function Portfolio() {
     };
   }, [activeStartup]);
 
+  useEffect(() => {
+    if (!woesRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        woesRef.current,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: woesRef.current,
+            start: "top 80%",
+            end: "top 55%",
+            scrub: 1,
+          },
+        }
+      );
+    }, woesRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -403,7 +424,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      <div className="mx-auto mt-8 max-w-[1320px] px-6 sm:mt-10 sm:px-8">
+      <div ref={woesRef} className="mx-auto mt-8 max-w-[1320px] px-6 sm:mt-10 sm:px-8">
         <div className="px-8 pb-10 pt-12 sm:px-12 lg:pb-14 lg:pt-14">
           <h3 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight mb-12" style={{ color: "#FEB180" }}>
             WHAT OUR
@@ -434,17 +455,14 @@ export default function Portfolio() {
                       </h4>
                     </div>
 
-                    {/* Hover Content: Logo + Quote - slides up from below, centered */}
+                    {/* Hover Content: Avatar + Quote - slides up from below, centered */}
                     <div className="w-full flex items-center gap-10 transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 absolute inset-x-8 sm:inset-x-12">
-                      <img
-                        src={item.logo}
-                        alt={item.company}
-                        className="h-12 sm:h-14 w-auto max-w-[220px] shrink-0 object-contain"
-                        style={{
-                          filter: item.accent === "#D4FFEF"
-                            ? "brightness(0) saturate(100%) invert(0%)"
-                            : "brightness(0) saturate(100%) invert(100%)",
-                        }}
+                      <Image
+                        src={item.avatar}
+                        alt={item.founder}
+                        width={96}
+                        height={96}
+                        className="h-20 w-20 sm:h-24 sm:w-24 shrink-0 rounded-full object-cover"
                       />
                       <p className="text-lg leading-relaxed text-[#101010] sm:text-xl">
                         "{item.quote}"
@@ -474,7 +492,7 @@ export default function Portfolio() {
               <button
                 type="button"
                 onClick={() => setActiveId(null)}
-                className="absolute right-6 top-6 z-20 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-[#101010]/68 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-colors sm:right-8 sm:top-8"
+                className="absolute right-6 top-6 z-20 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-[#101010]/68 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-colors sm:right-8 sm:top-8 cursor-pointer"
                 aria-label="Close portfolio detail"
               >
                 <span className="relative block h-5 w-5">
@@ -489,7 +507,7 @@ export default function Portfolio() {
                   setNavigationDirection(-1);
                   setActiveId(startups[(activeIndex - 1 + startups.length) % startups.length]!.id);
                 }}
-                className="absolute left-6 top-1/2 z-20 -translate-y-1/2 rounded-full p-2 transition-colors sm:left-10"
+                className="absolute left-6 top-1/2 z-20 -translate-y-1/2 rounded-full p-2 transition-colors sm:left-10 cursor-pointer"
                 style={{
                   color: "#101010",
                   backgroundColor: activeStartup.accent,
@@ -507,7 +525,7 @@ export default function Portfolio() {
                   setNavigationDirection(1);
                   setActiveId(startups[(activeIndex + 1) % startups.length]!.id);
                 }}
-                className="absolute right-6 top-1/2 z-20 -translate-y-1/2 rounded-full p-2 transition-colors sm:right-10"
+                className="absolute right-6 top-1/2 z-20 -translate-y-1/2 rounded-full p-2 transition-colors sm:right-10 cursor-pointer"
                 style={{
                   color: "#101010",
                   backgroundColor: activeStartup.accent,
@@ -556,16 +574,18 @@ export default function Portfolio() {
                       className="mx-auto w-full max-w-[760px]"
                     >
                       <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#101010]">
-                        <div className="h-[240px] w-full sm:h-[300px] md:h-[340px]">
-                          <img
+                        <div className="w-full aspect-[2376/1586] relative">
+                          <Image
                             src={activeStartup.image}
                             alt={activeStartup.name}
-                            className="h-full w-full object-cover"
+                            fill
+                            sizes="(max-width: 760px) 100vw, 760px"
+                            className="object-cover"
                           />
                         </div>
                       </div>
 
-                      <div className="mt-6 text-left">
+                      <div className="mt-6 text-center">
                         <p
                           className="mb-2 text-sm font-semibold uppercase tracking-[0.14em]"
                           style={{ color: activeStartup.accent }}
@@ -575,7 +595,7 @@ export default function Portfolio() {
                         <h3 className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl">
                           {activeStartup.name}
                         </h3>
-                        <p className="mt-5 text-sm leading-relaxed text-white/80 sm:text-base">
+                        <p className="mt-5 text-sm leading-relaxed text-white/90 sm:text-base">
                           {activeStartup.description}
                         </p>
 

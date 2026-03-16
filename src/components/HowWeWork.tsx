@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -132,11 +133,13 @@ export default function HowWeWork() {
                 className="group relative text-left rounded-2xl bg-[#0A0A0A] p-8 overflow-hidden transition-all duration-300 hover:scale-[1.02]"
               >
                 {/* Form SVG Background */}
-                <div className="absolute inset-0 opacity-5 pointer-events-none">
-                  <img
+                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ position: "relative" }}>
+                  <Image
                     src={`/Forms/${step.formNumber}.svg`}
                     alt=""
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
                     style={{ filter: "brightness(1.5)" }}
                   />
                 </div>

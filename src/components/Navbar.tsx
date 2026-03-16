@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 
 const sections = [
   { id: "hero", label: "HOME", href: "#hero" },
@@ -112,9 +113,12 @@ export default function Navbar() {
               />
 
               {/* Kensho Logo */}
-              <img
-                src="/Logo_hero.svg?v=2"
+              <Image
+                src="/Logo_hero.svg"
                 alt="Kensho"
+                width={36}
+                height={36}
+                priority
                 className="relative z-10 h-auto w-[32px] sm:w-[36px]"
               />
             </button>
@@ -142,7 +146,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-50 bg-black/55 backdrop-blur-[2px]"
+              className="fixed inset-0 z-50 bg-black/55 backdrop-blur-[2px] cursor-pointer"
               onClick={() => setIsOpen(false)}
             />
 
@@ -191,7 +195,7 @@ export default function Navbar() {
       <div className="fixed right-6 top-10 z-[60] sm:right-8 sm:top-12">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex h-12 min-w-[210px] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+          className="flex h-12 min-w-[210px] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] cursor-pointer"
           aria-label="Toggle navigation menu"
         >
           <span className="text-base font-medium">{activeSection}</span>

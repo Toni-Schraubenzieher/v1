@@ -1,6 +1,7 @@
 "use client";
 
 import { BlurredInfiniteSlider } from "@/components/ui/infinite-slider";
+import Image from "next/image";
 
 const LOGOS = [
   { src: "/Logo_Loop/Quality_Match.svg", alt: "Quality Match", height: 22 },
@@ -30,12 +31,13 @@ export default function LogoCloud() {
             >
               {LOGOS.map((logo) => (
                 <div key={logo.src} className="flex items-center">
-                  <img
+                  <Image
                     className="mx-auto w-fit opacity-50 hover:opacity-80 transition-opacity"
                     src={logo.src}
                     alt={logo.alt}
-                    style={{ height: `${logo.height}px` }}
-                    width="auto"
+                    width={120}
+                    height={logo.height}
+                    style={{ height: `${logo.height}px`, width: "auto" }}
                   />
                 </div>
               ))}

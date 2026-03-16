@@ -1,7 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const verticals = [
   "All",
@@ -72,20 +79,89 @@ const companyLogoPreset: Record<(typeof companies)[number]["name"], keyof typeof
 
 export default function PortfolioOverview() {
   const [activeVertical, setActiveVertical] = useState<Vertical>("All");
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headingRef.current) {
+        gsap.fromTo(
+          headingRef.current,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 80%",
+              end: "top 55%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      if (filtersRef.current) {
+        gsap.fromTo(
+          filtersRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: filtersRef.current,
+              start: "top 85%",
+              end: "top 60%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      if (gridRef.current) {
+        gsap.fromTo(
+          gridRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 85%",
+              end: "top 60%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="portfolio-overview" className="py-16 lg:py-24">
+    <section ref={sectionRef} id="portfolio-overview" className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
-        <div className="mx-auto max-w-[920px] text-center">
+        <div ref={headingRef} className="mx-auto max-w-[920px] text-center">
           <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight" style={{ color: "#FEB180" }}>
             PORTFOLIO OVERVIEW
           </h2>
-          <p className="mt-4 text-base text-white/80 sm:text-lg">
+          <p className="mt-4 text-base text-white/90 sm:text-lg">
             Resilience technologies across four verticals.
           </p>
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div ref={filtersRef} className="mt-10 flex justify-center">
           <div className="inline-flex flex-wrap items-center justify-center gap-1.5 rounded-full bg-[#181818] p-2">
             {verticals.map((vertical) => {
               const isActive = activeVertical === vertical;
@@ -95,7 +171,7 @@ export default function PortfolioOverview() {
                 <button
                   key={vertical}
                   onClick={() => setActiveVertical(vertical)}
-                  className={`relative rounded-full px-6 py-3 text-[1.05rem] font-semibold leading-none transition-colors duration-200 sm:px-8 sm:py-3.5 ${
+                  className={`relative rounded-full px-6 py-3 text-[1.05rem] font-semibold leading-none transition-colors duration-200 sm:px-8 sm:py-3.5 cursor-pointer ${
                     isColorPillActive ? "text-[#101010]" : isActive ? "text-white" : "text-white/80 hover:text-white"
                   }`}
                 >
@@ -114,7 +190,7 @@ export default function PortfolioOverview() {
           </div>
         </div>
 
-        <div className="mt-12 grid w-full grid-cols-2 gap-x-8 gap-y-12 px-8 sm:px-12 md:grid-cols-3 lg:grid-cols-4">
+        <div ref={gridRef} className="mt-12 grid w-full grid-cols-2 gap-x-8 gap-y-12 px-8 sm:px-12 md:grid-cols-3 lg:grid-cols-4">
           {companies.map((company) => {
             const isActive = activeVertical === "All" || company.vertical === activeVertical;
             const logoSizeClass = logoSizePresets[companyLogoPreset[company.name]];
@@ -123,9 +199,11 @@ export default function PortfolioOverview() {
                 key={company.name}
                 className="flex h-24 items-center justify-center px-2"
               >
-                <img
+                <Image
                   src={company.logo}
                   alt={company.name}
+                  width={240}
+                  height={80}
                   className={`h-auto w-auto max-w-[240px] object-contain transition-[filter] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${logoSizeClass}`}
                   style={{
                     filter: isActive

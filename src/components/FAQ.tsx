@@ -1,7 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const faqs = [
   {
@@ -44,17 +50,68 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const faqsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headingRef.current) {
+        gsap.fromTo(
+          headingRef.current,
+          { x: -60, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 80%",
+              end: "top 55%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      if (faqsRef.current) {
+        const items = faqsRef.current.children;
+        gsap.fromTo(
+          items,
+          { x: -50, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: faqsRef.current,
+              start: "top 85%",
+              end: "top 55%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="faq" className="py-16 lg:py-24">
+    <section ref={sectionRef} id="faq" className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
-        <h2 className="mb-12 font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight" style={{ color: "#FEB180" }}>
+        <h2 ref={headingRef} className="mb-12 font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight" style={{ color: "#FEB180" }}>
           WHAT FOUNDERS
           <br />
           ASK US
         </h2>
 
-        <div className="space-y-0">
+        <div ref={faqsRef} className="space-y-0">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 
@@ -63,7 +120,7 @@ export default function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex w-full items-center justify-between gap-6 py-9 text-left sm:py-10 lg:py-12"
+                  className="flex w-full items-center justify-between gap-6 py-9 text-left sm:py-10 lg:py-12 cursor-pointer"
                 >
                   <span className="font-heading text-3xl font-medium tracking-tight text-white sm:text-4xl lg:text-5xl">
                     {item.question}
@@ -115,7 +172,7 @@ export default function FAQ() {
                       className="overflow-hidden"
                     >
                       <div className="pb-9 sm:pb-10 lg:pb-12">
-                        <p className="text-base leading-relaxed text-white/70 sm:text-lg">
+                        <p className="text-base leading-relaxed text-white/90 sm:text-lg">
                           {item.answer}
                         </p>
                         {"highlight" in item && item.highlight && (

@@ -21,9 +21,9 @@ export default function Stats() {
       if (headingRef.current) {
         gsap.fromTo(
           headingRef.current,
-          { y: 60, opacity: 0 },
+          { x: -60, opacity: 0 },
           {
-            y: 0,
+            x: 0,
             opacity: 1,
             duration: 1,
             ease: "power3.out",
@@ -41,9 +41,9 @@ export default function Stats() {
         const cards = cardsRef.current.children;
         gsap.fromTo(
           cards,
-          { y: 50, opacity: 0 },
+          { x: -50, opacity: 0 },
           {
-            y: 0,
+            x: 0,
             opacity: 1,
             duration: 0.8,
             ease: "power3.out",
@@ -91,7 +91,7 @@ export default function Stats() {
             colorTint="#FEB180"
             brightness={1}
             centerX={0.5}
-            centerY={0.3}
+            centerY={0.9}
           />
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function Stats() {
           {/* Card: €500K */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
             <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€500K</div>
-            <p className="mt-3 text-base text-white/80">
+            <p className="mt-3 text-base text-white/90">
               First check · Pre-Seed & Seed
             </p>
           </div>
@@ -117,7 +117,7 @@ export default function Stats() {
           {/* Card: €50m+ */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
             <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€50m+</div>
-            <p className="mt-3 text-base text-white/80">
+            <p className="mt-3 text-base text-white/90">
               Deployed across 15+ deep-tech investments
             </p>
           </div>
@@ -125,15 +125,18 @@ export default function Stats() {
           {/* Card: Quote */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col justify-center">
             <p className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
-              "We back the technologies that will define European sovereignty."
+              "We back the technologies that will define{" "}
+              <span style={{ color: "#FEB180" }}>
+                European sovereignty."
+              </span>
             </p>
-            <p className="mt-6 text-base text-white/80">- Kensho Ventures</p>
+            <p className="mt-6 text-base text-white/90">- Kensho Ventures</p>
           </div>
 
           {/* Card: 2 CVCs */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
             <div className="font-heading text-4xl font-bold text-white lg:text-5xl">2 CVCs</div>
-            <p className="mt-3 text-base text-white/80">
+            <p className="mt-3 text-base text-white/90">
               Built from zero - we've been operators, not just investors
             </p>
           </div>
@@ -141,7 +144,7 @@ export default function Stats() {
           {/* Card: 12 */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
             <div className="font-heading text-4xl font-bold text-white lg:text-5xl">12</div>
-            <p className="mt-3 text-base text-white/80">
+            <p className="mt-3 text-base text-white/90">
               Years deep-tech investing
             </p>
           </div>
@@ -149,9 +152,9 @@ export default function Stats() {
           {/* Card: Infrastructure, Not Advice */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-2 flex flex-col">
             <h3 className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
-              Infrastructure, Not Advice
+              Infrastructure, <span style={{ color: "#D4FFEF" }}>Not Advice</span>
             </h3>
-            <p className="mt-4 text-base leading-relaxed text-white/80">
+            <p className="mt-4 text-base leading-relaxed text-white/90">
               We build the commercial engine around your technology. Lead generation, customer access, transatlantic expansion - operational from Day 1.
             </p>
           </div>
@@ -159,10 +162,10 @@ export default function Stats() {
           {/* Card: 15+ */}
           <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1">
             <div className="font-heading text-4xl font-bold text-white lg:text-5xl">15+</div>
-            <p className="mt-3 text-base text-white/80">
+            <p className="mt-3 text-base text-white/90">
               Investments across 4 verticals
             </p>
-            <div className="mt-auto pt-6 text-base font-semibold text-white/80" style={{ color: "#FEB180" }}>
+            <div className="mt-auto pt-6 text-base font-semibold text-white/90" style={{ color: "#FEB180" }}>
               Pre-Seed & Seed Focus
             </div>
           </div>
