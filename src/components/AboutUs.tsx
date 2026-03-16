@@ -494,6 +494,7 @@ export default function AboutUs() {
                           fill
                           sizes="(max-width: 768px) 100vw, 448px"
                           className="object-cover"
+                          loading="eager"
                         />
                       </div>
                     ) : (

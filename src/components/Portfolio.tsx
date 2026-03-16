@@ -581,6 +581,7 @@ export default function Portfolio() {
                             fill
                             sizes="(max-width: 760px) 100vw, 760px"
                             className="object-cover"
+                            loading="eager"
                           />
                         </div>
                       </div>

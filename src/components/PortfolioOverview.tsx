@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -199,11 +198,9 @@ export default function PortfolioOverview() {
                 key={company.name}
                 className="flex h-24 items-center justify-center px-2"
               >
-                <Image
+                <img
                   src={company.logo}
                   alt={company.name}
-                  width={240}
-                  height={80}
                   className={`h-auto w-auto max-w-[240px] object-contain transition-[filter] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${logoSizeClass}`}
                   style={{
                     filter: isActive
