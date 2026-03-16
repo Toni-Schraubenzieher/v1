@@ -1,27 +1,29 @@
+import Image from "next/image";
+
 const team = [
   {
-    name: "Alexander Richter",
+    name: "Wolfgang",
     role: "Managing Partner",
     bio: "15+ years in venture and growth equity. Previously at Goldman Sachs and EQT Ventures.",
-    initials: "AR",
+    image: "/Team/Wolfgang.png",
   },
   {
-    name: "Sophia Chen",
+    name: "Marc",
     role: "Partner",
     bio: "Former CTO at a YC-backed startup. Deep expertise in AI/ML and developer infrastructure.",
-    initials: "SC",
+    image: "/Team/Marc.png",
   },
   {
-    name: "Marcus Okonkwo",
+    name: "Anton",
     role: "Principal",
     bio: "Climate tech specialist with a background in environmental engineering and impact investing.",
-    initials: "MO",
+    image: "/Team/Anton.png",
   },
   {
-    name: "Elena Vasquez",
+    name: "Linda",
     role: "Vice President",
     bio: "Fintech and Web3 focus. Previously led strategy at a leading European neobank.",
-    initials: "EV",
+    image: "/Team/Linda.png",
   },
 ];
 
@@ -55,11 +57,15 @@ export default function TeamContact() {
               key={member.name}
               className="group glass rounded-3xl p-6 transition-all duration-300 hover:border-white/10 hover:-translate-y-1"
             >
-              {/* Avatar placeholder */}
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-warm/20 to-accent-mint/20 flex items-center justify-center mb-5">
-                <span className="font-heading text-lg font-bold text-white/80">
-                  {member.initials}
-                </span>
+              {/* Avatar image */}
+              <div className="w-16 h-16 rounded-2xl overflow-hidden mb-5">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               <h3 className="font-heading text-lg font-bold text-white mb-0.5">

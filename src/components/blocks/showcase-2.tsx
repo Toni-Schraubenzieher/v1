@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useAnimationFrame } from "motion/react";
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 const SHOWCASE_ITEMS = [
   {
@@ -159,12 +160,14 @@ export function Showcase2() {
                 onMouseLeave={() => setHoveredId(null)}
                 style={{ transformPerspective: 1000 }}
               >
-                <div className={`w-full h-full ${item.bgColor}`}>
-                  <img
+                <div className={`w-full h-full ${item.bgColor}`} style={{ position: "relative" }}>
+                  <Image
                     src={item.image}
                     alt="Showcase item"
-                    className="w-full h-full object-cover object-top pointer-events-none"
-                    draggable="false"
+                    fill
+                    sizes="(max-width: 640px) 280px, 320px"
+                    className="object-cover object-top pointer-events-none"
+                    draggable={false}
                   />
                 </div>
               </motion.div>

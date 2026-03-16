@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 
 export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -66,9 +67,11 @@ export default function LoadingScreen() {
               }}
               className="flex items-start justify-end"
             >
-              <img
-                src="/Forms/1.svg?v=2"
+              <Image
+                src="/Forms/1.svg"
                 alt=""
+                width={50}
+                height={62}
                 className="h-[62px] w-auto"
                 style={{ filter: "brightness(0) saturate(100%) invert(100%)" }}
               />
@@ -85,9 +88,11 @@ export default function LoadingScreen() {
               }}
               className="flex items-start justify-start"
             >
-              <img
-                src="/Forms/2.svg?v=2"
+              <Image
+                src="/Forms/2.svg"
                 alt=""
+                width={104}
+                height={62}
                 className="h-[62px] w-auto"
                 style={{ filter: "brightness(0) saturate(100%) invert(100%)" }}
               />
@@ -104,9 +109,11 @@ export default function LoadingScreen() {
               }}
               className="flex items-end justify-end"
             >
-              <img
-                src="/Forms/3.svg?v=2"
+              <Image
+                src="/Forms/3.svg"
                 alt=""
+                width={50}
+                height={62}
                 className="h-[62px] w-auto"
                 style={{ filter: "brightness(0) saturate(100%) invert(100%)" }}
               />
@@ -123,9 +130,11 @@ export default function LoadingScreen() {
               }}
               className="flex items-end justify-start"
             >
-              <img
-                src="/Forms/4.svg?v=2"
+              <Image
+                src="/Forms/4.svg"
                 alt=""
+                width={104}
+                height={62}
                 className="h-[62px] w-auto"
                 style={{ filter: "brightness(0) saturate(100%) invert(100%)" }}
               />

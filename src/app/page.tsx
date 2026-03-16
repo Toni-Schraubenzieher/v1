@@ -2,18 +2,35 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LogoElementsShowcase from "@/components/LogoElementsShowcase";
-import LargeText from "@/components/LargeText";
 import Statement from "@/components/Statement";
-import Portfolio from "@/components/Portfolio";
-import PortfolioOverview from "@/components/PortfolioOverview";
-import AboutUs from "@/components/AboutUs";
-import Stats from "@/components/Stats";
-import FAQ from "@/components/FAQ";
-import GetInTouch from "@/components/GetInTouch";
 import LoadingScreen from "@/components/LoadingScreen";
+
+// Lazy load below-the-fold components
+const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"), {
+  loading: () => null,
+});
+const Portfolio = dynamic(() => import("@/components/Portfolio"), {
+  loading: () => null,
+});
+const LargeText = dynamic(() => import("@/components/LargeText"), {
+  loading: () => null,
+});
+const Stats = dynamic(() => import("@/components/Stats"), {
+  loading: () => null,
+});
+const AboutUs = dynamic(() => import("@/components/AboutUs"), {
+  loading: () => null,
+});
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  loading: () => null,
+});
+const GetInTouch = dynamic(() => import("@/components/GetInTouch"), {
+  loading: () => null,
+});
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);

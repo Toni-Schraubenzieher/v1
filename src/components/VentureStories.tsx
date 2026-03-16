@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -150,9 +151,11 @@ export default function VentureStories() {
             {/* Right: Kensho Form 4 Image */}
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-[320px] lg:max-w-[400px] aspect-[208/154]">
-                <img
+                <Image
                   src="/Forms/4.svg"
                   alt="Kensho"
+                  width={208}
+                  height={154}
                   className="w-full h-full object-contain"
                 />
               </div>
