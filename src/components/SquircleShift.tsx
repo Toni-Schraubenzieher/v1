@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import "./squircle-shift.css";
@@ -130,6 +130,7 @@ interface ShaderPlaneProps {
   colorTintSecondary: string;
   brightness: number;
   phaseOffset: number;
+  isVisible: boolean;
 }
 
 function ShaderPlane({
@@ -148,6 +149,7 @@ function ShaderPlane({
   colorTintSecondary,
   brightness,
   phaseOffset,
+  isVisible,
 }: ShaderPlaneProps) {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const { viewport } = useThree();
@@ -155,7 +157,7 @@ function ShaderPlane({
   const uniforms = useMemo(
     () => ({
       u_time: { value: 0 },
-      u_resolution: { value: new THREE.Vector2(viewport.width * 100, viewport.height * 100) },
+      u_resolution: { value: new THREE.Vector2(viewport.width * 50, viewport.height * 50) },
       u_speed: { value: speed },
       u_colorLayers: { value: colorLayers },
       u_gridFrequency: { value: gridFrequency },
@@ -176,25 +178,10 @@ function ShaderPlane({
   );
 
   useFrame((state) => {
-    if (!materialRef.current) return;
-    const uniformsCurrent = materialRef.current.uniforms;
-    uniformsCurrent.u_time.value = state.clock.elapsedTime;
-    uniformsCurrent.u_resolution.value.set(viewport.width * 100, viewport.height * 100);
-    uniformsCurrent.u_speed.value = speed;
-    uniformsCurrent.u_colorLayers.value = colorLayers;
-    uniformsCurrent.u_gridFrequency.value = gridFrequency;
-    uniformsCurrent.u_gridIntensity.value = gridIntensity;
-    uniformsCurrent.u_waveSpeed.value = waveSpeed;
-    uniformsCurrent.u_waveIntensity.value = waveIntensity;
-    uniformsCurrent.u_spiralIntensity.value = spiralIntensity;
-    uniformsCurrent.u_lineThickness.value = lineThickness;
-    uniformsCurrent.u_falloff.value = falloff;
-    uniformsCurrent.u_centerX.value = centerX;
-    uniformsCurrent.u_centerY.value = centerY;
-    uniformsCurrent.u_colorTint.value.set(colorTint);
-    uniformsCurrent.u_colorTintSecondary.value.set(colorTintSecondary);
-    uniformsCurrent.u_brightness.value = brightness;
-    uniformsCurrent.u_phaseOffset.value = phaseOffset;
+    if (!materialRef.current || !isVisible) return;
+    const u = materialRef.current.uniforms;
+    u.u_time.value = state.clock.elapsedTime;
+    u.u_resolution.value.set(viewport.width * 50, viewport.height * 50);
   });
 
   return (
@@ -232,31 +219,59 @@ export default function SquircleShift({
   brightness = 1.4,
   phaseOffset = 10,
 }: SquircleShiftProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const widthStyle = typeof width === "number" ? `${width}px` : width;
   const heightStyle = typeof height === "number" ? `${height}px` : height;
   const containerClassName = className ? `squircle-shift-container ${className}` : "squircle-shift-container";
 
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const dpr = useMemo(() => {
+    if (typeof window === "undefined") return 1;
+    return Math.min(window.devicePixelRatio, 1.5);
+  }, []);
+
   return (
-    <div className={containerClassName} style={{ width: widthStyle, height: heightStyle }}>
-      <Canvas className="squircle-shift-canvas" gl={{ antialias: true, alpha: true }} camera={{ position: [0, 0, 1], fov: 75 }}>
-        <ShaderPlane
-          speed={speed}
-          colorLayers={colorLayers}
-          gridFrequency={gridFrequency}
-          gridIntensity={gridIntensity}
-          waveSpeed={waveSpeed}
-          waveIntensity={waveIntensity}
-          spiralIntensity={spiralIntensity}
-          lineThickness={lineThickness}
-          falloff={falloff}
-          centerX={centerX}
-          centerY={centerY}
-          colorTint={colorTint}
-          colorTintSecondary={colorTintSecondary}
-          brightness={brightness}
-          phaseOffset={phaseOffset}
-        />
-      </Canvas>
+    <div ref={containerRef} className={containerClassName} style={{ width: widthStyle, height: heightStyle }}>
+      {isVisible && (
+        <Canvas
+          className="squircle-shift-canvas"
+          gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+          camera={{ position: [0, 0, 1], fov: 75 }}
+          dpr={dpr}
+          frameloop="always"
+        >
+          <ShaderPlane
+            speed={speed}
+            colorLayers={colorLayers}
+            gridFrequency={gridFrequency}
+            gridIntensity={gridIntensity}
+            waveSpeed={waveSpeed}
+            waveIntensity={waveIntensity}
+            spiralIntensity={spiralIntensity}
+            lineThickness={lineThickness}
+            falloff={falloff}
+            centerX={centerX}
+            centerY={centerY}
+            colorTint={colorTint}
+            colorTintSecondary={colorTintSecondary}
+            brightness={brightness}
+            phaseOffset={phaseOffset}
+            isVisible={isVisible}
+          />
+        </Canvas>
+      )}
     </div>
   );
 }

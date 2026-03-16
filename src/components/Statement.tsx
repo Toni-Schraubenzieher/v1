@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -19,6 +20,8 @@ function MovingRow({
   direction: 1 | -1;
   color: string;
 }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const x = useMotionValue(direction === 1 ? -50 : 0);
   const directionTarget = useMotionValue<number>(1);
   const smoothDirection = useSpring(directionTarget, { stiffness: 90, damping: 28, mass: 0.7 });
@@ -28,7 +31,20 @@ function MovingRow({
   const smoothVelocity = useSpring(rawVelocity, { stiffness: 140, damping: 30 });
   const velocityFactor = useTransform(smoothVelocity, [-2200, 0, 2200], [0.72, 0, 0.72]);
 
+  useEffect(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: "50px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   useAnimationFrame((_, delta) => {
+    if (!isVisible) return;
+
     const velocityNow = rawVelocity.get();
     if (velocityNow > 22) directionTarget.set(1);
     if (velocityNow < -22) directionTarget.set(-1);
@@ -48,7 +64,7 @@ function MovingRow({
   });
 
   return (
-    <div className="overflow-hidden">
+    <div ref={rowRef} className="overflow-hidden">
       <motion.div
         className="flex w-max whitespace-nowrap"
         style={{ x: xPercent }}

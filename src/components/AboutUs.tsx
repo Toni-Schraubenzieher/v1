@@ -37,7 +37,7 @@ const team: TeamMember[] = [
     id: "wolfgang",
     name: "Wolfgang",
     role: "General Partner · PhD, Deep-Tech Investor",
-    image: "/Team/Wolfgang.png",
+    image: "/Team/Wolfgang.webp",
     accent: "#FEB180",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     linkedin: "https://linkedin.com",
@@ -46,7 +46,7 @@ const team: TeamMember[] = [
     id: "anton",
     name: "Anton",
     role: "Principal · B2B Lead Generation",
-    image: "/Team/Anton.png",
+    image: "/Team/Anton.webp",
     accent: "#FEB180",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     linkedin: "https://linkedin.com",
@@ -55,7 +55,7 @@ const team: TeamMember[] = [
     id: "marc",
     name: "Marc",
     role: "GP Advisor · B2B Sales",
-    image: "/Team/Marc.png",
+    image: "/Team/Marc.webp",
     accent: "#D4FFEF",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     linkedin: "https://linkedin.com",
@@ -73,7 +73,7 @@ const team: TeamMember[] = [
     id: "linda",
     name: "Linda",
     role: "Advisor · AI Research & Legal/Tech",
-    image: "/Team/Linda.png",
+    image: "/Team/Linda.webp",
     accent: "#D4FFEF",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     linkedin: "https://linkedin.com",
@@ -89,6 +89,7 @@ export default function AboutUs() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [navigationDirection, setNavigationDirection] = useState<1 | -1>(1);
   const lockedScrollYRef = useRef(0);
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
   const [oneSetWidth, setOneSetWidth] = useState(0);
   const baseVelocity = -18;
   const baseX = useMotionValue(0);
@@ -166,6 +167,17 @@ export default function AboutUs() {
     }, sectionRef);
 
     return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const el = cardsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsCarouselVisible(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -253,7 +265,7 @@ export default function AboutUs() {
   };
 
   useAnimationFrame((_, delta) => {
-    if (!oneSetWidth || isDragging) return;
+    if (!oneSetWidth || isDragging || !isCarouselVisible) return;
 
     scrollVelocity.current = scrollVelocity.current * 0.9 + baseVelocity * 0.1;
     const moveBy = scrollVelocity.current * (delta / 1000);

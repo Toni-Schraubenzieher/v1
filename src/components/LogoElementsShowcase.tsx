@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useState, useEffect, useRef } from "react";
-import { useMotionValue, useSpring } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -33,7 +32,7 @@ const stories: StoryItem[] = [
     description:
       "We start with your technology, not your TAM slide. Whether it's post-quantum algorithms, autonomous perception, or photonic detectors, we invest the time to understand what you've actually built. Not to nod along. To challenge it, pressure-test it, and back it with conviction.",
     image:
-      "/This_is_Kensho/Technical_fluency.png",
+      "/This_is_Kensho/Technical_fluency.webp",
     form: "1",
     accent: "#FEB180",
   },

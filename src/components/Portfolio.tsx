@@ -27,7 +27,7 @@ const startups = [
     description:
       "Energy Robotics builds the leading platform for autonomous robot and drone inspection, hardware-agnostic software that turns any robot into an autonomous inspection system for industrial facilities. Using AI and digital twin technology, the platform transforms raw sensor data into actionable insights. 20,000+ km of autonomous inspection rounds completed across 4 continents. Founded by robotics prize with backgrounds spanning RoboCup and the DARPA Robotics Challenge.",
     points: [],
-    image: "/Portfolio_Teams/EnergyRobotics.png",
+    image: "/Portfolio_Teams/EnergyRobotics.webp",
   },
   {
     id: 1,
@@ -40,7 +40,7 @@ const startups = [
     description:
       "Hefring built IMAS®, an AI-powered maritime intelligence platform that unifies data from navigation, propulsion, and environmental sensors across entire vessel fleets. Edge computing onboard, cloud analytics off-ship, delivering real-time safety guidance, fuel optimization, predictive maintenance, and regulatory compliance. The system is hardware-agnostic, designed to operate across commercial shipping, defense, and leisure maritime, integrating with existing protocols and third-party equipment. Founded by a team with 50+ years of combined expertise in maritime operations, corporate development, and condition monitoring.",
     points: [],
-    image: "/Portfolio_Teams/Hefring.png",
+    image: "/Portfolio_Teams/Hefring.webp",
   },
   {
     id: 3,
@@ -53,7 +53,7 @@ const startups = [
     description:
       "Pixel Photonics develops superconducting nanowire single-photon detectors (SNSPDs), the enabling hardware for quantum computing, secure communications, and advanced sensing. Their waveguide-integrated architecture is globally unique: 1000+ detection channels where competitors max out at 24, with 25% higher device density. A 12-year R&D effort spun out of Uni Münster, now 35 strong with 8 PhDs. €11M revenue in 2024, €11M qualified pipeline, systems deployed with Fortune 500 and Nasdaq-listed defense companies. Backed by HTGF, QuantonNation, and SPRIND-D.",
     points: [],
-    image: "/Portfolio_Teams/Pixel_Photonics.png",
+    image: "/Portfolio_Teams/Pixel_Photonics.webp",
   },
   {
     id: 5,
@@ -66,7 +66,7 @@ const startups = [
     description:
       "Quality Match built AI-powered visual quality inspection that cut QA costs by 90% while drastically improving labeled data accuracy across manufacturing. Their technology capitalized on the industry shift from data quantity to data quality, making QA accessible to a far broader customer base as the EU AI Act raised provable data standards. Founded by Dr. Daniel Kondermann, who previously sold Pallas Ludens to Apple and led their data science team. Acquired by Wayve.",
     points: [],
-    image: "/Portfolio_Teams/Quality Match.png",
+    image: "/Portfolio_Teams/Quality Match.webp",
   },
   {
     id: 6,
@@ -79,7 +79,7 @@ const startups = [
     description:
       "Qambria is building the integration layer between quantum and classical computing, treating quantum processors as specialized accelerators within existing HPC environments, not as standalone research instruments. Hardware-agnostic and vendor-neutral, their platform eliminates lock-in while making quantum practically accessible across pharma, AI, and scientific workloads. The vision: quantum computers as standard nodes in enterprise data centers. Founded by Dominik Ulmer (30+ years supercomputing leadership at CRAY and HPE) and Marco Szalay (Quantum Engineer #4 at Google Quantum AI), with additional expertise from IBM Research and Argonne National Lab.",
     points: [],
-    image: "/Portfolio_Teams/Qambria.png",
+    image: "/Portfolio_Teams/Qambria.webp",
   },
   {
     id: 4,
@@ -92,7 +92,7 @@ const startups = [
     description:
       "CryptoNext provides a complete suite of products and services to manage the transition to quantum-safe security, protecting critical data against the 'harvest now, decrypt later' threat before quantum computers break current public-key cryptography. Their technology covers the full migration: discovery, transition, and ongoing quantum-safe encryption for enterprises and government agencies. Already deployed through pilots with NATO, European Commission, Banque de France, and Société Générale across Europe and the US. CTO and founder Jean-Charles Faugère, former INRIA Research Director and École Normale Supérieure graduate, co-authored several NIST post-quantum standard algorithms and holds the Seymour Cray Prize.",
     points: [],
-    image: "/Portfolio_Teams/CryptoNext.png",
+    image: "/Portfolio_Teams/CryptoNext.webp",
   },
 ];
 
@@ -104,7 +104,7 @@ const socialProofItems = [
     role: "Founder & CEO, Energy Robotics",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar: "/WOES_PICS/MARC DASSLER.png",
+    avatar: "/WOES_PICS/MARC DASSLER.webp",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Energy_Robotocs.svg",
   },
@@ -115,7 +115,7 @@ const socialProofItems = [
     role: "Founder & CEO, Hefring",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar: "/WOES_PICS/Karl Birgir Björnsson.png",
+    avatar: "/WOES_PICS/Karl Birgir Björnsson.webp",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/Hefring.svg",
   },
@@ -126,7 +126,7 @@ const socialProofItems = [
     role: "Founder, Pixel Photonics",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar: "/WOES_PICS/Nicolai Walter_.png",
+    avatar: "/WOES_PICS/Nicolai Walter_.webp",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Pixel_Photonics.svg",
   },
@@ -137,7 +137,7 @@ const socialProofItems = [
     role: "Founder, Quality Match",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar: "/WOES_PICS/DR.Daniel_Kondermann.png",
+    avatar: "/WOES_PICS/DR.Daniel_Kondermann.webp",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/Quality_Match.svg",
   },
@@ -148,7 +148,7 @@ const socialProofItems = [
     role: "Founder & CEO, Qambria",
     quote:
       "Kensho was the first investor of Qambria, realising the visionary potential of our approach. They are extremely helpful and supportive, always available when a startup in its early phase is going through rough times.",
-    avatar: "/WOES_PICS/Dominik Ulmer.png",
+    avatar: "/WOES_PICS/Dominik Ulmer.webp",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Qambria.svg",
   },
@@ -159,7 +159,7 @@ const socialProofItems = [
     role: "Founder & CTO, CryptoNext Security",
     quote:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    avatar: "/WOES_PICS/Jean-Charles Faugere.png",
+    avatar: "/WOES_PICS/Jean-Charles Faugere.webp",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/CryptoNext.svg",
   },
@@ -280,14 +280,20 @@ export default function Portfolio() {
   const y = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    let rafPending = false;
     const handleMouseMove = (event: MouseEvent) => {
-      if (!containerRef.current || !hoveredStartup) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      cursorX.set(event.clientX - rect.left);
-      cursorY.set(event.clientY - rect.top);
+      if (!containerRef.current || !hoveredStartup || rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        if (!containerRef.current) { rafPending = false; return; }
+        const rect = containerRef.current.getBoundingClientRect();
+        cursorX.set(event.clientX - rect.left);
+        cursorY.set(event.clientY - rect.top);
+        rafPending = false;
+      });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [hoveredStartup, cursorX, cursorY]);
 

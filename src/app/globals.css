@@ -40,20 +40,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Performance Optimizations - GPU Acceleration */
+/* Performance Optimizations */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Force GPU acceleration for animated elements */
-[class*="motion"],
-[class*="animate"],
+/* GPU acceleration only for canvas elements */
 canvas {
   will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
 }
 
 h1, h2, h3, h4, h5, h6 {
