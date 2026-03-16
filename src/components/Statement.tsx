@@ -1,86 +1,82 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useVelocity,
+  useTransform,
+} from "motion/react";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+function MovingRow({
+  text,
+  direction,
+  color,
+}: {
+  text: string;
+  direction: 1 | -1;
+  color: string;
+}) {
+  const x = useMotionValue(direction === 1 ? -50 : 0);
+  const directionTarget = useMotionValue<number>(1);
+  const smoothDirection = useSpring(directionTarget, { stiffness: 90, damping: 28, mass: 0.7 });
+  const xPercent = useTransform(x, (value) => `${value}%`);
+  const { scrollY } = useScroll();
+  const rawVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(rawVelocity, { stiffness: 140, damping: 30 });
+  const velocityFactor = useTransform(smoothVelocity, [-2200, 0, 2200], [0.72, 0, 0.72]);
 
-function SplitText({ children }: { children: string }) {
+  useAnimationFrame((_, delta) => {
+    const velocityNow = rawVelocity.get();
+    if (velocityNow > 22) directionTarget.set(1);
+    if (velocityNow < -22) directionTarget.set(-1);
+
+    const baseSpeed = 0.7;
+    const speedBoost = velocityFactor.get();
+    const signedDirection = direction * smoothDirection.get();
+    const moveBy = signedDirection * baseSpeed * (delta / 1000) * (1 + speedBoost);
+    const next = x.get() + moveBy;
+
+    if (moveBy < 0) {
+      x.set(next <= -50 ? 0 : next);
+      return;
+    }
+
+    x.set(next >= 0 ? -50 : next);
+  });
+
   return (
-    <>
-      {children.split(" ").map((word, wi) => (
-        <span key={wi} className="inline-block whitespace-nowrap">
-          {word.split("").map((char, ci) => (
-            <span key={ci} className="char inline-block">
-              {char}
-            </span>
-          ))}
-          {wi < children.split(" ").length - 1 && (
-            <span className="char inline-block">&nbsp;</span>
-          )}
-        </span>
-      ))}
-    </>
+    <div className="overflow-hidden">
+      <motion.div
+        className="flex w-max whitespace-nowrap"
+        style={{ x: xPercent }}
+      >
+        {[0, 1].map((group) => (
+          <div key={group} className="mr-24 flex shrink-0 items-center gap-20">
+            {[0, 1, 2].map((part) => (
+              <span
+                key={part}
+                className="font-heading text-[clamp(3.15rem,9.6vw,8.8rem)] font-bold uppercase leading-[0.88] tracking-tight"
+                style={{ color }}
+              >
+                {text}
+              </span>
+            ))}
+          </div>
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
 export default function Statement() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    if (!titleRef.current || !sectionRef.current || !contentRef.current) return;
-
-    const chars = titleRef.current.querySelectorAll(".char");
-
-    gsap.fromTo(
-      chars,
-      {
-        willChange: "transform",
-        transformOrigin: "50% 100%",
-        scaleY: 0,
-      },
-      {
-        ease: "power3.in",
-        opacity: 1,
-        scaleY: 1,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=150%",
-          scrub: true,
-          pin: contentRef.current,
-          anticipatePin: 1,
-        },
-      }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden"
-    >
-      <div
-        ref={contentRef}
-        className="flex min-h-screen items-center justify-center bg-[#E0E0E0] px-6 sm:px-12 lg:px-24"
-      >
-        <h2
-          ref={titleRef}
-          className="text-center font-heading text-[clamp(2.5rem,7vw,7rem)] font-bold leading-[1.1] tracking-tight text-[#161616] max-w-[1200px]"
-        >
-          <span className="block"><SplitText>Conviction first.</SplitText></span>
-          <span className="block"><SplitText>Capital second.</SplitText></span>
-        </h2>
+    <section className="py-14 sm:py-16 lg:py-20">
+      <div className="w-full space-y-3 sm:space-y-4">
+        <MovingRow text="SUBSTANCE OVER STORY." direction={-1} color="#FEB180" />
+        <MovingRow text="INFRASTRUCTURE FROM DAY 1." direction={1} color="#D4FFEF" />
       </div>
     </section>
   );

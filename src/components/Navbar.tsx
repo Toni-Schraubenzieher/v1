@@ -1,57 +1,81 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 
 const sections = [
-  { id: "hero", label: "Home" },
-  { id: "who-we-are", label: "Who we are" },
-  { id: "how-we-work", label: "How we work" },
-  { id: "portfolio", label: "Portfolio" },
-  { id: "about-us", label: "About Us" },
+  { id: "hero", label: "HOME", href: "#hero" },
+  { id: "venture-stories", label: "THIS IS KENSHO", href: "#venture-stories" },
+  { id: "portfolio-overview", label: "PORTFOLIO", href: "#portfolio-overview" },
+  { id: "who-we-are", label: "ABOUT US", href: "#who-we-are" },
+  { id: "team", label: "TEAM", href: "#team" },
+  { id: "faq", label: "FAQ", href: "#faq" },
+  { id: "get-in-touch", label: "GET IN TOUCH", href: "#get-in-touch" },
 ];
-
-const menuItems = [
-  { label: "Home", href: "#" },
-  { label: "Who we are", href: "#who-we-are" },
-  { label: "How we work", href: "#how-we-work" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "About Us", href: "#about-us" },
-];
+const NAV_ORANGE = "#FEB180";
+const NAV_MINT = "#D4FFEF";
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState("Home");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("HOME");
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const animateScrollTo = (targetY: number, durationMs = 1100) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo(0, startY + distance * eased);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  const handleSectionClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    section: (typeof sections)[number]
+  ) => {
+    event.preventDefault();
+    const element = document.getElementById(section.id);
+    setIsOpen(false);
+
+    if (!element) return;
+
+    const targetTop = Math.max(0, element.getBoundingClientRect().top + window.scrollY);
+    animateScrollTo(targetTop, 980);
+    window.history.replaceState(null, "", section.href);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      const scrollPosition = window.scrollY + window.innerHeight * 0.35;
+
+      // Check if scrolled down
+      setIsScrolled(window.scrollY > 50);
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (!section) continue;
-        const element =
-          document.querySelector(`.${section.id}`) ||
-          document.getElementById(section.id);
-        if (element) {
-          const { offsetTop } = element as HTMLElement;
-          if (scrollPosition >= offsetTop) {
-            setActiveSection(section.label);
-            return;
-          }
+
+        const element = document.getElementById(section.id);
+        if (element && scrollPosition >= element.offsetTop) {
+          setActiveSection(section.label);
+          return;
         }
       }
-      if (sections[0]) {
-        setActiveSection(sections[0].label);
-      }
+      setActiveSection("HOME");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -60,87 +84,155 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 px-4 py-4 sm:px-8 sm:py-6"
-    >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-end gap-4">
-        {/* Menu dropdown */}
-        <div className="relative h-12 sm:h-14">
-          <motion.div
-            className="absolute top-0 right-0 w-48 sm:w-56 bg-[#161616]/90 backdrop-blur-lg rounded-2xl shadow-lg overflow-hidden"
-            animate={{
-              height: isMenuOpen ? "auto" : isMobile ? 48 : 56,
-            }}
-            transition={{
-              duration: 0.4,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
+    <>
+      {/* Logo + Text - Top Left */}
+      <div className="fixed left-0 top-10 z-[60] sm:top-12 w-full px-6 sm:px-8">
+        <div className="mx-auto max-w-[1320px]">
+          <div className="ml-4 sm:ml-6 flex items-center gap-4">
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex h-12 sm:h-14 w-full items-center justify-between gap-4 px-4 sm:px-5 text-white"
+              onClick={(e) => {
+                e.preventDefault();
+                const heroSection = document.getElementById('hero');
+                if (!heroSection) return;
+                const targetTop = Math.max(0, heroSection.getBoundingClientRect().top + window.scrollY);
+                animateScrollTo(targetTop, 980);
+                window.history.replaceState(null, "", '#hero');
+              }}
+              className="relative inline-flex items-center justify-center cursor-pointer"
             >
-              <span className="text-sm sm:text-base font-medium">
-                {activeSection}
-              </span>
+              {/* Orange Circle Background - appears on scroll */}
               <motion.div
-                className="relative h-5 w-5"
-                animate={{ rotate: isMenuOpen ? 45 : 0 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="absolute left-1/2 top-0 h-5 w-[1.5px] -translate-x-1/2 bg-current" />
-                <span className="absolute left-0 top-1/2 h-[1.5px] w-5 -translate-y-1/2 bg-current" />
-              </motion.div>
+                className="absolute inset-0 -m-5 rounded-full"
+                style={{ backgroundColor: '#FEB180' }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{
+                  scale: isScrolled ? 1 : 0,
+                  opacity: isScrolled ? 1 : 0
+                }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              />
+
+              {/* Kensho Logo */}
+              <Image
+                src="/Logo_hero.svg"
+                alt="Kensho"
+                width={36}
+                height={36}
+                priority
+                className="relative z-10 h-auto w-[32px] sm:w-[36px]"
+              />
             </button>
 
-            <AnimatePresence>
-              {isMenuOpen && (
-                <motion.nav
-                  className="px-5 pb-5"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2, delay: 0.1 }}
-                >
-                  <ul className="flex flex-col gap-1">
-                    {menuItems.map((item, index) => (
-                      <motion.li
-                        key={item.label}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -10 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: 0.05 * index,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                      >
-                        <a
-                          href={item.href}
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                            setActiveSection(item.label);
-                          }}
-                          className={`block py-1.5 text-base font-medium transition-colors hover:text-white ${
-                            activeSection === item.label
-                              ? "text-white"
-                              : "text-white/60"
-                          }`}
-                        >
-                          {item.label}
-                        </a>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.nav>
-              )}
-            </AnimatePresence>
-          </motion.div>
+            {/* "KENSHŌ" Text - fades out on scroll */}
+            <motion.span
+              className="font-heading text-lg font-medium text-white tracking-tight sm:text-xl"
+              animate={{
+                opacity: isScrolled ? 0 : 1,
+                x: isScrolled ? -20 : 0
+              }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              KENSHŌ
+            </motion.span>
+          </div>
         </div>
       </div>
-    </motion.header>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-50 bg-black/55 backdrop-blur-[2px] cursor-pointer"
+              onClick={() => setIsOpen(false)}
+            />
+
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+              className="fixed right-3 top-3 z-[55] h-[calc(100vh-24px)] w-[40vw] min-w-[320px] rounded-3xl bg-[#121214] p-8 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:p-10"
+            >
+              <nav className="-mx-8 flex h-full items-center sm:-mx-10">
+                <ul className="w-full space-y-0">
+                  {sections.map((section, index) => {
+                    const itemColor = index % 2 === 0 ? NAV_ORANGE : NAV_MINT;
+
+                    return (
+                    <li key={section.id}>
+                      <a
+                        href={section.href}
+                        onClick={(event) => handleSectionClick(event, section)}
+                        className="group relative flex items-center w-full overflow-hidden px-8 py-2.5 font-heading text-[clamp(1.8rem,3.4vw,4.2rem)] font-bold leading-none tracking-tight text-white transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#101010] sm:px-10"
+                      >
+                        <span
+                          className="pointer-events-none absolute inset-0 origin-left scale-x-[0.985] opacity-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100 group-hover:opacity-100"
+                          style={{ backgroundColor: itemColor }}
+                        />
+                        <span className="relative z-10 mx-auto block h-[1.15em] w-full max-w-[32rem] overflow-hidden text-left translate-y-[0.08em]">
+                          <span className="block whitespace-nowrap transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.15em]">
+                            {section.label}
+                          </span>
+                          <span className="absolute left-0 top-[1.15em] block whitespace-nowrap transform-gpu transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[1.15em]">
+                            {section.label}
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+
+      <div className="fixed right-6 top-10 z-[60] sm:right-8 sm:top-12">
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="flex h-12 min-w-[210px] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] cursor-pointer"
+          aria-label="Toggle navigation menu"
+        >
+          <span className="text-base font-medium">{activeSection}</span>
+          <span className="relative h-5 w-5 text-white">
+            <motion.span
+              animate={{
+                width: isOpen ? "20px" : "13px",
+                x: isOpen ? 0 : 7,
+                y: isOpen ? 9 : 1.5,
+                rotate: isOpen ? 45 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+              className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+            />
+            <motion.span
+              animate={{
+                width: isOpen ? "0px" : "20px",
+                x: isOpen ? 10 : 0,
+                y: 9,
+                opacity: isOpen ? 0 : 1,
+              }}
+              transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+              className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+            />
+            <motion.span
+              animate={{
+                width: isOpen ? "20px" : "13px",
+                x: isOpen ? 0 : 0,
+                y: isOpen ? 9 : 16.5,
+                rotate: isOpen ? -45 : 0,
+              }}
+              transition={{ type: "spring", stiffness: 420, damping: 30, mass: 0.45 }}
+              className="absolute left-0 top-0 h-[3px] rounded-full bg-current"
+            />
+          </span>
+        </button>
+      </div>
+    </>
   );
 }

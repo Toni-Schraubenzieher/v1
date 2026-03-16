@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -10,77 +11,42 @@ if (typeof window !== "undefined") {
 
 const steps = [
   {
-    id: 0,
-    title: "Discover",
+    id: 1,
+    number: "01",
+    title: "Robotics",
     description:
       "We source exceptional founders through our global network — often before they've raised a single dollar.",
     color: "#FEB180",
-  },
-  {
-    id: 1,
-    title: "Evaluate",
-    description:
-      "Deep-dive into the team, market, and technology. We move with speed and conviction when we believe.",
-    color: "#D4FFEF",
+    formNumber: "1",
   },
   {
     id: 2,
-    title: "Invest",
+    number: "02",
+    title: "Enabling Technologies",
     description:
-      "Meaningful capital, clear terms, and a partnership built on trust from day one. No games, no delays.",
-    color: "#FEB180",
+      "Deep-dive into the team, market, and technology. We move with speed and conviction when we believe.",
+    color: "#D4FFEF",
+    formNumber: "2",
   },
   {
     id: 3,
-    title: "Grow",
+    number: "03",
+    title: "Cybersecurity / Dual use",
+    description:
+      "Meaningful capital, clear terms, and a partnership built on trust from day one. No games, no delays.",
+    color: "#FEB180",
+    formNumber: "3",
+  },
+  {
+    id: 4,
+    number: "04",
+    title: "Computation",
     description:
       "From hiring key talent to unlocking new markets — we're in the trenches with our founders every step.",
     color: "#D4FFEF",
+    formNumber: "4",
   },
 ];
-
-function KenshoIcon({ activeIndex }: { activeIndex: number }) {
-  const inactiveColor = "rgba(255,255,255,0.08)";
-
-  const parts = [
-    {
-      d: "M55.5204 56.8219L44.2592 45.5103L55.5204 0H119.421V39.7226L55.5204 56.8219Z",
-      index: 0,
-    },
-    {
-      d: "M55.7808 65.2399L43.9961 77.8671L55.7808 121.536H119.681V81.8131L55.7808 65.2399Z",
-      index: 1,
-    },
-    {
-      d: "M0 71.2906V121.799H25.403L35.6165 77.341L23.3079 65.2399L0 71.2906Z",
-      index: 2,
-    },
-    {
-      d: "M36.1398 45.7733L24.8786 56.8219L0.261322 49.7191V0.526184H24.8786L36.1398 45.7733Z",
-      index: 3,
-    },
-  ];
-
-  return (
-    <svg
-      viewBox="0 0 120 122"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full max-w-[320px] lg:max-w-[400px]"
-    >
-      {parts.map((part) => (
-        <path
-          key={part.index}
-          d={part.d}
-          fill={activeIndex === part.index ? steps[part.index]!.color : inactiveColor}
-          style={{
-            transition: "fill 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
-          }}
-        />
-      ))}
-    </svg>
-  );
-}
 
 export default function HowWeWork() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -105,7 +71,7 @@ export default function HowWeWork() {
               trigger: sectionRef.current,
               start: "top 75%",
               end: "top 50%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -124,7 +90,7 @@ export default function HowWeWork() {
               trigger: contentRef.current,
               start: "top 80%",
               end: "top 55%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -134,83 +100,83 @@ export default function HowWeWork() {
     return () => ctx.revert();
   }, []);
 
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const startTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % 4);
-    }, 3000);
-  };
-
-  useEffect(() => {
-    startTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, []);
-
   return (
     <section
       ref={sectionRef}
       id="how-we-work"
       className="how-we-work py-16 lg:py-24"
     >
-      <div className="mx-auto max-w-[1400px] px-4">
-        <div className="rounded-3xl bg-[#161616] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
+      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
+        <div className="rounded-3xl bg-[#101010] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
           {/* Header */}
           <div ref={headerRef} className="mb-16 lg:mb-20">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-10 bg-accent-warm" />
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-warm">
+              <span className="h-2.5 w-2.5 rounded-full bg-accent-warm animate-pulse" />
+              <span className="text-sm font-medium uppercase tracking-[0.16em] text-white/50">
                 Our Process
               </span>
             </div>
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-              How we work
+            <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
+              HOW WE WORK
             </h2>
           </div>
 
-          {/* Content: Steps left, Logo right */}
-          <div ref={contentRef} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-            {/* Left: Steps */}
-            <div className="flex-1 w-full">
-              <div className="flex flex-col">
-                {steps.map((step) => {
-                  const isActive = activeIndex === step.id;
-                  return (
-                    <button
-                      key={step.id}
-                      onClick={() => {
-                        setActiveIndex(step.id);
-                        startTimer();
-                      }}
-                      className="text-left w-full py-4 cursor-pointer flex items-center gap-4"
-                    >
-                      <div
-                        className="w-[3px] h-6 rounded-full shrink-0 transition-all duration-500"
-                        style={{
-                          backgroundColor: isActive ? step.color : "rgba(255,255,255,0.12)",
-                        }}
-                      />
-                      <span
-                        className="font-heading text-xl sm:text-2xl font-medium tracking-tight transition-colors duration-500"
-                        style={{
-                          color: isActive ? "#ffffff" : "rgba(255,255,255,0.3)",
-                        }}
-                      >
-                        {step.title}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+          {/* Content: Grid with 4 cards */}
+          <div
+            ref={contentRef}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+          >
+            {steps.map((step, index) => (
+              <button
+                key={step.id}
+                onClick={() => setActiveIndex(index)}
+                className="group relative text-left rounded-2xl bg-[#0A0A0A] p-8 overflow-hidden transition-all duration-300 hover:scale-[1.02]"
+              >
+                {/* Form SVG Background */}
+                <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ position: "relative" }}>
+                  <Image
+                    src={`/Forms/${step.formNumber}.svg`}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    style={{ filter: "brightness(1.5)" }}
+                  />
+                </div>
 
-            {/* Right: Kensho Logo Icon */}
-            <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto">
-              <KenshoIcon activeIndex={activeIndex} />
-            </div>
+                {/* Content */}
+                <div className="relative z-10">
+                  <div
+                    className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-4"
+                    style={{
+                      backgroundColor: `${step.color}20`,
+                      color: step.color,
+                    }}
+                  >
+                    {step.number}
+                  </div>
+                  <h3
+                    className="font-heading text-2xl lg:text-3xl font-bold mb-3 transition-colors duration-300"
+                    style={{
+                      color: activeIndex === index ? step.color : "#ffffff",
+                    }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="text-white/80 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Decorative element */}
+                <div
+                  className="absolute bottom-0 right-0 w-24 h-24 opacity-10"
+                  style={{
+                    background: `radial-gradient(circle at center, ${step.color}, transparent 70%)`,
+                  }}
+                />
+              </button>
+            ))}
           </div>
         </div>
       </div>

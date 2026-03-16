@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #E0E0E0;
-  --foreground: #161616;
-  --card-bg: #161616;
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --card-bg: #101010;
   --accent-warm: #FEB180;
   --accent-mint: #D4FFEF;
   --font-satoshi: 'Satoshi', sans-serif;
@@ -11,9 +11,9 @@
 }
 
 @theme inline {
-  --color-background: #E0E0E0;
-  --color-foreground: #161616;
-  --color-card-bg: #161616;
+  --color-background: #0A0A0A;
+  --color-foreground: #FFFFFF;
+  --color-card-bg: #101010;
   --color-accent-warm: #FEB180;
   --color-accent-mint: #D4FFEF;
   --font-sans: var(--font-jakarta);
@@ -22,14 +22,44 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  scroll-behavior: auto !important;
 }
 
 body {
-  background: #E0E0E0;
-  color: #161616;
+  background: #0A0A0A;
+  color: #FFFFFF;
   font-family: var(--font-jakarta);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Performance Optimizations - GPU Acceleration */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force GPU acceleration for animated elements */
+[class*="motion"],
+[class*="animate"],
+canvas {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-satoshi);
+}
+
+button {
+  font-family: var(--font-jakarta);
 }

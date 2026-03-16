@@ -8,57 +8,83 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function QuoteIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
-    </svg>
-  );
-}
+const entrepreneurs = [
+  {
+    name: "Sarah Mitchell",
+    company: "NeuralPath",
+    color: "#FEB180",
+  },
+  {
+    name: "Alex Chen",
+    company: "QuantumCore",
+    color: "#D4FFEF",
+  },
+  {
+    name: "Maria Rodriguez",
+    company: "BioSphere",
+    color: "#FEB180",
+  },
+  {
+    name: "James O'Connor",
+    company: "EdgeCompute",
+    color: "#D4FFEF",
+  },
+  {
+    name: "Priya Patel",
+    company: "SecureNet",
+    color: "#FEB180",
+  },
+  {
+    name: "Thomas Wagner",
+    company: "RoboTech",
+    color: "#D4FFEF",
+  },
+];
 
 export default function WhoWeAre() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            end: "top 50%",
-            scrub: 1,
-          },
-        }
-      );
-
-      const cards = gridRef.current?.children;
-      if (cards) {
+      if (headerRef.current) {
         gsap.fromTo(
-          cards,
-          { y: 80, opacity: 0, scale: 0.95 },
+          headerRef.current,
+          { y: 40, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              end: "top 50%",
+              scrub: 1.5,
+            },
+          }
+        );
+      }
+
+      if (listRef.current) {
+        const items = listRef.current.children;
+        gsap.fromTo(
+          items,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
             duration: 0.8,
             ease: "power3.out",
             stagger: 0.1,
             scrollTrigger: {
-              trigger: gridRef.current,
+              trigger: listRef.current,
               start: "top 80%",
               end: "top 40%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -74,107 +100,67 @@ export default function WhoWeAre() {
       id="who-we-are"
       className="who-we-are py-24 lg:py-32"
     >
-      <div className="px-4 max-w-[1400px] mx-auto">
-        <div ref={headerRef} className="mb-12 lg:mb-16">
-          <h2 className="font-heading text-3xl lg:text-4xl font-bold tracking-tight text-[#161616]">
-            Trusted by industry leaders
+      <div className="max-w-[1320px] mx-auto px-6 sm:px-8">
+        {/* Header */}
+        <div ref={headerRef} className="mb-16 lg:mb-20">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-2.5 w-2.5 rounded-full bg-accent-mint animate-pulse" />
+            <span className="text-sm font-medium uppercase tracking-[0.16em] text-white/50">
+              Testimonials
+            </span>
+          </div>
+          <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
+            WHAT OUR ENTREPRENEURS SAY
           </h2>
         </div>
 
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:grid-rows-[minmax(220px,auto)_minmax(220px,auto)_minmax(180px,auto)]"
-        >
-          {/* Column 1: Two stacked image cards */}
-          <div className="row-span-2 flex flex-col gap-4">
-            <div className="relative flex-1 w-full overflow-hidden rounded-2xl bg-[#161616] flex items-center justify-center min-h-[200px]">
-              <div className="text-center p-6">
-                <div className="w-16 h-16 rounded-full bg-accent-warm/20 mx-auto mb-4 flex items-center justify-center">
-                  <span className="font-heading text-2xl font-bold text-accent-warm">K</span>
+        {/* Entrepreneurs List */}
+        <div ref={listRef} className="space-y-0">
+          {entrepreneurs.map((entrepreneur, index) => (
+            <div key={index}>
+              <div className="group py-8 sm:py-10 lg:py-12 flex items-center justify-between gap-6 hover:bg-white/[0.02] transition-colors duration-300 px-4 sm:px-6 -mx-4 sm:-mx-6 rounded-lg">
+                <div className="flex-1">
+                  <h3
+                    className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 transition-colors duration-300"
+                    style={{
+                      color: entrepreneur.color,
+                    }}
+                  >
+                    {entrepreneur.name}
+                  </h3>
+                  <p className="text-white/50 text-base sm:text-lg">
+                    {entrepreneur.company}
+                  </p>
                 </div>
-                <p className="text-white/50 text-sm">Founded 2022</p>
+                <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-white/40 group-hover:text-white/80 transition-colors duration-300"
+                  >
+                    <path d="M7 17L17 7M17 7H9M17 7V15" />
+                  </svg>
+                </div>
               </div>
+              {index < entrepreneurs.length - 1 && (
+                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              )}
             </div>
-            <div className="relative flex-1 w-full overflow-hidden rounded-2xl bg-[#161616] flex items-center justify-center min-h-[200px]">
-              <div className="text-center p-6">
-                <p className="font-heading text-4xl font-bold text-white">30+</p>
-                <p className="text-white/50 text-sm mt-1">Countries in our network</p>
-              </div>
-            </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Column 2-3: Quote card */}
-          <div className="lg:col-span-2 row-span-2 bg-[#161616] rounded-2xl p-8 flex flex-col">
-            <div>
-              <QuoteIcon className="w-10 h-10 text-white/20 mb-6" />
-              <blockquote className="text-2xl lg:text-3xl font-medium leading-snug text-white">
-                Kensho&apos;s conviction and speed were game-changing. They believed in us before anyone else did.
-              </blockquote>
-              <div className="mt-6">
-                <p className="font-semibold text-white">Sarah Mitchell</p>
-                <p className="text-sm text-white/50">CEO, NeuralPath</p>
-              </div>
-            </div>
-            <div className="flex items-center mt-auto pt-8">
-              <span className="text-xl font-heading font-semibold text-white">
-                NeuralPath
-              </span>
-            </div>
-          </div>
-
-          {/* Column 4: Two stat cards */}
-          <div className="bg-[#161616] rounded-2xl p-6 flex flex-col">
-            <div className="flex-1">
-              <p className="text-3xl font-heading font-bold text-white">
-                $120M
-              </p>
-              <p className="text-sm text-white/50 mt-1">
-                Assets Under Management
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-[#161616] rounded-2xl p-6 flex flex-col">
-            <div className="flex-1">
-              <p className="text-3xl font-heading font-bold text-accent-mint">
-                6x
-              </p>
-              <p className="text-sm text-white/50 mt-1">
-                Average Portfolio Return
-              </p>
-            </div>
-          </div>
-
-          {/* Bottom row: stats card + mission card */}
-          <div className="bg-[#161616] rounded-2xl p-8 flex flex-col">
-            <div className="flex-1">
-              <p className="text-3xl lg:text-4xl font-heading font-bold text-white">
-                40+
-              </p>
-              <p className="text-white/50 mt-2">
-                Portfolio Companies
-                <br />
-                Worldwide
-              </p>
-            </div>
-            <div className="mt-auto pt-6">
-              <p className="text-sm font-medium text-accent-warm">
-                Seed & Pre-Seed Focus
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-3 bg-[#161616] rounded-2xl p-8 flex flex-col">
-            <p className="text-xl lg:text-2xl font-medium leading-relaxed text-white max-w-3xl flex-1">
-              We partner with visionary founders at the earliest stages, providing capital, 
-              strategic guidance, and access to our global network to build category-defining companies.
-            </p>
-            <div className="flex items-center mt-auto pt-6">
-              <span className="text-xl font-heading font-semibold text-white">
-                Our Mission
-              </span>
-            </div>
-          </div>
+        {/* Bottom text */}
+        <div className="mt-16 lg:mt-20">
+          <p className="text-lg lg:text-xl text-white/80 leading-relaxed max-w-3xl">
+            We partner with visionary founders at the earliest stages, providing capital,
+            strategic guidance, and access to our global network to build category-defining companies.
+          </p>
         </div>
       </div>
     </section>
