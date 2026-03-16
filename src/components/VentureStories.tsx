@@ -63,7 +63,7 @@ export default function VentureStories() {
               trigger: sectionRef.current,
               start: "top 75%",
               end: "top 50%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -82,7 +82,7 @@ export default function VentureStories() {
               trigger: contentRef.current,
               start: "top 80%",
               end: "top 55%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );

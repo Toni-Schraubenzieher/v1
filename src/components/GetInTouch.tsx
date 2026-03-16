@@ -27,7 +27,7 @@ export default function GetInTouch() {
             trigger: contentRef.current,
             start: "top 80%",
             end: "top 55%",
-            scrub: 1,
+            scrub: 1.5,
           },
         }
       );

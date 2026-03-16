@@ -166,7 +166,7 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
             trigger: itemRef.current,
             start: "top 95%",
             end: "top 75%",
-            scrub: 1,
+            scrub: 1.5,
           },
         }
       );

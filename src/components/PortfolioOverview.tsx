@@ -101,7 +101,7 @@ export default function PortfolioOverview() {
               trigger: headingRef.current,
               start: "top 80%",
               end: "top 55%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -120,7 +120,7 @@ export default function PortfolioOverview() {
               trigger: filtersRef.current,
               start: "top 85%",
               end: "top 60%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -139,7 +139,7 @@ export default function PortfolioOverview() {
               trigger: gridRef.current,
               start: "top 85%",
               end: "top 60%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );

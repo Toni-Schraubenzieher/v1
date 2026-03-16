@@ -218,7 +218,7 @@ function PortfolioItem({
             trigger: itemRef.current,
             start: "top 90%",
             end: "top 70%",
-            scrub: 1,
+            scrub: 1.5,
           },
         }
       );
@@ -352,7 +352,7 @@ export default function Portfolio() {
             trigger: woesRef.current,
             start: "top 80%",
             end: "top 55%",
-            scrub: 1,
+            scrub: 1.5,
           },
         }
       );
