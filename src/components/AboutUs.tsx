@@ -289,7 +289,7 @@ export default function AboutUs() {
         {/* Big statement */}
         <h2
           ref={headingRef}
-          className="mb-16 max-w-[900px] font-heading text-[clamp(2rem,5.5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tight text-white lg:mb-20"
+          className="mb-16 max-w-[900px] mx-auto font-heading text-[clamp(2rem,5.5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tight text-white lg:mb-20 text-center"
         >
           Built for founders
           <br />

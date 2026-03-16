@@ -70,7 +70,7 @@ export default function GetInTouch() {
           </div>
         </div>
 
-        <div className="relative z-10 flex min-h-[68vh] items-center justify-end">
+        <div className="relative z-10 flex min-h-[68vh] items-center justify-start">
           <div ref={contentRef} className="w-full max-w-[520px]">
             <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
               GET IN TOUCH

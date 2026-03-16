@@ -233,6 +233,7 @@ function PortfolioItem({
       className={index === 0 ? "" : "border-t border-white/10"}
     >
       <button
+        data-startup-id={startup.id}
         onClick={onOpen}
         onMouseEnter={() => onHoverChange(startup)}
         onMouseLeave={() => onHoverChange(null)}
@@ -269,6 +270,7 @@ export default function Portfolio() {
   const containerRef = useRef<HTMLDivElement>(null);
   const woesRef = useRef<HTMLDivElement>(null);
   const lockedScrollYRef = useRef(0);
+  const lastClientPos = useRef({ x: 0, y: 0 });
   const activeIndex = startups.findIndex((s) => s.id === activeId);
   const activeStartup = activeIndex >= 0 ? startups[activeIndex] : null;
 
@@ -279,23 +281,48 @@ export default function Portfolio() {
   const x = useSpring(cursorX, springConfig);
   const y = useSpring(cursorY, springConfig);
 
+  const updateCursorPosition = (clientX: number, clientY: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    cursorX.set(clientX - rect.left);
+    cursorY.set(clientY - rect.top);
+  };
+
+  const detectHoveredStartup = (clientX: number, clientY: number) => {
+    const el = document.elementFromPoint(clientX, clientY);
+    if (!el) { setHoveredStartup(null); return; }
+    const btn = el.closest("[data-startup-id]") as HTMLElement | null;
+    if (!btn) { setHoveredStartup(null); return; }
+    const id = Number(btn.dataset.startupId);
+    const found = startups.find((s) => s.id === id) || null;
+    setHoveredStartup(found);
+  };
+
   useEffect(() => {
     let rafPending = false;
     const handleMouseMove = (event: MouseEvent) => {
-      if (!containerRef.current || !hoveredStartup || rafPending) return;
+      lastClientPos.current = { x: event.clientX, y: event.clientY };
+      if (!containerRef.current || rafPending) return;
       rafPending = true;
       requestAnimationFrame(() => {
-        if (!containerRef.current) { rafPending = false; return; }
-        const rect = containerRef.current.getBoundingClientRect();
-        cursorX.set(event.clientX - rect.left);
-        cursorY.set(event.clientY - rect.top);
+        updateCursorPosition(lastClientPos.current.x, lastClientPos.current.y);
         rafPending = false;
       });
     };
 
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      updateCursorPosition(lastClientPos.current.x, lastClientPos.current.y);
+      detectHoveredStartup(lastClientPos.current.x, lastClientPos.current.y);
+    };
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [hoveredStartup, cursorX, cursorY]);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [cursorX, cursorY]);
 
   useEffect(() => {
     const lockEvent = new Event("kensho:lock-scroll");
@@ -395,11 +422,11 @@ export default function Portfolio() {
           <AnimatePresence>
             {hoveredStartup && (
               <motion.span
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, filter: "blur(8px)" }}
+                initial={{ opacity: 0, scale: 0, filter: "blur(8px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0, filter: "blur(4px)" }}
                 transition={{
-                  duration: 0.3,
+                  duration: 0.25,
                   ease: [0.22, 1, 0.36, 1]
                 }}
                 className="pointer-events-none absolute left-0 top-0 z-[25] flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.28)]"
@@ -432,7 +459,7 @@ export default function Portfolio() {
 
       <div ref={woesRef} className="mx-auto mt-8 max-w-[1320px] px-6 sm:mt-10 sm:px-8">
         <div className="px-8 pb-10 pt-12 sm:px-12 lg:pb-14 lg:pt-14">
-          <h3 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight mb-12" style={{ color: "#FEB180" }}>
+          <h3 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight mb-12 text-center" style={{ color: "#FEB180" }}>
             WHAT OUR
             <br />
             ENTREPRENEURS SAY
@@ -456,8 +483,8 @@ export default function Portfolio() {
                   <div className="relative z-10 px-8 py-9 sm:px-12 sm:py-10 lg:py-12 h-[180px] sm:h-[200px] flex items-center">
                     {/* Default Content: Name / Company - slides up */}
                     <div className="w-full transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full group-hover:opacity-0 group-hover:absolute group-hover:inset-x-8 sm:group-hover:inset-x-12">
-                      <h4 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-white/80">
-                        {item.founder.toUpperCase()} / <span className="text-2xl sm:text-3xl lg:text-4xl" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
+                      <h4 className="font-heading text-[clamp(2.275rem,5vw,4.675rem)] font-medium tracking-tight text-white/80">
+                        {item.founder.toUpperCase()} / <span className="text-[clamp(1.375rem,3vw,2.175rem)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
                       </h4>
                     </div>
 
