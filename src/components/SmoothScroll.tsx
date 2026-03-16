@@ -6,8 +6,10 @@ import Lenis from "lenis";
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.0,
+      duration: 0.8,  // Reduziert für bessere Performance
       smoothWheel: true,
+      syncTouch: false,  // Deaktiviert auf Touch-Geräten für bessere Performance
+      touchMultiplier: 1.5,
     });
     const handleLockScroll = () => {
       lenis.stop();

@@ -14,22 +14,22 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 const satoshi = localFont({
   src: [
     {
-      path: "../../public/fonts/satoshi/Satoshi-Regular.otf",
+      path: "../fonts/satoshi/Satoshi-Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/satoshi/Satoshi-Medium.otf",
+      path: "../fonts/satoshi/Satoshi-Medium.otf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../public/fonts/satoshi/Satoshi-Bold.otf",
+      path: "../fonts/satoshi/Satoshi-Bold.otf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../../public/fonts/satoshi/Satoshi-Black.otf",
+      path: "../fonts/satoshi/Satoshi-Black.otf",
       weight: "900",
       style: "normal",
     },

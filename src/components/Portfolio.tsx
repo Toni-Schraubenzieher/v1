@@ -218,7 +218,7 @@ function PortfolioItem({
             trigger: itemRef.current,
             start: "top 90%",
             end: "top 70%",
-            scrub: 1,
+            scrub: 1.5,
           },
         }
       );
@@ -352,7 +352,7 @@ export default function Portfolio() {
             trigger: woesRef.current,
             start: "top 80%",
             end: "top 55%",
-            scrub: 1,
+            scrub: 1.5,
           },
         }
       );
@@ -581,6 +581,7 @@ export default function Portfolio() {
                             fill
                             sizes="(max-width: 760px) 100vw, 760px"
                             className="object-cover"
+                            loading="eager"
                           />
                         </div>
                       </div>

@@ -71,7 +71,7 @@ export default function FAQ() {
               trigger: headingRef.current,
               start: "top 80%",
               end: "top 55%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -92,7 +92,7 @@ export default function FAQ() {
               trigger: faqsRef.current,
               start: "top 85%",
               end: "top 55%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );

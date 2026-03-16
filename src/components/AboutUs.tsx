@@ -139,7 +139,7 @@ export default function AboutUs() {
               trigger: headingRef.current,
               start: "top 80%",
               end: "top 55%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -158,7 +158,7 @@ export default function AboutUs() {
               trigger: cardsRef.current,
               start: "top 85%",
               end: "top 55%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -494,6 +494,7 @@ export default function AboutUs() {
                           fill
                           sizes="(max-width: 768px) 100vw, 448px"
                           className="object-cover"
+                          loading="eager"
                         />
                       </div>
                     ) : (

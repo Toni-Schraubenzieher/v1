@@ -2,35 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LogoElementsShowcase from "@/components/LogoElementsShowcase";
 import Statement from "@/components/Statement";
 import LoadingScreen from "@/components/LoadingScreen";
-
-// Lazy load below-the-fold components
-const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"), {
-  loading: () => null,
-});
-const Portfolio = dynamic(() => import("@/components/Portfolio"), {
-  loading: () => null,
-});
-const LargeText = dynamic(() => import("@/components/LargeText"), {
-  loading: () => null,
-});
-const Stats = dynamic(() => import("@/components/Stats"), {
-  loading: () => null,
-});
-const AboutUs = dynamic(() => import("@/components/AboutUs"), {
-  loading: () => null,
-});
-const FAQ = dynamic(() => import("@/components/FAQ"), {
-  loading: () => null,
-});
-const GetInTouch = dynamic(() => import("@/components/GetInTouch"), {
-  loading: () => null,
-});
+import LazySection from "@/components/LazySection";
+import PortfolioOverview from "@/components/PortfolioOverview";
+import Portfolio from "@/components/Portfolio";
+import LargeText from "@/components/LargeText";
+import Stats from "@/components/Stats";
+import AboutUs from "@/components/AboutUs";
+import FAQ from "@/components/FAQ";
+import GetInTouch from "@/components/GetInTouch";
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -61,13 +45,27 @@ export default function Home() {
         <Hero />
         <LogoElementsShowcase />
         <Statement />
-        <PortfolioOverview />
-        <Portfolio />
-        <LargeText />
-        <Stats />
-        <AboutUs />
-        <FAQ />
-        <GetInTouch />
+        <LazySection>
+          <PortfolioOverview />
+        </LazySection>
+        <LazySection>
+          <Portfolio />
+        </LazySection>
+        <LazySection>
+          <LargeText />
+        </LazySection>
+        <LazySection>
+          <Stats />
+        </LazySection>
+        <LazySection>
+          <AboutUs />
+        </LazySection>
+        <LazySection>
+          <FAQ />
+        </LazySection>
+        <LazySection>
+          <GetInTouch />
+        </LazySection>
       </motion.div>
     </div>
   );

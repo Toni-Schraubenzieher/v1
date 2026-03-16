@@ -63,7 +63,7 @@ export default function WhoWeAre() {
               trigger: sectionRef.current,
               start: "top 75%",
               end: "top 50%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
@@ -84,7 +84,7 @@ export default function WhoWeAre() {
               trigger: listRef.current,
               start: "top 80%",
               end: "top 40%",
-              scrub: 1,
+              scrub: 1.5,
             },
           }
         );
