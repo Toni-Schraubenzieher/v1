@@ -26,6 +26,13 @@ html {
   overflow-x: hidden;
 }
 
+/* Fluid proportional scaling — alle rem-Werte skalieren mit Viewport */
+@media (min-width: 1024px) {
+  html {
+    font-size: clamp(15px, 1.1vw, 19px);
+  }
+}
+
 html.lenis,
 html.lenis body {
   scroll-behavior: auto !important;

@@ -38,7 +38,7 @@ export default function Stats() {
       }
 
       if (cardsRef.current) {
-        const cards = cardsRef.current.children;
+        const cards = cardsRef.current.querySelectorAll('[data-stat-card]');
         gsap.fromTo(
           cards,
           { x: -50, opacity: 0 },
@@ -105,68 +105,68 @@ export default function Stats() {
           SUBSTANCE OVER STORY
         </h2>
 
-        <div ref={cardsRef} className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* Card: €500K */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€500K</div>
-            <p className="mt-3 text-base text-white/90">
-              First check · Pre-Seed & Seed
-            </p>
+        <div ref={cardsRef} className="flex flex-col gap-6">
+          {/* Top: 5 Cards in CSS Grid — shared rows für perfektes Alignment */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* Card: €500K */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
+              <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€500K</div>
+              <p className="mt-3 text-base text-white/90">
+                First check · Pre-Seed & Seed
+              </p>
+            </div>
+            {/* Card: €50m+ */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
+              <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€50m+</div>
+              <p className="mt-3 text-base text-white/90">
+                Deployed across 15+ deep-tech investments
+              </p>
+            </div>
+            {/* Card: Quote — spans 2 Rows auf lg */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col justify-center">
+              <p className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
+                "We back the technologies that will define{" "}
+                <span style={{ color: "#FEB180" }}>
+                  European sovereignty."
+                </span>
+              </p>
+              <p className="mt-6 text-base text-white/90">- Kensho Ventures</p>
+            </div>
+            {/* Card: 2 CVCs */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
+              <div className="font-heading text-4xl font-bold text-white lg:text-5xl">2 CVCs</div>
+              <p className="mt-3 text-base text-white/90">
+                Built from zero - we've been operators, not just investors
+              </p>
+            </div>
+            {/* Card: 12 */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
+              <div className="font-heading text-4xl font-bold text-white lg:text-5xl">12</div>
+              <p className="mt-3 text-base text-white/90">
+                Years deep-tech investing
+              </p>
+            </div>
           </div>
-
-          {/* Card: €50m+ */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€50m+</div>
-            <p className="mt-3 text-base text-white/90">
-              Deployed across 15+ deep-tech investments
-            </p>
-          </div>
-
-          {/* Card: Quote */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col justify-center">
-            <p className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
-              "We back the technologies that will define{" "}
-              <span style={{ color: "#FEB180" }}>
-                European sovereignty."
-              </span>
-            </p>
-            <p className="mt-6 text-base text-white/90">- Kensho Ventures</p>
-          </div>
-
-          {/* Card: 2 CVCs */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">2 CVCs</div>
-            <p className="mt-3 text-base text-white/90">
-              Built from zero - we've been operators, not just investors
-            </p>
-          </div>
-
-          {/* Card: 12 */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10">
-            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">12</div>
-            <p className="mt-3 text-base text-white/90">
-              Years deep-tech investing
-            </p>
-          </div>
-
-          {/* Card: Infrastructure, Not Advice */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-2 flex flex-col">
-            <h3 className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
-              Infrastructure, <span style={{ color: "#D4FFEF" }}>Not Advice</span>
-            </h3>
-            <p className="mt-4 text-base leading-relaxed text-white/90">
-              We build the commercial engine around your technology. Lead generation, customer access, transatlantic expansion - operational from Day 1.
-            </p>
-          </div>
-
-          {/* Card: 15+ */}
-          <div className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1">
-            <div className="font-heading text-4xl font-bold text-white lg:text-5xl">15+</div>
-            <p className="mt-3 text-base text-white/90">
-              Investments across 4 verticals
-            </p>
-            <div className="mt-auto pt-6 text-base font-semibold text-white/90" style={{ color: "#FEB180" }}>
-              Pre-Seed & Seed Focus
+          {/* Bottom Row */}
+          <div className="flex flex-col gap-6 md:flex-row">
+            {/* Card: Infrastructure, Not Advice */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 flex flex-col md:flex-[2]">
+              <h3 className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
+                Infrastructure, <span style={{ color: "#D4FFEF" }}>Not Advice</span>
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-white/90">
+                We build the commercial engine around your technology. Lead generation, customer access, transatlantic expansion - operational from Day 1.
+              </p>
+            </div>
+            {/* Card: 15+ */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:flex-1">
+              <div className="font-heading text-4xl font-bold text-white lg:text-5xl">15+</div>
+              <p className="mt-3 text-base text-white/90">
+                Investments across 4 verticals
+              </p>
+              <div className="mt-auto pt-6 text-base font-semibold text-white/90" style={{ color: "#FEB180" }}>
+                Pre-Seed & Seed Focus
+              </div>
             </div>
           </div>
         </div>

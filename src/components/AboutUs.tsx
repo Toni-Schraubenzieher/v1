@@ -113,11 +113,12 @@ export default function AboutUs() {
   ];
 
   const getCarouselDimensions = () => {
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const isMobile = window.innerWidth < 640;
     const isDesktop = window.innerWidth >= 1024;
     return {
-      memberWidth: isMobile ? 250 : isDesktop ? 300 : 280,
-      labelWidth: isMobile ? 125 : isDesktop ? 150 : 140,
+      memberWidth: (isMobile ? 15.625 : isDesktop ? 18.75 : 17.5) * rem,
+      labelWidth: (isMobile ? 7.8 : isDesktop ? 9.375 : 8.75) * rem,
       gap: 20,
       horizontalPadding: isMobile ? 24 : 32,
     };
@@ -322,8 +323,8 @@ export default function AboutUs() {
                 key={`${item.type === "member" ? item.member.id : item.id}-${index}`}
                 className={
                   item.type === "member"
-                    ? "modal-card team-scroll-card w-[250px] shrink-0 sm:w-[280px] lg:w-[300px]"
-                    : "team-scroll-card relative flex h-[375px] w-[125px] shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#101010]/0 sm:h-[420px] sm:w-[140px] lg:h-[450px] lg:w-[150px]"
+                    ? "modal-card team-scroll-card w-[15.625rem] shrink-0 sm:w-[17.5rem] lg:w-[18.75rem]"
+                    : "team-scroll-card relative flex h-[23.4rem] w-[7.8rem] shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-[#101010]/0 sm:h-[26.25rem] sm:w-[8.75rem] lg:h-[28.125rem] lg:w-[9.375rem]"
                 }
                 animate={
                   item.type === "member" && hoveredId === `${item.member.id}-${index}`

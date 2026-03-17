@@ -134,11 +134,15 @@ const formMaskSizing: Record<StoryItem["form"], { size: string; position: string
 };
 
 const formSizeClass: Record<StoryItem["form"], string> = {
-  "1": "max-w-[300px] lg:max-w-[300px]",
-  "2": "max-w-[620px] lg:max-w-[620px]",
-  "3": "max-w-[300px] lg:max-w-[300px]",
-  "4": "max-w-[620px] lg:max-w-[620px]",
+  "1": "max-w-[18.75rem]",
+  "2": "max-w-[38.75rem]",
+  "3": "max-w-[18.75rem]",
+  "4": "max-w-[38.75rem]",
 };
+
+const getRemInPx = () => typeof window !== 'undefined'
+  ? parseFloat(getComputedStyle(document.documentElement).fontSize)
+  : 16;
 
 function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvestmentArea }: {
   item: StoryItem;
@@ -148,6 +152,14 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
 }) {
   const itemRef = useRef<HTMLDivElement>(null);
   const isEven = index % 2 === 0;
+  const [remPx, setRemPx] = useState(16);
+
+  useEffect(() => {
+    const update = () => setRemPx(getRemInPx());
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   useEffect(() => {
     if (!itemRef.current) return;
@@ -252,19 +264,24 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
               {item.kicker}
             </p>
             {/* Clickable Vertical List */}
-            <div className="flex flex-col gap-1 max-w-[520px] relative" style={{ height: '500px' }}>
+            <div className="flex flex-col gap-1 max-w-[520px] relative">
               {/* Orange sliding background */}
               <motion.div
                 className="absolute left-0 right-0 rounded-2xl bg-[#FEB180] pointer-events-none"
                 animate={{
                   y: (() => {
+                    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+                    const collapsedH = isMobile ? 85 : 4.7 * remPx;
+                    const gap = 4;
                     let totalY = 0;
                     for (let i = 0; i < activeInvestmentArea; i++) {
-                      totalY += 75 + 4; // height + gap (gap-1 = 4px)
+                      totalY += collapsedH + gap;
                     }
                     return totalY;
                   })(),
-                  height: '200px'
+                  height: typeof window !== 'undefined' && window.innerWidth < 640
+                    ? 240
+                    : 12.5 * remPx,
                 }}
                 transition={{
                   duration: 0.6,
@@ -274,6 +291,7 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
 
               {investmentAreas.map((area, areaIndex) => {
                 const isActive = activeInvestmentArea === areaIndex;
+                const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
                 return (
                   <motion.button
                     key={area.id}
@@ -281,7 +299,9 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
                     className="relative text-left cursor-pointer px-6"
                     initial={false}
                     animate={{
-                      height: isActive ? '200px' : '75px',
+                      height: isActive
+                        ? (isMobile ? 240 : 12.5 * remPx)
+                        : (isMobile ? 85 : 4.7 * remPx),
                     }}
                     transition={{
                       height: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }

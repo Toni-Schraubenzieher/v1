@@ -42,9 +42,9 @@ export default function GetInTouch() {
 
   return (
     <section ref={sectionRef} id="get-in-touch" className="px-6 sm:px-8 py-12 lg:py-16">
-      <div className="relative mx-auto max-w-[1320px] min-h-[82vh] overflow-visible pt-10 sm:pt-12 lg:pt-16 pb-24 sm:pb-28">
+      <div className="relative mx-auto max-w-[1320px] min-h-[60vh] sm:min-h-[70vh] lg:min-h-[82vh] overflow-x-clip overflow-y-visible pt-10 sm:pt-12 lg:pt-16 pb-24 sm:pb-28">
         <div
-          className="pointer-events-none absolute inset-y-0 -left-[12%] w-[76%] md:w-[66%] lg:w-[62%]"
+          className="pointer-events-none absolute inset-y-0 -left-[6%] w-[60%] sm:-left-[8%] sm:w-[68%] md:-left-[12%] md:w-[66%] lg:w-[62%]"
           style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
         >
           <div
