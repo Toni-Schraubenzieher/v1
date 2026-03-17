@@ -32,7 +32,7 @@ const stories: StoryItem[] = [
     description:
       "We start with your technology, not your TAM slide. Whether it's post-quantum algorithms, autonomous perception, or photonic detectors, we invest the time to understand what you've actually built. Not to nod along. To challenge it, pressure-test it, and back it with conviction.",
     image:
-      "/This_is_Kensho/Technical_fluency.webp",
+      "/This_is_Kensho/Technical_Fluency.webp",
     form: "1",
     accent: "#FEB180",
   },
@@ -45,7 +45,7 @@ const stories: StoryItem[] = [
     description:
       "B2B lead generation, investor introductions, defense and enterprise access, expansion into new markets. Our GP works directly with every portfolio company - from technical evaluation to commercial execution. One decision-maker, fully invested. We activate our full network for every founder we back. Not as a promise. As how we operate.",
     image:
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1800&h=1300&fit=crop",
+      "/This_is_Kensho/Full_Commitment.webp",
     form: "2",
     accent: "#D4FFEF",
   },
@@ -58,7 +58,7 @@ const stories: StoryItem[] = [
     description:
       "€500K first checks into Pre-Seed and Seed. Five to seven investments per year. Small fund by design. That means more time per founder, more resources per company, and a long-horizon commitment to technology that takes time to mature.",
     image:
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1800&h=1300&fit=crop",
+      "/This_is_Kensho/Patient_Capital.webp",
     form: "3",
     accent: "#FEB180",
   },
@@ -70,7 +70,7 @@ const stories: StoryItem[] = [
     kicker: "Our four verticals",
     description: "",
     image:
-      "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=1800&h=1300&fit=crop&auto=format&q=80",
+      "/This_is_Kensho/Robotics.webp",
     form: "4",
     accent: "#D4FFEF",
   },
@@ -85,7 +85,7 @@ const investmentAreas = [
       "Autonomous systems for industrial and defense applications. From warehouse automation to field robotics. Machines that replace risk, not just labor.",
     color: "#FEB180",
     formNumber: "1",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1800&h=1300&fit=crop&auto=format&q=80",
+    image: "/This_is_Kensho/Robotics.webp",
   },
   {
     id: 2,
@@ -95,7 +95,7 @@ const investmentAreas = [
       "Specialized AI, photonics, and the commercial infrastructure layer that deep tech needs to scale. The substrate - not the application.",
     color: "#D4FFEF",
     formNumber: "2",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1800&h=1300&fit=crop&auto=format&q=80&sat=-100&bri=20",
+    image: "/This_is_Kensho/Enabling_Technologies.webp",
   },
   {
     id: 3,
@@ -105,7 +105,7 @@ const investmentAreas = [
       "Quantum computing, edge computing, HPC, semiconductors. The compute layer underneath every other vertical we invest in, from scientific simulation to real-time autonomous decision-making.",
     color: "#FEB180",
     formNumber: "3",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1800&h=1300&fit=crop&auto=format&q=80",
+    image: "/This_is_Kensho/Computation.webp",
   },
   {
     id: 4,
@@ -115,7 +115,7 @@ const investmentAreas = [
       "Post-quantum cryptography, secure communication, autonomous surveillance. The infrastructure layer of European defense sovereignty.",
     color: "#D4FFEF",
     formNumber: "4",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1800&h=1300&fit=crop&auto=format&q=80",
+    image: "/This_is_Kensho/Cybersecurity.webp",
   },
 ];
 
