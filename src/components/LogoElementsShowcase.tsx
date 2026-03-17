@@ -200,24 +200,30 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
           }}
         >
           {item.index === "04" ? (
-            <AnimatePresence initial={false}>
-              <motion.div
-                key={activeInvestmentArea}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                className="absolute inset-0 h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-              >
-                <Image
-                  src={investmentAreas[activeInvestmentArea]?.image}
-                  alt={investmentAreas[activeInvestmentArea]?.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 620px"
-                  className="object-cover"
-                />
-              </motion.div>
-            </AnimatePresence>
+            <>
+              {investmentAreas.map((area, areaIndex) => (
+                <motion.div
+                  key={area.id}
+                  initial={false}
+                  animate={{
+                    opacity: activeInvestmentArea === areaIndex ? 1 : 0,
+                    scale: activeInvestmentArea === areaIndex ? 1 : 1.05,
+                  }}
+                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                  className="absolute inset-0 h-full w-full"
+                  style={{ pointerEvents: activeInvestmentArea === areaIndex ? 'auto' : 'none' }}
+                >
+                  <Image
+                    src={area.image}
+                    alt={area.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 620px"
+                    className="object-cover"
+                    loading="eager"
+                  />
+                </motion.div>
+              ))}
+            </>
           ) : (
             <Image
               src={item.image}
