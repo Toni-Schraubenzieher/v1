@@ -7,7 +7,7 @@ export default function LargeText() {
           <div className="text-left pl-3 sm:pl-4">
             <h2
               className="font-heading text-[clamp(3.15rem,9.6vw,8.8rem)] font-bold uppercase leading-[0.88] tracking-tight"
-              style={{ color: '#D4FFEF' }}
+              style={{ color: '#FEB180' }}
             >
               KENSHO
               <br />
@@ -19,7 +19,7 @@ export default function LargeText() {
           <div className="text-right pr-3 sm:pr-4">
             <h2
               className="font-heading text-[clamp(3.15rem,9.6vw,8.8rem)] font-bold uppercase leading-[0.88] tracking-tight"
-              style={{ color: '#FEB180' }}
+              style={{ color: '#D4FFEF' }}
             >
               EUROPEAN
               <br />

@@ -114,7 +114,7 @@ const socialProofItems = [
     company: "Hefring",
     role: "Founder & CEO, Hefring",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+      "Kensho has been a valuable partner. They're proactive about making introductions to investors, customers, and other key stakeholders who can help move things forward. They are readily available to share their knowledge and experience to help you grow. We are very pleased to have the Kensho team on board at Hefring Marine.",
     avatar: "/WOES_PICS/Karl Birgir Björnsson.webp",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/Hefring.svg",
@@ -125,14 +125,14 @@ const socialProofItems = [
     company: "Pixel Photonics",
     role: "Founder, Pixel Photonics",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+      "Working with Kensho is extremely hands-on. Decisions are made quickly, and you can tell the team is genuinely invested in building value together. Kensho has strategically leveraged their network on our behalf, connecting us with relevant contacts from industry and the investor community. Their close engagement throughout the due diligence process also stands out — combined with a clear commitment to support us hands-on in building scalable sales functions.",
     avatar: "/WOES_PICS/Nicolai Walter_.webp",
     accent: "#FEB180",
     logo: "/Logos_Portfolio/Pixel_Photonics.svg",
   },
   {
     id: 4,
-    founder: "Dr. Daniel Kondermann",
+    founder: "Daniel Kondermann",
     company: "Quality Match",
     role: "Founder, Quality Match",
     quote:
@@ -158,7 +158,7 @@ const socialProofItems = [
     company: "CryptoNext",
     role: "Founder & CTO, CryptoNext Security",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+      "Kensho has demonstrated a remarkable understanding of deep\u2011tech challenges from the very beginning. Their ability to activate their network and facilitate introductions to key corporates in Germany and the Nordics is a key point for us. Combined with their proximity, efficient working style and strong long\u2011term vision, they truly stand out as an investor offering outstanding added value.",
     avatar: "/WOES_PICS/Jean-Charles Faugere.webp",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/CryptoNext.svg",
