@@ -483,8 +483,8 @@ export default function Portfolio() {
                   <div className="relative z-10 px-8 py-9 sm:px-12 sm:py-10 lg:py-12 h-[11.25rem] sm:h-[12.5rem] flex items-center">
                     {/* Default Content: Name / Company - slides up */}
                     <div className="w-full transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full group-hover:opacity-0 group-hover:absolute group-hover:inset-x-8 sm:group-hover:inset-x-12">
-                      <h4 className="font-heading text-[clamp(2.275rem,5vw,4.675rem)] font-medium tracking-tight text-white/80">
-                        {item.founder.toUpperCase()} / <span className="text-[clamp(1.375rem,3vw,2.175rem)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
+                      <h4 className="font-heading text-[clamp(36px,5vw,75px)] font-medium tracking-tight text-white/80">
+                        {item.founder.toUpperCase()} / <span className="text-[clamp(22px,3vw,35px)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
                       </h4>
                     </div>
 
