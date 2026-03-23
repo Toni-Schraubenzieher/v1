@@ -4,10 +4,15 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/5 py-10 px-6 sm:px-8">
       <div className="mx-auto max-w-[1320px] flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-          <span className="font-heading text-lg font-bold text-white">
-            Kensho<span style={{ color: "#FEB180" }}>.</span>
-          </span>
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+          <a href="#hero" className="transition-opacity hover:opacity-80">
+            <img
+              src="/Logo_hero.svg"
+              alt="Kensho"
+              className="h-5 w-auto"
+              style={{ filter: "brightness(0) saturate(100%) invert(100%)" }}
+            />
+          </a>
           <span className="text-sm text-white/30">
             &copy; {new Date().getFullYear()} Kensho Capital Management GmbH
           </span>
