@@ -1,41 +1,39 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 py-10 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
+    <footer className="border-t border-white/5 py-10 px-6 sm:px-8">
+      <div className="mx-auto max-w-[1320px] flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
           <span className="font-heading text-lg font-bold text-white">
-            Kensho<span className="text-accent-warm">.</span>
+            Kensho<span style={{ color: "#FEB180" }}>.</span>
           </span>
           <span className="text-sm text-white/30">
-            &copy; {new Date().getFullYear()} All rights reserved.
+            &copy; {new Date().getFullYear()} Kensho Capital Management GmbH
           </span>
         </div>
 
         <div className="flex items-center gap-6">
-          <a
-            href="#"
+          <Link
+            href="/imprint"
             className="text-sm text-white/30 hover:text-white/80 transition-colors"
           >
-            Privacy
-          </a>
-          <a
-            href="#"
+            Imprint
+          </Link>
+          <Link
+            href="/disclaimer"
             className="text-sm text-white/30 hover:text-white/80 transition-colors"
           >
-            Terms
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/30 hover:text-white/80 transition-colors"
+            Disclaimer
+          </Link>
+          <Link
+            href="/privacy-policy"
+            className="text-sm text-white/30 hover:text-white/80 transition-colors"
           >
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-          </a>
+            Privacy Policy
+          </Link>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/kensho-vc/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/30 hover:text-white/80 transition-colors"

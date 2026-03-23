@@ -9,6 +9,7 @@ import LogoElementsShowcase from "@/components/LogoElementsShowcase";
 import Statement from "@/components/Statement";
 import LoadingScreen from "@/components/LoadingScreen";
 import LazySection from "@/components/LazySection";
+import Footer from "@/components/Footer";
 
 const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"), { ssr: false });
 const Portfolio = dynamic(() => import("@/components/Portfolio"), { ssr: false });
@@ -68,6 +69,7 @@ export default function Home() {
         <LazySection>
           <GetInTouch />
         </LazySection>
+        <Footer />
       </motion.div>
     </div>
   );
