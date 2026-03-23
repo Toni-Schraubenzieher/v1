@@ -105,10 +105,8 @@ export default function FAQ() {
   return (
     <section ref={sectionRef} id="faq" className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
-        <h2 ref={headingRef} className="mb-12 font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-center" style={{ color: "#FEB180" }}>
-          WHAT FOUNDERS
-          <br />
-          ASK US
+        <h2 ref={headingRef} className="mb-12 font-heading text-[clamp(1.5rem,4vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-center" style={{ color: "#FEB180" }}>
+          WHAT FOUNDERS ASK US
         </h2>
 
         <div ref={faqsRef} className="space-y-0 max-w-[1080px] ml-auto">

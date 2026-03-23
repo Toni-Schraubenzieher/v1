@@ -251,9 +251,8 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
 
       <div className="w-full max-w-[520px]">
         <p className="text-lg font-medium text-white/55">{item.index}</p>
-        <h3 className="mt-3 font-heading text-5xl font-bold leading-[0.92] text-white sm:text-6xl">
-          {item.titleMain}
-          <br />
+        <h3 className="mt-3 font-heading text-3xl font-bold leading-[0.92] text-white sm:text-4xl md:text-5xl lg:text-6xl">
+          {item.titleMain}{" "}
           <span className="font-medium">{item.titleAccent}</span>
         </h3>
 

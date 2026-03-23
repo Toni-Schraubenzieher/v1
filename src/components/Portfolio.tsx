@@ -459,10 +459,8 @@ export default function Portfolio() {
 
       <div ref={woesRef} className="mx-auto mt-8 max-w-[1320px] px-6 sm:mt-10 sm:px-8">
         <div className="px-8 pb-10 pt-12 sm:px-12 lg:pb-14 lg:pt-14">
-          <h3 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight mb-12 text-center" style={{ color: "#FEB180" }}>
-            WHAT OUR
-            <br />
-            ENTREPRENEURS SAY
+          <h3 className="font-heading text-[clamp(1.5rem,4vw,4.8rem)] font-bold leading-[0.96] tracking-tight mb-12 text-center" style={{ color: "#FEB180" }}>
+            WHAT OUR ENTREPRENEURS SAY
           </h3>
 
           <div className="space-y-0">
@@ -480,25 +478,25 @@ export default function Portfolio() {
                   />
 
                   {/* Content Container with sliding animation like Navbar */}
-                  <div className="relative z-10 px-8 py-9 sm:px-12 sm:py-10 lg:py-12 h-[11.25rem] sm:h-[12.5rem] flex items-center">
+                  <div className="relative z-10 px-8 py-9 sm:px-12 sm:py-10 lg:py-12 h-[11.25rem] sm:h-[12.5rem] flex items-center overflow-hidden">
                     {/* Default Content: Name / Company - slides up */}
                     <div className="w-full transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full group-hover:opacity-0 group-hover:absolute group-hover:inset-x-8 sm:group-hover:inset-x-12">
-                      <h4 className="font-heading text-[clamp(36px,5vw,75px)] font-medium tracking-tight text-white/80">
-                        {item.founder.toUpperCase()} / <span className="text-[clamp(22px,3vw,35px)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
+                      <h4 className="font-heading text-[clamp(20px,5vw,75px)] font-medium tracking-tight text-white/80">
+                        {item.founder.toUpperCase()} / <span className="text-[clamp(14px,3vw,35px)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
                       </h4>
                     </div>
 
                     {/* Hover Content: Avatar + Quote - slides up from below, centered */}
-                    <div className="w-full flex items-center gap-10 transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 absolute inset-x-8 sm:inset-x-12">
+                    <div className="flex items-center gap-4 sm:gap-6 lg:gap-10 transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 absolute inset-x-8 sm:inset-x-12">
                       <Image
                         src={item.avatar}
                         alt={item.founder}
                         width={96}
                         height={96}
-                        className="h-20 w-20 sm:h-24 sm:w-24 shrink-0 rounded-full object-cover"
+                        className="h-14 w-14 sm:h-20 sm:w-20 lg:h-24 lg:w-24 shrink-0 rounded-full object-cover"
                       />
-                      <p className="text-lg leading-relaxed text-[#101010] sm:text-xl">
-                        "{item.quote}"
+                      <p className="text-sm leading-relaxed text-[#101010] sm:text-base lg:text-lg line-clamp-4 sm:line-clamp-5 lg:line-clamp-6">
+                        &ldquo;{item.quote}&rdquo;
                       </p>
                     </div>
                   </div>
