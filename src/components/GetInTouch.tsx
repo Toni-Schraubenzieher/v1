@@ -36,7 +36,7 @@ export default function GetInTouch() {
     return () => ctx.revert();
   }, []);
   const fadeMaskX =
-    "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)";
+    "linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)";
   const fadeMaskY =
     "linear-gradient(to bottom, transparent 0%, black 10%, black 92%, transparent 100%)";
 
@@ -44,7 +44,7 @@ export default function GetInTouch() {
     <section ref={sectionRef} id="get-in-touch" className="px-6 sm:px-8 py-12 lg:py-16">
       <div className="relative mx-auto max-w-[1320px] min-h-[60vh] sm:min-h-[70vh] lg:min-h-[82vh] overflow-x-clip overflow-y-visible pt-10 sm:pt-12 lg:pt-16 pb-24 sm:pb-28">
         <div
-          className="pointer-events-none absolute inset-y-0 -left-[6%] w-[60%] sm:-left-[8%] sm:w-[68%] md:-left-[12%] md:w-[66%] lg:w-[62%]"
+          className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 w-[85%] sm:w-[90%] md:w-[85%] lg:w-[80%]"
           style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
         >
           <div
@@ -64,18 +64,18 @@ export default function GetInTouch() {
               waveIntensity={0.3}
               colorTint="#FEB180"
               brightness={1}
-              centerX={0}
+              centerX={0.5}
               centerY={1}
             />
           </div>
         </div>
 
-        <div className="relative z-10 flex min-h-[68vh] items-center justify-start">
-          <div ref={contentRef} className="w-full max-w-[520px] ml-4 sm:ml-6">
+        <div className="relative z-10 flex min-h-[68vh] items-center justify-center">
+          <div ref={contentRef} className="w-full max-w-[520px] mx-auto text-center">
             <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
               GET IN TOUCH
             </h2>
-            <p className="mt-7 max-w-[460px] text-base leading-relaxed text-white/90 sm:text-lg">
+            <p className="mt-7 max-w-[460px] mx-auto text-base leading-relaxed text-white/90 sm:text-lg">
               We back ambitious founders early and move with conviction. If you are building
               transformative technology, let&apos;s talk.
             </p>
