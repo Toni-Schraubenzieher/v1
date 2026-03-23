@@ -39,8 +39,8 @@ const team: TeamMember[] = [
     role: "General Partner · PhD, Deep-Tech Investor",
     image: "/Team/Wolfgang.webp",
     accent: "#FEB180",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    linkedin: "https://linkedin.com",
+    bio: "Wolfgang is General Partner and co-founder of Kensho Ventures. With a PhD from WU Vienna and early research alongside Henry Chesbrough at UC Berkeley on the mechanics of open innovation, he combines academic depth with over a decade of deep-tech investing. Before launching the fund, Wolfgang built an angel investor syndicate and invested privately in deep-tech startups for years — several of which have since reached unicorn status. That track record became the foundation for Kensho Ventures. Today he leads the fund\u2019s investment strategy across quantum, robotics, cybersecurity, and industrial AI. He mentors at F10 Accelerator in Zurich and is a regular voice on European technology sovereignty. Based in Z\u00fcrich.",
+    linkedin: "https://www.linkedin.com/in/wolfgang-sachsenhofer-phd-7490bb30/",
   },
   {
     id: "anton",
@@ -48,8 +48,8 @@ const team: TeamMember[] = [
     role: "Principal · B2B Lead Generation",
     image: "/Team/Anton.webp",
     accent: "#FEB180",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    linkedin: "https://linkedin.com",
+    bio: "Anton is Principal at Kensho Ventures, working alongside Wolfgang across fund management, deal flow, and hands-on portfolio support \u2014 including a board seat at Pixel Photonics. On the operational side, he drives B2B lead generation for portfolio companies, investor introductions, and customer access across multiple markets. Before Kensho, Anton worked in fintech startups and asset management, then founded his own blockchain venture \u2014 funded entirely from his earlier self-employment. That path from entrepreneurship through blockchain into deep tech shaped his conviction that the most defensible companies are built on hard technology. He serves as Board Advisor at START Global and leads the LP/GP Track at one of Europe\u2019s largest early-stage conferences. Based in Z\u00fcrich.",
+    linkedin: "https://www.linkedin.com/in/anton-foertsch-2a07721b0/",
   },
   {
     id: "marc",
