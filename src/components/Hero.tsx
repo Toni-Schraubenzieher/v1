@@ -37,7 +37,7 @@ export default function Hero() {
           <h1 className="font-heading text-[clamp(4rem,12vw,10.5rem)] font-bold text-white leading-[0.88] tracking-tight -ml-3">
             KENSHŌ
           </h1>
-          <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[560px]">
+          <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[560px] text-balance">
             We invest in European resilience technologies - robotics, cybersecurity, quantum, industrial AI. Understood at first principles. Backed with patient capital and the infrastructure to scale.
           </p>
         </div>

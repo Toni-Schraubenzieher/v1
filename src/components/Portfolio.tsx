@@ -72,7 +72,7 @@ const startups = [
     id: 6,
     name: "Qambria",
     logo: "/Logos_Portfolio/Qambria.svg",
-    wordmarkLogo: "/Logo_loop/Qambria.svg",
+    wordmarkLogo: "/Logo_Loop/Qambria.svg",
     accent: "#FEB180",
     logoFilter: FILTER_WARM,
     category: "COMPUTATION",

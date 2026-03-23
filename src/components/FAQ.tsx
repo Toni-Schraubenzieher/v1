@@ -49,7 +49,7 @@ const faqs = [
 ] as const;
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const faqsRef = useRef<HTMLDivElement>(null);
@@ -111,7 +111,7 @@ export default function FAQ() {
           ASK US
         </h2>
 
-        <div ref={faqsRef} className="space-y-0">
+        <div ref={faqsRef} className="space-y-0 max-w-[1080px] ml-auto">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 

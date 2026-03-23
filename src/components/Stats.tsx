@@ -148,9 +148,9 @@ export default function Stats() {
             </div>
           </div>
           {/* Bottom Row */}
-          <div className="flex flex-col gap-6 md:flex-row">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Card: Infrastructure, Not Advice */}
-            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 flex flex-col md:flex-[2]">
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 flex flex-col md:col-span-2 lg:col-span-2">
               <h3 className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
                 Infrastructure, <span style={{ color: "#D4FFEF" }}>Not Advice</span>
               </h3>
@@ -159,7 +159,7 @@ export default function Stats() {
               </p>
             </div>
             {/* Card: 15+ */}
-            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:flex-1">
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1">
               <div className="font-heading text-4xl font-bold text-white lg:text-5xl">15+</div>
               <p className="mt-3 text-base text-white/90">
                 Investments across 4 verticals

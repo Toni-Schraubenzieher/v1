@@ -49,7 +49,7 @@ const companies = [
   },
   {
     name: "Qambria",
-    logo: "/Logo_loop/Qambria.svg",
+    logo: "/Logo_Loop/Qambria.svg",
     vertical: "Computation",
   },
   {
