@@ -136,7 +136,7 @@ const socialProofItems = [
     company: "Quality Match",
     role: "Founder, Quality Match",
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+      "What stood out most about working with Kensho was their flexibility and genuine fairness throughout what was a complex deal. They showed real trust in us as founders and approached every challenge with pragmatism rather than rigidity. Even in uncertain moments, the team stayed constructive and solution-oriented. That kind of partnership integrity made a real difference in reaching a successful outcome.",
     avatar: "/WOES_PICS/DR.Daniel_Kondermann.webp",
     accent: "#D4FFEF",
     logo: "/Logos_Portfolio/Quality_Match.svg",
