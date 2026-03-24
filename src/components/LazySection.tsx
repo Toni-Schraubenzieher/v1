@@ -19,6 +19,12 @@ export default function LazySection({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const forceMount = () => setIsVisible(true);
+    window.addEventListener("kensho:mount-all-sections", forceMount);
+    return () => window.removeEventListener("kensho:mount-all-sections", forceMount);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

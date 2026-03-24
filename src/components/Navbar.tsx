@@ -43,19 +43,36 @@ export default function Navbar() {
     window.requestAnimationFrame(step);
   };
 
+  const scrollToSection = (sectionId: string, href: string) => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+    const targetTop = Math.max(0, element.getBoundingClientRect().top + window.scrollY);
+    animateScrollTo(targetTop, 980);
+    window.history.replaceState(null, "", href);
+  };
+
   const handleSectionClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
     section: (typeof sections)[number]
   ) => {
     event.preventDefault();
-    const element = document.getElementById(section.id);
     setIsOpen(false);
 
-    if (!element) return;
+    let element = document.getElementById(section.id);
 
-    const targetTop = Math.max(0, element.getBoundingClientRect().top + window.scrollY);
-    animateScrollTo(targetTop, 980);
-    window.history.replaceState(null, "", section.href);
+    if (!element) {
+      // Force all lazy sections to mount
+      window.dispatchEvent(new Event("kensho:mount-all-sections"));
+      // Wait for React to render the newly mounted sections
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          scrollToSection(section.id, section.href);
+        });
+      });
+      return;
+    }
+
+    scrollToSection(section.id, section.href);
   };
 
   useEffect(() => {
