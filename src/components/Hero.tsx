@@ -3,14 +3,14 @@ import dynamic from "next/dynamic";
 const SquircleShift = dynamic(() => import("@/components/SquircleShift"), { ssr: false });
 
 export default function Hero() {
-  const fadeMaskX = "linear-gradient(to right, transparent 0%, black 16%, black 74%, transparent 100%)";
+  const fadeMaskX = "linear-gradient(to right, transparent 0%, black 16%, black 100%)";
   const fadeMaskY = "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)";
 
   return (
     <section id="hero" className="hero px-6 sm:px-8">
-      <div className="relative mx-auto max-w-[1320px] min-h-screen flex flex-col pt-28 sm:pt-32 lg:pt-36 pb-28 sm:pb-32 overflow-x-clip overflow-y-visible">
+      <div className="relative mx-auto max-w-[1320px] min-h-screen flex flex-col pt-28 sm:pt-32 lg:pt-36 pb-28 sm:pb-32">
         <div
-          className="pointer-events-none absolute inset-y-0 -right-[6%] w-[60%] sm:-right-[8%] sm:w-[68%] md:-right-[12%] md:w-[66%] lg:w-[62%]"
+          className="pointer-events-none absolute inset-y-0 -right-[6%] w-[65%] sm:-right-[8%] sm:w-[72%] md:-right-[12%] md:w-[70%] lg:w-[66%]"
           style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
         >
           <div className="h-full w-full" style={{ maskImage: fadeMaskY, WebkitMaskImage: fadeMaskY }}>
