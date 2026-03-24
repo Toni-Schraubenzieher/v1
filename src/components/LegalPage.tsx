@@ -41,7 +41,7 @@ export default function LegalPage({
         <div className="h-px bg-gradient-to-r from-[#FEB180]/40 via-[#FEB180]/10 to-transparent mb-12 sm:mb-16" />
 
         <div
-          className="space-y-6 text-[15px] sm:text-base leading-relaxed text-white/65
+          className="space-y-6 text-[15px] sm:text-base leading-relaxed text-white/80
             [&>h2]:font-heading [&>h2]:text-lg [&>h2]:sm:text-xl [&>h2]:font-semibold
             [&>h2]:text-white/90 [&>h2]:tracking-tight [&>h2]:mt-12 [&>h2]:mb-4
             [&>h2]:pt-8 [&>h2]:border-t [&>h2]:border-white/[0.06]
