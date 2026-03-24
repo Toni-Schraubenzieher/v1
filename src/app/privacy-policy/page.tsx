@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <LegalPage title="Privacy Policy for kensho.vc">
-      <p className="text-white/60">Effective Date: May 2024</p>
+      <p>Effective Date: May 2024</p>
 
       <p>
         kensho.vc (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is
@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
         Site does not use cookies.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         1. Information Collection
       </h2>
       <p>
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
         if available.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         2. Lawful Basis for Processing
       </h2>
       <p>
@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
         services.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         3. Information Use
       </h2>
       <p>
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
         request. No automatic data collection methods are used.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         4. Data Retention
       </h2>
       <p>
@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
         satisfying any legal, accounting, or reporting requirements.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         5. Information Sharing and Disclosure
       </h2>
       <p>
@@ -70,7 +70,7 @@ export default function PrivacyPolicyPage() {
         services requested by you or to comply with legal obligations.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         6. Data Security
       </h2>
       <p>
@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
         processing and against accidental loss, destruction, or damage.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         7. Your Rights Under GDPR
       </h2>
       <p>
@@ -89,7 +89,7 @@ export default function PrivacyPolicyPage() {
         rights, please contact us using the details provided below.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         8. Children&apos;s Privacy
       </h2>
       <p>
@@ -99,7 +99,7 @@ export default function PrivacyPolicyPage() {
         age 16, we will take steps to delete such information from our records.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         9. Changes to This Privacy Policy
       </h2>
       <p>
@@ -109,7 +109,7 @@ export default function PrivacyPolicyPage() {
         provide you with more prominent notice.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">10. Contact Us</h2>
+      <h2>10. Contact Us</h2>
       <p>
         If you have any questions about this Privacy Policy or our privacy
         practices, please contact us at:{" "}
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
         </a>
       </p>
 
-      <p className="text-white/60 mt-4">
+      <p>
         This Privacy Policy is effective as of 31.05.2024 and will remain in
         effect except with respect to any changes in its provisions in the
         future, which will be in effect immediately after being posted on this

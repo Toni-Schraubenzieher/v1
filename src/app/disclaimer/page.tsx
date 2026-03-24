@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function DisclaimerPage() {
   return (
     <LegalPage title="Disclaimer">
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         Legal Disclaimer
       </h2>
       <p>
@@ -25,7 +25,7 @@ export default function DisclaimerPage() {
         information.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         Regulatory Information
       </h2>
       <p>
@@ -44,7 +44,7 @@ export default function DisclaimerPage() {
         standards.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         Risk Disclosure
       </h2>
       <p>
@@ -56,7 +56,7 @@ export default function DisclaimerPage() {
         invested.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         Intellectual Property Rights
       </h2>
       <p>
@@ -66,7 +66,7 @@ export default function DisclaimerPage() {
         on this site is strictly prohibited.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         No Offer or Solicitation
       </h2>
       <p>
@@ -76,7 +76,7 @@ export default function DisclaimerPage() {
         made where lawful under applicable law.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         Limitation of Liability
       </h2>
       <p>
@@ -88,7 +88,7 @@ export default function DisclaimerPage() {
         via this site.
       </p>
 
-      <h2 className="text-xl font-semibold text-white mt-4">
+      <h2>
         Contact Information
       </h2>
       <p>

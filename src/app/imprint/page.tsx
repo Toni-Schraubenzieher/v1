@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function ImprintPage() {
   return (
     <LegalPage title="Imprint">
-      <p className="text-white/60">
+      <p>
         Liability and information according to the German § 5 TMG:
       </p>
 
