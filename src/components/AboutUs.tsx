@@ -35,48 +35,48 @@ type TeamCarouselItem =
 const team: TeamMember[] = [
   {
     id: "wolfgang",
-    name: "Wolfgang",
+    name: "Wolfgang Sachsenhofer",
     role: "Founder & General Partner",
     image: "/Team/Wolfgang.webp",
     accent: "#FEB180",
-    bio: "Wolfgang is General Partner and co-founder of Kensho Ventures. With a PhD from WU Vienna and early research alongside Henry Chesbrough at UC Berkeley on the mechanics of open innovation, he combines academic depth with over a decade of deep-tech investing. Before launching the fund, Wolfgang built an angel investor syndicate and invested privately in deep-tech startups for years — several of which have since reached unicorn status. That track record became the foundation for Kensho Ventures. Today he leads the fund\u2019s investment strategy across quantum, robotics, cybersecurity, and industrial AI. He mentors at F10 Accelerator in Zurich and is a regular voice on European technology sovereignty. Based in Z\u00fcrich.",
+    bio: "Wolfgang is General Partner and co-founder of Kensho Ventures. With a PhD from WU Vienna and early research alongside Henry Chesbrough at UC Berkeley on the mechanics of open innovation, he combines academic depth with over a decade of deep-tech investing. Before launching the fund, Wolfgang built an angel investor syndicate and invested privately in deep-tech startups for years. Several of those investments have since reached unicorn status, and that track record became the foundation for Kensho Ventures. Today he leads the fund's investment strategy across quantum, robotics, cybersecurity, and industrial AI. He mentors at F10 Accelerator in Zurich and is a regular voice on European technology sovereignty. Based in Z\u00fcrich.",
     linkedin: "https://www.linkedin.com/in/wolfgang-sachsenhofer-phd-7490bb30/",
   },
   {
     id: "anton",
-    name: "Anton",
+    name: "Anton Foertsch",
     role: "Principal",
     image: "/Team/Anton.webp",
     accent: "#FEB180",
-    bio: "Anton is Principal at Kensho Ventures, working alongside Wolfgang across fund management, deal flow, and hands-on portfolio support \u2014 including a board seat at Pixel Photonics. On the operational side, he drives B2B lead generation for portfolio companies, investor introductions, and customer access across multiple markets. Before Kensho, Anton worked in fintech startups and asset management, then founded his own blockchain venture \u2014 funded entirely from his earlier self-employment. That path from entrepreneurship through blockchain into deep tech shaped his conviction that the most defensible companies are built on hard technology. He serves as Board Advisor at START Global and leads the LP/GP Track at one of Europe\u2019s largest early-stage conferences. Based in Z\u00fcrich.",
+    bio: "Anton is Principal at Kensho Ventures, working alongside Wolfgang across fund management, deal flow, and hands-on portfolio support, including a board seat at Pixel Photonics. On the operational side, he drives B2B lead generation for portfolio companies, investor introductions, and customer access across multiple markets. Before Kensho, Anton worked in fintech startups and asset management, then founded his own blockchain venture funded entirely from his earlier self-employment. That path from entrepreneurship through blockchain into deep tech shaped his conviction that the most defensible companies are built on hard technology. He serves as Board Advisor at START Global and leads the LP/GP Track at one of Europe's largest early-stage conferences. Based in Z\u00fcrich.",
     linkedin: "https://www.linkedin.com/in/anton-foertsch-2a07721b0/",
   },
   {
     id: "marc",
-    name: "Marc",
-    role: "GP Advisor · B2B Sales",
+    name: "Marc Penkala",
+    role: "GP Advisor \u00b7 B2B Sales & GTM",
     image: "/Team/Marc.webp",
     accent: "#D4FFEF",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    linkedin: "https://linkedin.com",
+    bio: "Marc is a serial entrepreneur, super angel and venture capitalist with over a decade of B2B investment experience. He led and exited numerous successful investments across Europe, Latin America and the US. With 13+ years of venture capital experience as a serial exited entrepreneur and operator, Marc brings deep expertise in GTM strategy, pricing, and KPI frameworks to Kensho's portfolio companies.",
+    linkedin: "https://www.linkedin.com/in/marc-penkala/",
   },
   {
     id: "david",
-    name: "David",
-    role: "Advisor · Cryptographic Algorithms",
+    name: "David Skigin",
+    role: "LP & Advisor \u00b7 Quantum & Algorithms",
     image: "",
     accent: "#D4FFEF",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    linkedin: "https://linkedin.com",
+    bio: "David is a Limited Partner and active advisor at Kensho Ventures with a deep focus on quantum computing and algorithmic solutions. As a trained mathematician, he brings particular expertise in cryptographic algorithms and deep IP ventures. David works hands-on with portfolio companies on technical evaluation and algorithmic architecture.",
+    linkedin: "",
   },
   {
     id: "linda",
-    name: "Linda",
-    role: "Advisor · AI Research & Legal/Tech",
+    name: "Linda Andersson",
+    role: "Advisor \u00b7 AI & IP Strategy",
     image: "/Team/Linda.webp",
     accent: "#D4FFEF",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    linkedin: "https://linkedin.com",
+    bio: "Linda is CEO of Artificial Researcher-IT and an advisor at Kensho Ventures, bringing 15+ years of expertise in scientific text mining, NLP, and patent analysis. With a PhD from TU Wien on patent text mining, she bridges deep technical research and IP commercialization. Linda launched her own AI startup out of TU Wien's incubator, earning the Commercial Viability Award from the Austrian Angel Investors Association. At Kensho, she advises on AI-driven IP evaluation, patent landscape analysis, and technical due diligence. She helps the fund assess the defensibility and novelty of portfolio technologies.",
+    linkedin: "https://www.linkedin.com/in/linda-andersson-76483916/",
   },
 ];
 
@@ -532,22 +532,24 @@ export default function AboutUs() {
                     </p>
 
                     {/* LinkedIn Icon */}
-                    <a
-                      href={activeMember.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-8 inline-flex w-fit items-center justify-center cursor-pointer"
-                      aria-label="Connect on LinkedIn"
-                    >
-                      <svg
-                        className="h-12 w-12"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                        style={{ color: activeMember.accent }}
+                    {activeMember.linkedin && (
+                      <a
+                        href={activeMember.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-8 inline-flex w-fit items-center justify-center cursor-pointer"
+                        aria-label="Connect on LinkedIn"
                       >
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
-                    </a>
+                        <svg
+                          className="h-12 w-12"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                          style={{ color: activeMember.accent }}
+                        >
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 </motion.div>
                 </AnimatePresence>
