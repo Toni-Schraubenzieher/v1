@@ -78,6 +78,15 @@ const team: TeamMember[] = [
     bio: "Linda is CEO of Artificial Researcher-IT and an advisor at Kensho Ventures, bringing 15+ years of expertise in scientific text mining, NLP, and patent analysis. With a PhD from TU Wien on patent text mining, she bridges deep technical research and IP commercialization. Linda launched her own AI startup out of TU Wien's incubator, earning the Commercial Viability Award from the Austrian Angel Investors Association. At Kensho, she advises on AI-driven IP evaluation, patent landscape analysis, and technical due diligence. She helps the fund assess the defensibility and novelty of portfolio technologies.",
     linkedin: "https://www.linkedin.com/in/linda-andersson-76483916/",
   },
+  {
+    id: "max",
+    name: "Max Sautter",
+    role: "Advisor \u00b7 Cloud & Fintech",
+    image: "",
+    accent: "#D4FFEF",
+    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    linkedin: "https://www.linkedin.com/in/maxsautter/",
+  },
 ];
 
 export default function AboutUs() {
@@ -104,6 +113,7 @@ export default function AboutUs() {
     { type: "member", member: team[2]! },
     { type: "member", member: team[3]! },
     { type: "member", member: team[4]! },
+    { type: "member", member: team[5]! },
   ];
   const carouselItems = [
     ...baseCarouselItems,
@@ -237,7 +247,7 @@ export default function AboutUs() {
 
   const jumpCarouselForward = (label: "core-team" | "advisor", clickedIndex: number) => {
     const { memberWidth, labelWidth, gap, horizontalPadding } = getCarouselDimensions();
-    const cardsInGroup = label === "advisor" ? 3 : 2;
+    const cardsInGroup = label === "advisor" ? 4 : 2;
 
     let offsetBeforeGroup = horizontalPadding;
     const groupStartIndex = clickedIndex + 1;
