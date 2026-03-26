@@ -10,14 +10,14 @@ import Statement from "@/components/Statement";
 import LoadingScreen from "@/components/LoadingScreen";
 import LazySection from "@/components/LazySection";
 import Footer from "@/components/Footer";
+import Stats from "@/components/Stats";
+import GetInTouch from "@/components/GetInTouch";
 
 const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"), { ssr: false });
 const Portfolio = dynamic(() => import("@/components/Portfolio"), { ssr: false });
 const LargeText = dynamic(() => import("@/components/LargeText"));
-const Stats = dynamic(() => import("@/components/Stats"), { ssr: false });
 const AboutUs = dynamic(() => import("@/components/AboutUs"), { ssr: false });
 const FAQ = dynamic(() => import("@/components/FAQ"), { ssr: false });
-const GetInTouch = dynamic(() => import("@/components/GetInTouch"), { ssr: false });
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -57,18 +57,14 @@ export default function Home() {
         <LazySection>
           <LargeText />
         </LazySection>
-        <LazySection>
-          <Stats />
-        </LazySection>
+        <Stats />
         <LazySection>
           <AboutUs />
         </LazySection>
         <LazySection>
           <FAQ />
         </LazySection>
-        <LazySection>
-          <GetInTouch />
-        </LazySection>
+        <GetInTouch />
         <Footer />
       </motion.div>
     </div>
