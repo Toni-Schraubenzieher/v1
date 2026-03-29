@@ -47,7 +47,7 @@ export default function Navbar() {
     const element = document.getElementById(sectionId);
     if (!element) return;
     const targetTop = Math.max(0, element.getBoundingClientRect().top + window.scrollY);
-    animateScrollTo(targetTop, 980);
+    animateScrollTo(targetTop, 1500);
     window.history.replaceState(null, "", href);
   };
 
@@ -57,21 +57,6 @@ export default function Navbar() {
   ) => {
     event.preventDefault();
     setIsOpen(false);
-
-    let element = document.getElementById(section.id);
-
-    if (!element) {
-      // Force all lazy sections to mount
-      window.dispatchEvent(new Event("kensho:mount-all-sections"));
-      // Wait for React to render the newly mounted sections
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          scrollToSection(section.id, section.href);
-        });
-      });
-      return;
-    }
-
     scrollToSection(section.id, section.href);
   };
 

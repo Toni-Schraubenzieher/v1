@@ -24,8 +24,8 @@ export default function Hero() {
               waveSpeed={0.2}
               waveIntensity={0.3}
               colorTint="#FEB180"
-              brightness={1}
-              centerX={1}
+              brightness={1.5}
+              centerX={0}
               centerY={1}
             />
           </div>
