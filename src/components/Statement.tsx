@@ -49,7 +49,7 @@ function MovingRow({
     if (velocityNow > 22) directionTarget.set(1);
     if (velocityNow < -22) directionTarget.set(-1);
 
-    const baseSpeed = 0.7;
+    const baseSpeed = 0.4;
     const speedBoost = velocityFactor.get();
     const signedDirection = direction * smoothDirection.get();
     const moveBy = signedDirection * baseSpeed * (delta / 1000) * (1 + speedBoost);
