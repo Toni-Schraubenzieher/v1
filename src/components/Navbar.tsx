@@ -63,12 +63,16 @@ export default function Navbar() {
     if (!element) {
       // Force all lazy sections to mount
       window.dispatchEvent(new Event("kensho:mount-all-sections"));
-      // Wait for React to render the newly mounted sections
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
+      // Poll until element appears (dynamic imports need time to load)
+      const poll = (attempts = 0) => {
+        const el = document.getElementById(section.id);
+        if (el) {
           scrollToSection(section.id, section.href);
-        });
-      });
+        } else if (attempts < 50) {
+          requestAnimationFrame(() => poll(attempts + 1));
+        }
+      };
+      requestAnimationFrame(() => poll());
       return;
     }
 
