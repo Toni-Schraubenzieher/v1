@@ -57,6 +57,21 @@ export default function Navbar() {
   ) => {
     event.preventDefault();
     setIsOpen(false);
+
+    let element = document.getElementById(section.id);
+
+    if (!element) {
+      // Force all lazy sections to mount
+      window.dispatchEvent(new Event("kensho:mount-all-sections"));
+      // Wait for React to render the newly mounted sections
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          scrollToSection(section.id, section.href);
+        });
+      });
+      return;
+    }
+
     scrollToSection(section.id, section.href);
   };
 
