@@ -82,7 +82,7 @@ const team: TeamMember[] = [
     id: "max",
     name: "Max Sautter",
     role: "Advisor \u00b7 Cloud & Fintech",
-    image: "/Team/Max_Sautter.png",
+    image: "",
     accent: "#D4FFEF",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     linkedin: "https://www.linkedin.com/in/maxsautter/",
@@ -300,11 +300,12 @@ export default function AboutUs() {
         {/* Big statement */}
         <h2
           ref={headingRef}
-          className="mb-16 mx-auto font-heading text-[clamp(2rem,5.5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tight lg:mb-20 flex flex-col items-center"
+          className="mb-16 max-w-[900px] mx-auto font-heading text-[clamp(2rem,5.5vw,5.5rem)] font-bold uppercase leading-[1.05] tracking-tight lg:mb-20 text-center"
           style={{ color: '#FEB180' }}
         >
-          <span className="whitespace-nowrap">BUILT FOR FOUNDERS</span>
-          <span className="whitespace-nowrap">WHO BUILD WHAT MATTERS.</span>
+          Built for founders
+          <br />
+          who build what matters.
         </h2>
 
         {/* Infinite team carousel */}
@@ -367,7 +368,6 @@ export default function AboutUs() {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="modal-card-image"
                         draggable="false"
-                        quality={95}
                       />
                     ) : (
                       <div className="modal-card-image bg-[#2A2A2A]" />
@@ -397,12 +397,12 @@ export default function AboutUs() {
                 ) : (
                   <>
                     <p
-                      className="relative z-10 px-1 pb-12 text-center font-heading text-[1.45rem] font-black uppercase tracking-[0.14em] [writing-mode:vertical-rl] rotate-180 sm:text-[1.65rem]"
+                      className="relative z-10 px-1 text-center font-heading text-[1.45rem] font-black uppercase tracking-[0.14em] [writing-mode:vertical-rl] rotate-180 sm:text-[1.65rem]"
                       style={{ color: item.color }}
                     >
                       {item.label}
                     </p>
-                    <div className="absolute inset-x-0 bottom-[38px] z-10 flex justify-center">
+                    <div className="absolute inset-x-0 bottom-[29px] z-10 flex justify-center">
                       <div
                         className="flex h-8 w-8 items-center justify-center rounded-full bg-white/12 backdrop-blur-md"
                         style={{
@@ -519,7 +519,6 @@ export default function AboutUs() {
                           sizes="(max-width: 768px) 100vw, 448px"
                           className="object-cover"
                           loading="eager"
-                          quality={95}
                         />
                       </div>
                     ) : (

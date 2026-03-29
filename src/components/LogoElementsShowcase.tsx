@@ -34,7 +34,7 @@ const stories: StoryItem[] = [
     image:
       "/This_is_Kensho/Technical_Fluency.webp",
     form: "1",
-    accent: "#D4FFEF",
+    accent: "#FEB180",
   },
   {
     id: "commitment",
@@ -47,7 +47,7 @@ const stories: StoryItem[] = [
     image:
       "/This_is_Kensho/Full_Commitment.webp",
     form: "2",
-    accent: "#FEB180",
+    accent: "#D4FFEF",
   },
   {
     id: "capital",
@@ -60,7 +60,7 @@ const stories: StoryItem[] = [
     image:
       "/This_is_Kensho/Patient_Capital.webp",
     form: "3",
-    accent: "#D4FFEF",
+    accent: "#FEB180",
   },
   {
     id: "focus",
@@ -232,7 +232,6 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
                     sizes="(max-width: 768px) 100vw, 620px"
                     className="object-cover"
                     loading="eager"
-                    quality={95}
                   />
                 </motion.div>
               ))}
@@ -244,8 +243,6 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 620px"
               className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
-              priority={index === 0}
-              quality={95}
             />
           )}
         </div>

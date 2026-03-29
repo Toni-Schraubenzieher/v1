@@ -24,7 +24,6 @@ export interface SquircleShiftProps {
   colorTintSecondary?: string;
   brightness?: number;
   phaseOffset?: number;
-  logoMask?: string;
 }
 
 const vertexShader = `
@@ -55,81 +54,8 @@ uniform vec3 u_colorTint;
 uniform vec3 u_colorTintSecondary;
 uniform float u_brightness;
 uniform float u_phaseOffset;
-uniform sampler2D u_logoMask;
-uniform bool u_useLogoMask;
 
 varying vec2 vUv;
-
-// Hash function for pseudo-random selection
-float hash(vec2 p) {
-  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
-}
-
-// Smooth minimum function for blending
-float smin(float a, float b, float k) {
-  float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
-  return mix(b, a, h) - k * h * (1.0 - h);
-}
-
-// Simplified Kensho elements using box with rounded corners
-float sdBox(vec2 p, vec2 b, float r) {
-  vec2 d = abs(p) - b + r;
-  return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0) - r;
-}
-
-// Kensho Element 1: Vertical with angled top-right corner
-float kenshoElement1(vec2 p) {
-  vec2 size = vec2(0.04, 0.07);
-  float r = 0.012;
-  float base = sdBox(p, size, r);
-
-  // Simple cut for top-right corner
-  float cut = -dot(p - vec2(size.x * 0.6, size.y * 0.6), normalize(vec2(1.0, 1.0))) - 0.02;
-  return max(base, cut);
-}
-
-// Kensho Element 2: Horizontal with angled bottom-left corner
-float kenshoElement2(vec2 p) {
-  vec2 size = vec2(0.08, 0.05);
-  float r = 0.012;
-  float base = sdBox(p, size, r);
-
-  // Simple cut for bottom-left corner
-  float cut = -dot(p - vec2(-size.x * 0.6, -size.y * 0.6), normalize(vec2(-1.0, -1.0))) - 0.02;
-  return max(base, cut);
-}
-
-// Kensho Element 3: Vertical with angled top-left corner
-float kenshoElement3(vec2 p) {
-  vec2 size = vec2(0.04, 0.07);
-  float r = 0.012;
-  float base = sdBox(p, size, r);
-
-  // Simple cut for top-left corner
-  float cut = -dot(p - vec2(-size.x * 0.6, size.y * 0.6), normalize(vec2(-1.0, 1.0))) - 0.02;
-  return max(base, cut);
-}
-
-// Kensho Element 4: Horizontal with angled bottom-right corner
-float kenshoElement4(vec2 p) {
-  vec2 size = vec2(0.08, 0.05);
-  float r = 0.012;
-  float base = sdBox(p, size, r);
-
-  // Simple cut for bottom-right corner
-  float cut = -dot(p - vec2(size.x * 0.6, -size.y * 0.6), normalize(vec2(1.0, -1.0))) - 0.02;
-  return max(base, cut);
-}
-
-// Select one of the 4 Kensho elements based on grid position
-float kenshoDistance(vec2 gridPos, vec2 cellPos) {
-  float h = hash(floor(gridPos));
-
-  if (h < 0.25) return kenshoElement1(cellPos);
-  else if (h < 0.5) return kenshoElement2(cellPos);
-  else if (h < 0.75) return kenshoElement3(cellPos);
-  else return kenshoElement4(cellPos);
-}
 
 void main() {
   float animTime = u_time * u_speed;
@@ -148,8 +74,6 @@ void main() {
     centeredPos -= vec2(u_centerX, u_centerY);
 
     depth += 0.05;
-
-    // Always use radial distance from center for wave effects
     dist = length(centeredPos);
 
     float horizontalWave = sin(centeredPos.x * u_gridFrequency + depth);
@@ -172,8 +96,6 @@ void main() {
     normalizedPos += spiralOffset;
 
     vec2 gridCell = fract(normalizedPos) - 0.5;
-
-    // Original React Bits Pro logic
     float intensity = u_lineThickness / length(gridCell);
 
     if (layer == 0) colorAccum.r = intensity;
@@ -188,7 +110,6 @@ void main() {
   vec3 gradientTint = mix(u_colorTint, u_colorTintSecondary, gradMix);
   vec3 tintedColor = colorAccum * gradientTint;
   float alpha = clamp(length(colorAccum) * 0.42, 0.0, 1.0);
-
   gl_FragColor = vec4(tintedColor, alpha);
 }
 `;
@@ -210,7 +131,6 @@ interface ShaderPlaneProps {
   brightness: number;
   phaseOffset: number;
   isVisible: boolean;
-  logoMask?: string;
 }
 
 function ShaderPlane({
@@ -230,7 +150,6 @@ function ShaderPlane({
   brightness,
   phaseOffset,
   isVisible,
-  logoMask,
 }: ShaderPlaneProps) {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const { viewport } = useThree();
@@ -254,10 +173,8 @@ function ShaderPlane({
       u_colorTintSecondary: { value: new THREE.Color(colorTintSecondary) },
       u_brightness: { value: brightness },
       u_phaseOffset: { value: phaseOffset },
-      u_logoMask: { value: null },
-      u_useLogoMask: { value: !!logoMask },
     }),
-    [logoMask]
+    []
   );
 
   useFrame((state) => {
@@ -301,7 +218,6 @@ export default function SquircleShift({
   colorTintSecondary = "#D4FFEF",
   brightness = 1.4,
   phaseOffset = 10,
-  logoMask,
 }: SquircleShiftProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -353,7 +269,6 @@ export default function SquircleShift({
             brightness={brightness}
             phaseOffset={phaseOffset}
             isVisible={isVisible}
-            logoMask={logoMask}
           />
         </Canvas>
       )}

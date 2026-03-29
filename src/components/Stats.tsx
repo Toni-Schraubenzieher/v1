@@ -89,7 +89,7 @@ export default function Stats() {
             waveSpeed={0.2}
             waveIntensity={0.3}
             colorTint="#FEB180"
-            brightness={1.5}
+            brightness={1}
             centerX={0.5}
             centerY={0.9}
           />
@@ -106,9 +106,8 @@ export default function Stats() {
         </h2>
 
         <div ref={cardsRef} className="flex flex-col gap-6">
-          {/* Grid Layout */}
+          {/* Top: 5 Cards in CSS Grid — shared rows für perfektes Alignment */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* Row 1: €500K, €50m+, 2 CVCs */}
             {/* Card: €500K */}
             <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
               <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€500K</div>
@@ -123,6 +122,16 @@ export default function Stats() {
                 Deployed across 15+ deep-tech investments
               </p>
             </div>
+            {/* Card: Quote — spans 2 Rows auf lg */}
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col justify-center">
+              <p className="font-heading text-4xl font-bold text-white lg:text-5xl leading-tight">
+                "We back the technologies that will define{" "}
+                <span style={{ color: "#FEB180" }}>
+                  European sovereignty."
+                </span>
+              </p>
+              <p className="mt-6 text-base text-white/90">- Kensho Ventures</p>
+            </div>
             {/* Card: 2 CVCs */}
             <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
               <div className="font-heading text-4xl font-bold text-white lg:text-5xl">2 CVCs</div>
@@ -130,20 +139,8 @@ export default function Stats() {
                 Built from zero - we've been operators, not just investors
               </p>
             </div>
-
-            {/* Row 2: Quote (2 cols), 12 */}
-            {/* Card: Quote — spans 2 cols */}
-            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-2">
-              <div className="font-heading text-4xl font-bold text-white lg:text-5xl">
-                "We back the technologies that will define{" "}
-                <span style={{ color: "#FEB180" }}>
-                  European sovereignty."
-                </span>
-              </div>
-              <p className="mt-6 text-base text-white/90">- Kensho Ventures</p>
-            </div>
             {/* Card: 12 */}
-            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10 md:col-span-2 lg:col-span-1">
+            <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
               <div className="font-heading text-4xl font-bold text-white lg:text-5xl">12</div>
               <p className="mt-3 text-base text-white/90">
                 Years deep-tech investing

@@ -15,28 +15,28 @@ const areas = [
     title: "Robotics",
     description:
       "We source exceptional founders through our global network — often before they've raised a single dollar.",
-    color: "#D4FFEF", // Mint
+    color: "#FEB180",
   },
   {
     id: 2,
     title: "Enabling Technologies",
     description:
       "Deep-dive into the team, market, and technology. We move with speed and conviction when we believe.",
-    color: "#FEB180", // Orange
+    color: "#D4FFEF",
   },
   {
     id: 3,
     title: "Cybersecurity / Dual use",
     description:
       "Meaningful capital, clear terms, and a partnership built on trust from day one. No games, no delays.",
-    color: "#D4FFEF", // Mint
+    color: "#FEB180",
   },
   {
     id: 4,
     title: "Computation",
     description:
       "From hiring key talent to unlocking new markets — we're in the trenches with our founders every step.",
-    color: "#FEB180", // Orange
+    color: "#D4FFEF",
   },
 ];
 

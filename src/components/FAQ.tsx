@@ -109,7 +109,7 @@ export default function FAQ() {
           WHAT FOUNDERS ASK US
         </h2>
 
-        <div ref={faqsRef} className="space-y-0 max-w-[1080px] mx-auto">
+        <div ref={faqsRef} className="space-y-0 max-w-[1080px] ml-auto">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 

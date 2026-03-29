@@ -2,19 +2,22 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LogoElementsShowcase from "@/components/LogoElementsShowcase";
 import Statement from "@/components/Statement";
 import LoadingScreen from "@/components/LoadingScreen";
+import LazySection from "@/components/LazySection";
 import Footer from "@/components/Footer";
-import Stats from "@/components/Stats";
-import GetInTouch from "@/components/GetInTouch";
-import Portfolio from "@/components/Portfolio";
-import PortfolioOverview from "@/components/PortfolioOverview";
-import LargeText from "@/components/LargeText";
-import AboutUs from "@/components/AboutUs";
-import FAQ from "@/components/FAQ";
+
+const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"), { ssr: false });
+const Portfolio = dynamic(() => import("@/components/Portfolio"), { ssr: false });
+const LargeText = dynamic(() => import("@/components/LargeText"));
+const Stats = dynamic(() => import("@/components/Stats"), { ssr: false });
+const AboutUs = dynamic(() => import("@/components/AboutUs"), { ssr: false });
+const FAQ = dynamic(() => import("@/components/FAQ"), { ssr: false });
+const GetInTouch = dynamic(() => import("@/components/GetInTouch"), { ssr: false });
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
@@ -45,13 +48,27 @@ export default function Home() {
         <Hero />
         <LogoElementsShowcase />
         <Statement />
-        <PortfolioOverview />
-        <Portfolio />
-        <LargeText />
-        <Stats />
-        <AboutUs />
-        <FAQ />
-        <GetInTouch />
+        <LazySection>
+          <PortfolioOverview />
+        </LazySection>
+        <LazySection>
+          <Portfolio />
+        </LazySection>
+        <LazySection>
+          <LargeText />
+        </LazySection>
+        <LazySection>
+          <Stats />
+        </LazySection>
+        <LazySection>
+          <AboutUs />
+        </LazySection>
+        <LazySection>
+          <FAQ />
+        </LazySection>
+        <LazySection>
+          <GetInTouch />
+        </LazySection>
         <Footer />
       </motion.div>
     </div>

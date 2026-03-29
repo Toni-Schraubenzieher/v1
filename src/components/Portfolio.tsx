@@ -28,7 +28,6 @@ const startups = [
       "Energy Robotics builds the leading platform for autonomous robot and drone inspection, hardware-agnostic software that turns any robot into an autonomous inspection system for industrial facilities. Using AI and digital twin technology, the platform transforms raw sensor data into actionable insights. 20,000+ km of autonomous inspection rounds completed across 4 continents. Founded by robotics prize with backgrounds spanning RoboCup and the DARPA Robotics Challenge.",
     points: [],
     image: "/Portfolio_Teams/EnergyRobotics.webp",
-    website: "https://www.energy-robotics.com/?r=0",
   },
   {
     id: 1,
@@ -42,7 +41,6 @@ const startups = [
       "Hefring built IMAS®, an AI-powered maritime intelligence platform that unifies data from navigation, propulsion, and environmental sensors across entire vessel fleets. Edge computing onboard, cloud analytics off-ship, delivering real-time safety guidance, fuel optimization, predictive maintenance, and regulatory compliance. The system is hardware-agnostic, designed to operate across commercial shipping, defense, and leisure maritime, integrating with existing protocols and third-party equipment. Founded by a team with 50+ years of combined expertise in maritime operations, corporate development, and condition monitoring.",
     points: [],
     image: "/Portfolio_Teams/Hefring.webp",
-    website: "https://www.hefringmarine.com",
   },
   {
     id: 3,
@@ -56,7 +54,6 @@ const startups = [
       "Pixel Photonics develops superconducting nanowire single-photon detectors (SNSPDs), the enabling hardware for quantum computing, secure communications, and advanced sensing. Their waveguide-integrated architecture is globally unique: 1000+ detection channels where competitors max out at 24, with 25% higher device density. A 12-year R&D effort spun out of Uni Münster, now 35 strong with 8 PhDs. €11M revenue in 2024, €11M qualified pipeline, systems deployed with Fortune 500 and Nasdaq-listed defense companies. Backed by HTGF, QuantonNation, and SPRIND-D.",
     points: [],
     image: "/Portfolio_Teams/Pixel_Photonics.webp",
-    website: "https://www.pixelphotonics.com",
   },
   {
     id: 5,
@@ -70,7 +67,6 @@ const startups = [
       "Quality Match built AI-powered visual quality inspection that cut QA costs by 90% while drastically improving labeled data accuracy across manufacturing. Their technology capitalized on the industry shift from data quantity to data quality, making QA accessible to a far broader customer base as the EU AI Act raised provable data standards. Founded by Dr. Daniel Kondermann, who previously sold Pallas Ludens to Apple and led their data science team. Acquired by Wayve.",
     points: [],
     image: "/Portfolio_Teams/Quality Match.webp",
-    website: "https://www.quality-match.com",
   },
   {
     id: 6,
@@ -84,7 +80,6 @@ const startups = [
       "Qambria is building the integration layer between quantum and classical computing, treating quantum processors as specialized accelerators within existing HPC environments, not as standalone research instruments. Hardware-agnostic and vendor-neutral, their platform eliminates lock-in while making quantum practically accessible across pharma, AI, and scientific workloads. The vision: quantum computers as standard nodes in enterprise data centers. Founded by Dominik Ulmer (30+ years supercomputing leadership at CRAY and HPE) and Marco Szalay (Quantum Engineer #4 at Google Quantum AI), with additional expertise from IBM Research and Argonne National Lab.",
     points: [],
     image: "/Portfolio_Teams/Qambria.webp",
-    website: "https://www.qambria.com",
   },
   {
     id: 4,
@@ -98,7 +93,6 @@ const startups = [
       "CryptoNext provides a complete suite of products and services to manage the transition to quantum-safe security, protecting critical data against the 'harvest now, decrypt later' threat before quantum computers break current public-key cryptography. Their technology covers the full migration: discovery, transition, and ongoing quantum-safe encryption for enterprises and government agencies. Already deployed through pilots with NATO, European Commission, Banque de France, and Société Générale across Europe and the US. CTO and founder Jean-Charles Faugère, former INRIA Research Director and École Normale Supérieure graduate, co-authored several NIST post-quantum standard algorithms and holds the Seymour Cray Prize.",
     points: [],
     image: "/Portfolio_Teams/CryptoNext.webp",
-    website: "https://www.cryptonext-security.com/en/",
   },
 ];
 
@@ -465,7 +459,7 @@ export default function Portfolio() {
 
       <div ref={woesRef} className="mx-auto mt-8 max-w-[1320px] px-6 sm:mt-10 sm:px-8">
         <div className="px-8 pb-10 pt-12 sm:px-12 lg:pb-14 lg:pt-14">
-          <h3 className="font-heading text-[clamp(1.625rem,4.2vw,5rem)] font-bold leading-[0.96] tracking-tight mb-12 text-center" style={{ color: "#FEB180" }}>
+          <h3 className="font-heading text-[clamp(1.5rem,4vw,4.8rem)] font-bold leading-[0.96] tracking-tight mb-12 text-center" style={{ color: "#FEB180" }}>
             WHAT OUR ENTREPRENEURS SAY
           </h3>
 
@@ -487,7 +481,7 @@ export default function Portfolio() {
                   <div className="relative z-10 px-8 py-9 sm:px-12 sm:py-10 lg:py-12 h-[11.25rem] sm:h-[12.5rem] flex items-center overflow-hidden">
                     {/* Default Content: Name / Company - slides up */}
                     <div className="w-full transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full group-hover:opacity-0 group-hover:absolute group-hover:inset-x-8 sm:group-hover:inset-x-12">
-                      <h4 className="font-heading text-[clamp(18px,4vw,70px)] font-medium tracking-tight text-white/80">
+                      <h4 className="font-heading text-[clamp(20px,5vw,75px)] font-medium tracking-tight text-white/80">
                         {item.founder.toUpperCase()} / <span className="text-[clamp(14px,3vw,35px)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
                       </h4>
                     </div>
@@ -500,7 +494,6 @@ export default function Portfolio() {
                         width={96}
                         height={96}
                         className="h-14 w-14 sm:h-20 sm:w-20 lg:h-24 lg:w-24 shrink-0 rounded-full object-cover"
-                        quality={95}
                       />
                       <p className="text-sm leading-relaxed text-[#101010] sm:text-base lg:text-lg line-clamp-4 sm:line-clamp-5 lg:line-clamp-6">
                         &ldquo;{item.quote}&rdquo;
@@ -620,7 +613,6 @@ export default function Portfolio() {
                             sizes="(max-width: 760px) 100vw, 760px"
                             className="object-cover"
                             loading="eager"
-                            quality={95}
                           />
                         </div>
                       </div>
@@ -668,9 +660,7 @@ export default function Portfolio() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex justify-center bg-[#0A0A0A] px-8 py-5 sm:px-12">
                 <motion.a
                   key={activeStartup.id}
-                  href={activeStartup.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
                   className="pointer-events-auto inline-flex items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold transition-colors"
                   style={{
                     color: "#101010",

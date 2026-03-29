@@ -1,7 +1,9 @@
-import SquircleShift from "@/components/SquircleShift";
+import dynamic from "next/dynamic";
+
+const SquircleShift = dynamic(() => import("@/components/SquircleShift"), { ssr: false });
 
 export default function Hero() {
-  const fadeMaskX = "linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%)";
+  const fadeMaskX = "linear-gradient(to right, transparent 0%, black 16%, black 100%)";
   const fadeMaskY = "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)";
 
   return (
@@ -24,8 +26,8 @@ export default function Hero() {
               waveSpeed={0.2}
               waveIntensity={0.3}
               colorTint="#FEB180"
-              brightness={1.5}
-              centerX={0}
+              brightness={1}
+              centerX={1}
               centerY={1}
             />
           </div>
