@@ -79,7 +79,7 @@ const team: TeamMember[] = [
     role: "Advisor \u00b7 Cloud & Fintech",
     image: "/Team/Max_Sautter.png",
     accent: "#D4FFEF",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    bio: "Max leads Enterprise Sales and Cloud Business for NEMEA at DoiT International. Before that, he held leadership roles at Accenture and Oracle, and co-founded a startup he took through to exit. His career spans the full arc from building sales engines inside global corporates to running his own company \u2014 always at the intersection of cloud infrastructure and enterprise SaaS. He holds a Master of Business Innovation from ZHAW. At Kensho, Max advises portfolio companies on go-to-market execution, enterprise pricing, and the operational mechanics of scaling revenue from first enterprise contract to repeatable pipeline.",
     linkedin: "https://www.linkedin.com/in/maxsautter/",
   },
 ];
