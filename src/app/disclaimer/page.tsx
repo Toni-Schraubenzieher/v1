@@ -2,7 +2,10 @@ import LegalPage from "@/components/LegalPage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Disclaimer — Kensho Ventures",
+  title: "Disclaimer",
+  description:
+    "Legal disclaimer, regulatory information, and risk disclosure for Kensho Ventures — a BaFin-regulated venture capital fund.",
+  alternates: { canonical: "/disclaimer" },
 };
 
 export default function DisclaimerPage() {

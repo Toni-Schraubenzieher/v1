@@ -2,7 +2,10 @@ import LegalPage from "@/components/LegalPage";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Imprint — Kensho Ventures",
+  title: "Imprint",
+  description:
+    "Legal information for Kensho Capital Management GmbH, Rosenthaler Straße 72 A, 10119 Berlin, Germany.",
+  alternates: { canonical: "/imprint" },
 };
 
 export default function ImprintPage() {

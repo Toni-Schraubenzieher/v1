@@ -357,7 +357,7 @@ export default function AboutUs() {
                     {item.member.image ? (
                       <Image
                         src={item.member.image}
-                        alt={item.member.name}
+                        alt={`${item.member.name}, ${item.member.role} at Kensho Ventures`}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="modal-card-image"
@@ -509,7 +509,7 @@ export default function AboutUs() {
                       <div className="aspect-[3/4] w-full max-w-md overflow-hidden rounded-2xl bg-[#101010] relative">
                         <Image
                           src={activeMember.image}
-                          alt={activeMember.name}
+                          alt={`${activeMember.name}, ${activeMember.role} at Kensho Ventures`}
                           fill
                           sizes="(max-width: 768px) 100vw, 448px"
                           className="object-cover"

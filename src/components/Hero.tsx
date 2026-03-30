@@ -35,6 +35,7 @@ export default function Hero() {
         <div className="relative z-10 mt-32 sm:mt-40 lg:mt-48 max-w-[61.25rem] ml-4 sm:ml-6">
           <h1 className="font-heading text-[clamp(4rem,12vw,10.5rem)] font-bold text-white leading-[0.88] tracking-tight -ml-3">
             KENSHŌ
+            <span className="sr-only"> — European Deep-Tech Venture Capital</span>
           </h1>
           <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[56rem] text-balance">
             We invest in European resilience technologies - robotics, cybersecurity, quantum, industrial AI. Understood at first principles. Backed with patient capital and the infrastructure to scale.

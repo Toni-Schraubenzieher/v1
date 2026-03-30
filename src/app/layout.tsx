@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import SmoothScroll from "@/components/SmoothScroll";
+import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -39,8 +40,38 @@ const satoshi = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Kensho — Venture Capital",
-  description: "We back founders building the future. Kensho is an early-stage venture capital firm investing in transformative technology.",
+  metadataBase: new URL("https://kensho.vc"),
+  title: {
+    default: "Kensho Ventures — European Deep-Tech Venture Capital",
+    template: "%s | Kensho Ventures",
+  },
+  description:
+    "European deep-tech VC. EUR 500K first checks, hands-on infrastructure from Day 1. Investing in robotics, cybersecurity, quantum, and industrial AI.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "Kensho Ventures",
+    title: "Kensho Ventures — European Deep-Tech Venture Capital",
+    description:
+      "European deep-tech VC. EUR 500K first checks, hands-on infrastructure from Day 1. Investing in robotics, cybersecurity, quantum, and industrial AI.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kensho Ventures — European Deep-Tech Venture Capital",
+    description:
+      "European deep-tech VC. EUR 500K first checks, hands-on infrastructure from Day 1. Investing in robotics, cybersecurity, quantum, and industrial AI.",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large" as const,
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
 };
 
 export default function RootLayout({
@@ -67,6 +98,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${plusJakartaSans.variable} ${satoshi.variable} antialiased`}>
+        <StructuredData />
         <SmoothScroll />
         {children}
       </body>
