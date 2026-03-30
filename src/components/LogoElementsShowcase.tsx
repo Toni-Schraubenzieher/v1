@@ -25,7 +25,7 @@ const stories: StoryItem[] = [
     titleAccent: "Principles",
     kicker: "No translating. No dumbing down.",
     description:
-      "We start with your technology, not your TAM slide. Our GP has spent over a decade in deep-tech \u2014 building CVCs, leading technical due diligence, working alongside quantum researchers and robotics teams. We do not need it simplified. We need to understand what is actually defensible.",
+      "We start with your technology, not your TAM slide. Our GP has spent over a decade in deep-tech. Building CVCs, leading technical due diligence, working alongside quantum researchers and robotics teams. We do not need it simplified. We need to understand what is actually defensible.",
     image:
       "/This_is_Kensho/Technical_Fluency.webp",
     form: "1",
@@ -87,7 +87,7 @@ const investmentAreas = [
     number: "02",
     title: "Industrial AI",
     description:
-      "AI built for physical systems \u2014 machine perception, predictive maintenance, autonomous decision-making at the edge. Not chatbots. The intelligence layer that makes factories, warehouses, and defense systems work.",
+      "AI built for physical systems: machine perception, predictive maintenance, autonomous decision-making at the edge. Not chatbots. The intelligence layer that makes factories, warehouses, and defense systems work.",
     color: "#D4FFEF",
     formNumber: "2",
     image: "/This_is_Kensho/Enabling_Technologies.webp",

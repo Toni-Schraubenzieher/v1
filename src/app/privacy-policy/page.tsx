@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Privacy policy for kensho.vc — GDPR-compliant, no cookies. Learn how Kensho Ventures handles your personal data.",
+    "Privacy policy for kensho.vc. GDPR-compliant, no cookies. Learn how Kensho Ventures handles your personal data.",
   alternates: { canonical: "/privacy-policy" },
 };
 

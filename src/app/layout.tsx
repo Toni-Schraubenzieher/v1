@@ -42,7 +42,7 @@ const satoshi = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://kensho.vc"),
   title: {
-    default: "Kensho Ventures — European Deep-Tech Venture Capital",
+    default: "Kensho Ventures | European Deep-Tech Venture Capital",
     template: "%s | Kensho Ventures",
   },
   description:
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Kensho Ventures",
-    title: "Kensho Ventures — European Deep-Tech Venture Capital",
+    title: "Kensho Ventures | European Deep-Tech Venture Capital",
     description:
       "European deep-tech VC. EUR 500K first checks, hands-on infrastructure from Day 1. Investing in robotics, cybersecurity, quantum, and industrial AI.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kensho Ventures — European Deep-Tech Venture Capital",
+    title: "Kensho Ventures | European Deep-Tech Venture Capital",
     description:
       "European deep-tech VC. EUR 500K first checks, hands-on infrastructure from Day 1. Investing in robotics, cybersecurity, quantum, and industrial AI.",
   },

@@ -7,7 +7,7 @@ export default function StructuredData() {
     url: "https://kensho.vc",
     logo: "https://kensho.vc/Kensho_Logo.svg",
     description:
-      "European early-stage venture capital firm investing in resilience technologies — robotics, cybersecurity, quantum, and industrial AI.",
+      "European early-stage venture capital firm investing in resilience technologies: robotics, cybersecurity, quantum, and industrial AI.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Rosenthaler Straße 72 A",
