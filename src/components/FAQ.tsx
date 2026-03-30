@@ -104,12 +104,12 @@ export default function FAQ() {
 
   return (
     <section ref={sectionRef} id="faq" className="py-16 lg:py-24">
-      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
+      <div className="mx-auto max-w-[82.5rem] px-6 sm:px-8">
         <h2 ref={headingRef} className="mb-12 font-heading text-[clamp(1.5rem,4vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-center" style={{ color: "#FEB180" }}>
           WHAT FOUNDERS ASK US
         </h2>
 
-        <div ref={faqsRef} className="space-y-0 max-w-[1080px] mx-auto">
+        <div ref={faqsRef} className="space-y-0 max-w-[67.5rem] mx-auto">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 

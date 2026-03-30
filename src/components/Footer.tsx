@@ -34,7 +34,7 @@ export default function Footer() {
 
   return (
     <footer className="py-8 px-6 sm:px-8 sm:py-10">
-      <div className="mx-auto max-w-[1320px]">
+      <div className="mx-auto max-w-[82.5rem]">
         {/* Mobile: stacked center layout */}
         <div className="flex flex-col items-center gap-6 sm:hidden">
           <Link href="/">

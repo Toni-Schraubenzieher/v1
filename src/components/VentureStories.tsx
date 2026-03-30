@@ -98,7 +98,7 @@ export default function VentureStories() {
       id="venture-stories"
       className="py-16 lg:py-24"
     >
-      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
+      <div className="mx-auto max-w-[82.5rem] px-6 sm:px-8">
         <div className="rounded-3xl bg-[#101010] overflow-hidden px-8 sm:px-12 lg:px-16 py-16 lg:py-24">
           {/* Header */}
           <div ref={headerRef} className="mb-16 lg:mb-20">
@@ -114,7 +114,7 @@ export default function VentureStories() {
           </div>
 
           {/* Content: Items left, Image right */}
-          <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 lg:gap-16 items-center">
+          <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-[1fr_25rem] gap-12 lg:gap-16 items-center">
             {/* Left: Clickable Items */}
             <div className="flex flex-col">
               {areas.map((area, index) => (
@@ -150,7 +150,7 @@ export default function VentureStories() {
 
             {/* Right: Kensho Form 4 Image */}
             <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-[320px] lg:max-w-[400px] aspect-[208/154]">
+              <div className="relative w-full max-w-[20rem] lg:max-w-[25rem] aspect-[208/154]">
                 <Image
                   src="/Forms/4.svg"
                   alt="Kensho"

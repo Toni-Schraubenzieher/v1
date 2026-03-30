@@ -12,10 +12,10 @@ export default function LegalPage({
 }) {
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
-      <main className="mx-auto max-w-[760px] px-6 sm:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
+      <main className="mx-auto max-w-[47.5rem] px-6 sm:px-8 pt-24 sm:pt-32 pb-24 sm:pb-32">
         <Link
           href="/"
-          className="inline-flex h-12 min-w-[210px] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-colors mb-16"
+          className="inline-flex h-12 min-w-[13.125rem] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] transition-colors mb-16"
         >
           <svg
             className="w-5 h-5"

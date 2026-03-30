@@ -252,7 +252,7 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
 
       </div>
 
-      <div className="w-full max-w-[520px]">
+      <div className="w-full max-w-[32.5rem]">
         <p className="text-lg font-medium text-white/55">{item.index}</p>
         <h3 className="mt-3 font-heading text-3xl font-bold leading-[0.92] text-white sm:text-4xl md:text-5xl lg:text-6xl">
           {item.titleMain}{" "}
@@ -266,14 +266,14 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
               {item.kicker}
             </p>
             {/* Clickable Vertical List */}
-            <div className="flex flex-col gap-1 max-w-[520px] relative">
+            <div className="flex flex-col gap-1 max-w-[32.5rem] relative">
               {/* Orange sliding background */}
               <motion.div
                 className="absolute left-0 right-0 rounded-2xl bg-[#FEB180] pointer-events-none"
                 animate={{
                   y: (() => {
                     const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-                    const collapsedH = isMobile ? 85 : 4.7 * remPx;
+                    const collapsedH = isMobile ? 5.3125 * remPx : 4.7 * remPx;
                     const gap = 4;
                     let totalY = 0;
                     for (let i = 0; i < activeInvestmentArea; i++) {
@@ -282,7 +282,7 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
                     return totalY;
                   })(),
                   height: typeof window !== 'undefined' && window.innerWidth < 640
-                    ? 240
+                    ? 15 * remPx
                     : 12.5 * remPx,
                 }}
                 transition={{
@@ -302,8 +302,8 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
                     initial={false}
                     animate={{
                       height: isActive
-                        ? (isMobile ? 240 : 12.5 * remPx)
-                        : (isMobile ? 85 : 4.7 * remPx),
+                        ? (isMobile ? 15 * remPx : 12.5 * remPx)
+                        : (isMobile ? 5.3125 * remPx : 4.7 * remPx),
                     }}
                     transition={{
                       height: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
@@ -368,7 +368,7 @@ export default function LogoElementsShowcase() {
 
   return (
     <section id="venture-stories" className="py-10 lg:py-14">
-      <div className="mx-auto flex max-w-[1320px] flex-col gap-24 px-6 sm:px-8 lg:gap-28">
+      <div className="mx-auto flex max-w-[82.5rem] flex-col gap-24 px-6 sm:px-8 lg:gap-28">
         {stories.map((item, index) => (
           <StoryItemComponent
             key={item.id}
@@ -405,7 +405,7 @@ export default function LogoElementsShowcase() {
                   <p className="text-sm font-medium uppercase tracking-[0.16em] text-white/80">
                     {activeItem.index}
                   </p>
-                  <h3 className="mt-3 max-w-[560px] font-heading text-5xl font-bold leading-[0.9] text-white sm:text-6xl lg:text-7xl">
+                  <h3 className="mt-3 max-w-[35rem] font-heading text-5xl font-bold leading-[0.9] text-white sm:text-6xl lg:text-7xl">
                     {activeItem.titleMain}
                     <br />
                     <span className="font-medium">{activeItem.titleAccent}</span>
@@ -421,7 +421,7 @@ export default function LogoElementsShowcase() {
                 </button>
               </div>
 
-              <div className="max-w-[620px]">
+              <div className="max-w-[38.75rem]">
                 <p className="text-xl font-semibold text-white">{activeItem.kicker}</p>
                 <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
                   {activeItem.description}

@@ -100,7 +100,7 @@ export default function WhoWeAre() {
       id="who-we-are"
       className="who-we-are py-24 lg:py-32"
     >
-      <div className="max-w-[1320px] mx-auto px-6 sm:px-8">
+      <div className="max-w-[82.5rem] mx-auto px-6 sm:px-8">
         {/* Header */}
         <div ref={headerRef} className="mb-16 lg:mb-20">
           <div className="flex items-center gap-3 mb-4">

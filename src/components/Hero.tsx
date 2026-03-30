@@ -6,7 +6,7 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero px-6 sm:px-8">
-      <div className="relative mx-auto max-w-[1320px] min-h-screen flex flex-col pt-28 sm:pt-32 lg:pt-36 pb-28 sm:pb-32">
+      <div className="relative mx-auto max-w-[82.5rem] min-h-screen flex flex-col pt-28 sm:pt-32 lg:pt-36 pb-28 sm:pb-32">
         <div
           className="pointer-events-none absolute inset-y-0 -right-[6%] w-[65%] sm:-right-[8%] sm:w-[72%] md:-right-[12%] md:w-[70%] lg:w-[66%]"
           style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
@@ -31,11 +31,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative z-10 mt-32 sm:mt-40 lg:mt-48 max-w-[980px] ml-4 sm:ml-6">
+        <div className="relative z-10 mt-32 sm:mt-40 lg:mt-48 max-w-[61.25rem] ml-4 sm:ml-6">
           <h1 className="font-heading text-[clamp(4rem,12vw,10.5rem)] font-bold text-white leading-[0.88] tracking-tight -ml-3">
             KENSHŌ
           </h1>
-          <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[560px] text-balance">
+          <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[35rem] text-balance">
             We invest in European resilience technologies - robotics, cybersecurity, quantum, industrial AI. Understood at first principles. Backed with patient capital and the infrastructure to scale.
           </p>
         </div>

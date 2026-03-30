@@ -44,7 +44,7 @@ export default function GetInTouch() {
 
   return (
     <section ref={sectionRef} id="get-in-touch" className="px-6 sm:px-8 py-12 lg:py-16 overflow-hidden">
-      <div className="relative mx-auto max-w-[1320px] min-h-[60vh] sm:min-h-[70vh] lg:min-h-[82vh] overflow-visible pt-10 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 lg:pb-8">
+      <div className="relative mx-auto max-w-[82.5rem] min-h-[60vh] sm:min-h-[70vh] lg:min-h-[82vh] overflow-visible pt-10 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 lg:pb-8">
         <div
           className="pointer-events-none absolute inset-y-0 left-0 w-[75%] sm:w-[75%] md:w-[70%] lg:w-[65%]"
           style={{ maskImage: fadeMaskX, WebkitMaskImage: fadeMaskX }}
@@ -73,11 +73,11 @@ export default function GetInTouch() {
         </div>
 
         <div className="relative z-10 flex min-h-[68vh] items-center">
-          <div ref={contentRef} className="ml-[50%] w-full max-w-[520px] text-left">
+          <div ref={contentRef} className="ml-[50%] w-full max-w-[32.5rem] text-left">
             <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight text-white">
               GET IN TOUCH
             </h2>
-            <p className="mt-7 max-w-[460px] text-base leading-relaxed text-white/90 sm:text-lg">
+            <p className="mt-7 max-w-[28.75rem] text-base leading-relaxed text-white/90 sm:text-lg">
               We back ambitious founders early and move with conviction. If you are building
               transformative technology, let&apos;s talk.
             </p>

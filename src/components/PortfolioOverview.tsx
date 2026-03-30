@@ -60,11 +60,11 @@ const companies = [
 ] as const;
 
 const logoSizePresets = {
-  wordmarkWide: "w-[190px] max-h-11",
-  wordmarkBalanced: "w-[182px] max-h-11",
-  wordmarkCompact: "w-[165px] max-h-11",
-  wordmarkCrypto: "w-[202px] max-h-12",
-  wordmarkTall: "w-[205px] max-h-[4.7rem]",
+  wordmarkWide: "w-[11.875rem] max-h-11",
+  wordmarkBalanced: "w-[11.375rem] max-h-11",
+  wordmarkCompact: "w-[10.3125rem] max-h-11",
+  wordmarkCrypto: "w-[12.625rem] max-h-12",
+  wordmarkTall: "w-[12.8125rem] max-h-[4.7rem]",
 } as const;
 
 const companyLogoPreset: Record<(typeof companies)[number]["name"], keyof typeof logoSizePresets> = {
@@ -150,8 +150,8 @@ export default function PortfolioOverview() {
 
   return (
     <section ref={sectionRef} id="portfolio-overview" className="py-16 lg:py-24">
-      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
-        <div ref={headingRef} className="mx-auto max-w-[920px] text-center">
+      <div className="mx-auto max-w-[82.5rem] px-6 sm:px-8">
+        <div ref={headingRef} className="mx-auto max-w-[57.5rem] text-center">
           <h2 className="font-heading text-[clamp(2.4rem,5.2vw,4.8rem)] font-bold leading-[0.96] tracking-tight" style={{ color: "#FEB180" }}>
             PORTFOLIO OVERVIEW
           </h2>
@@ -201,7 +201,7 @@ export default function PortfolioOverview() {
                 <img
                   src={company.logo}
                   alt={company.name}
-                  className={`h-auto w-auto max-w-[240px] object-contain transition-[filter] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${logoSizeClass}`}
+                  className={`h-auto w-auto max-w-[15rem] object-contain transition-[filter] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${logoSizeClass}`}
                   style={{
                     filter: isActive
                       ? "brightness(0) saturate(100%) invert(100%)"

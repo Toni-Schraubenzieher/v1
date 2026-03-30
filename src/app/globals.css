@@ -18,6 +18,8 @@
   --color-accent-mint: #D4FFEF;
   --font-sans: var(--font-jakarta);
   --font-heading: var(--font-satoshi);
+  --breakpoint-xs: 480px;
+  --breakpoint-3xl: 1920px;
 }
 
 html {
@@ -29,7 +31,7 @@ html {
 /* Fluid proportional scaling — alle rem-Werte skalieren mit Viewport */
 @media (min-width: 1024px) {
   html {
-    font-size: clamp(15px, 1.1vw, 19px);
+    font-size: clamp(16px, 1.1vw, 20px);
   }
 }
 

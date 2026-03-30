@@ -406,7 +406,7 @@ export default function Portfolio() {
       id="portfolio"
       className="portfolio"
     >
-      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
+      <div className="mx-auto max-w-[82.5rem] px-6 sm:px-8">
         <div ref={containerRef} className="rounded-3xl bg-[#181818] overflow-visible relative">
           {/* Startup rows */}
           <div>
@@ -463,7 +463,7 @@ export default function Portfolio() {
         </div>
       </div>
 
-      <div ref={woesRef} className="mx-auto mt-8 max-w-[1320px] px-6 sm:mt-10 sm:px-8">
+      <div ref={woesRef} className="mx-auto mt-8 max-w-[82.5rem] px-6 sm:mt-10 sm:px-8">
         <div className="px-8 pb-10 pt-12 sm:px-12 lg:pb-14 lg:pt-14">
           <h3 className="font-heading text-[clamp(1.625rem,4.2vw,5rem)] font-bold leading-[0.96] tracking-tight mb-12 text-center" style={{ color: "#FEB180" }}>
             WHAT OUR ENTREPRENEURS SAY
@@ -487,8 +487,8 @@ export default function Portfolio() {
                   <div className="relative z-10 px-8 py-9 sm:px-12 sm:py-10 lg:py-12 h-[11.25rem] sm:h-[12.5rem] flex items-center overflow-hidden">
                     {/* Default Content: Name / Company - slides up */}
                     <div className="w-full transform-gpu transition-all duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full group-hover:opacity-0 group-hover:absolute group-hover:inset-x-8 sm:group-hover:inset-x-12">
-                      <h4 className="font-heading text-[clamp(18px,4vw,70px)] font-medium tracking-tight text-white/80">
-                        {item.founder.toUpperCase()} / <span className="text-[clamp(14px,3vw,35px)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
+                      <h4 className="font-heading text-[clamp(1.125rem,4vw,4.375rem)] font-medium tracking-tight text-white/80">
+                        {item.founder.toUpperCase()} / <span className="text-[clamp(0.875rem,3vw,2.1875rem)]" style={{ color: item.accent }}>{item.company.toUpperCase()}</span>
                       </h4>
                     </div>
 
@@ -596,20 +596,20 @@ export default function Portfolio() {
                       filter: { duration: 0.24, ease: [0.22, 1, 0.36, 1] },
                       clipPath: { duration: 0.24, ease: [0.22, 1, 0.36, 1] },
                     }}
-                    className="mx-auto grid w-full max-w-[980px] grid-cols-1 gap-7 pb-10 md:gap-9"
+                    className="mx-auto grid w-full max-w-[61.25rem] grid-cols-1 gap-7 pb-10 md:gap-9"
                     style={{ transformPerspective: 900 }}
                   >
                     <motion.img
                       layout
                       src={activeStartup.wordmarkLogo}
                       alt={activeStartup.name}
-                      className="mx-auto h-auto w-auto max-h-14 max-w-[340px] object-contain"
+                      className="mx-auto h-auto w-auto max-h-14 max-w-[21.25rem] object-contain"
                       style={{ filter: "brightness(0) saturate(100%) invert(100%)" }}
                     />
 
                     <motion.div
                       layout
-                      className="mx-auto w-full max-w-[760px]"
+                      className="mx-auto w-full max-w-[47.5rem]"
                     >
                       <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#101010]">
                         <div className="w-full aspect-[2376/1586] relative">

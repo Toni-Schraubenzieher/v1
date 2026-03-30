@@ -129,8 +129,8 @@ export default function AboutUs() {
     return {
       memberWidth: (isMobile ? 15.625 : isDesktop ? 18.75 : 17.5) * rem,
       labelWidth: (isMobile ? 7.8 : isDesktop ? 9.375 : 8.75) * rem,
-      gap: 20,
-      horizontalPadding: isMobile ? 24 : 32,
+      gap: 1.25 * rem,
+      horizontalPadding: isMobile ? 1.5 * rem : 2 * rem,
     };
   };
 
@@ -296,7 +296,7 @@ export default function AboutUs() {
       id="team"
       className="about-us py-16 lg:py-24"
     >
-      <div className="mx-auto max-w-[1320px] px-6 sm:px-8">
+      <div className="mx-auto max-w-[82.5rem] px-6 sm:px-8">
         {/* Big statement */}
         <h2
           ref={headingRef}

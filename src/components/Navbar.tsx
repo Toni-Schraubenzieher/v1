@@ -114,7 +114,7 @@ export default function Navbar() {
     <>
       {/* Logo + Text - Top Left */}
       <div className="fixed left-0 top-10 z-[60] sm:top-12 w-full px-6 sm:px-8">
-        <div className="mx-auto max-w-[1320px]">
+        <div className="mx-auto max-w-[82.5rem]">
           <div className="ml-4 sm:ml-6 flex items-center gap-4">
             <button
               onClick={(e) => {
@@ -146,7 +146,7 @@ export default function Navbar() {
                 width={36}
                 height={36}
                 priority
-                className="relative z-10 h-auto w-[32px] sm:w-[36px]"
+                className="relative z-10 h-auto w-[2rem] sm:w-[2.25rem]"
               />
             </button>
 
@@ -182,7 +182,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 260, damping: 28 }}
-              className="fixed right-3 top-3 z-[55] h-[calc(100vh-24px)] w-[40vw] min-w-[320px] rounded-3xl bg-[#121214] p-8 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:p-10"
+              className="fixed right-3 top-3 z-[55] h-[calc(100vh-24px)] w-[40vw] min-w-[20rem] rounded-3xl bg-[#121214] p-8 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:p-10"
             >
               <nav className="-mx-8 flex h-full items-center sm:-mx-10">
                 <ul className="w-full space-y-0">
@@ -222,7 +222,7 @@ export default function Navbar() {
       <div className="fixed right-6 top-10 z-[60] sm:right-8 sm:top-12">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex h-12 min-w-[210px] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] cursor-pointer"
+          className="flex h-12 min-w-[13.125rem] items-center justify-between rounded-2xl border border-white/15 bg-[#101010]/68 px-5 text-white backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.25)] cursor-pointer"
           aria-label="Toggle navigation menu"
         >
           <span className="text-base font-medium">{activeSection}</span>
