@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/hooks/useGsapScrollTrigger";
-import SquircleShift from "@/components/SquircleShift";
+import dynamic from "next/dynamic";
+const SquircleShift = dynamic(() => import("@/components/SquircleShift"), { ssr: false });
 
 export default function Stats() {
   const sectionRef = useRef<HTMLElement>(null);

@@ -11,13 +11,13 @@ import LoadingScreen from "@/components/LoadingScreen";
 import LazySection from "@/components/LazySection";
 import Footer from "@/components/Footer";
 
-const LogoElementsShowcase = dynamic(() => import("@/components/LogoElementsShowcase"), { ssr: false });
-const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"), { ssr: false });
-const Portfolio = dynamic(() => import("@/components/Portfolio"), { ssr: false });
-const Stats = dynamic(() => import("@/components/Stats"), { ssr: false });
-const AboutUs = dynamic(() => import("@/components/AboutUs"), { ssr: false });
-const FAQ = dynamic(() => import("@/components/FAQ"), { ssr: false });
-const GetInTouch = dynamic(() => import("@/components/GetInTouch"), { ssr: false });
+const LogoElementsShowcase = dynamic(() => import("@/components/LogoElementsShowcase"));
+const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"));
+const Portfolio = dynamic(() => import("@/components/Portfolio"));
+const Stats = dynamic(() => import("@/components/Stats"));
+const AboutUs = dynamic(() => import("@/components/AboutUs"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const GetInTouch = dynamic(() => import("@/components/GetInTouch"));
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);

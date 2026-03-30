@@ -15,7 +15,7 @@ export default function LazySection({
   threshold = 0,
   fallback = null,
 }: LazySectionProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

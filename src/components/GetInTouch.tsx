@@ -1,6 +1,7 @@
 "use client";
 
-import SquircleShift from "@/components/SquircleShift";
+import dynamic from "next/dynamic";
+const SquircleShift = dynamic(() => import("@/components/SquircleShift"), { ssr: false });
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/hooks/useGsapScrollTrigger";
 
