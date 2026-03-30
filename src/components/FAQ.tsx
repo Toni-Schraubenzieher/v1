@@ -8,7 +8,7 @@ const faqs = [
   {
     question: "What's the best way to reach out?",
     answer:
-      "Come introduced through someone we know. That works best. You can also use the form below - but we are honest: fewer than 1 in 20 cold submissions lead to an investment. That is true for every VC, we just say it.",
+      "Come introduced through someone we know. That works best. You can also use the form below - but we are honest: fewer than 1 in 200 cold submissions lead to an investment. That is true for every VC, we just say it.",
     highlight: "MOST OF OUR PORTFOLIO STARTED WITH US REACHING OUT FIRST.",
   },
   {

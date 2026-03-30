@@ -116,14 +116,14 @@ export default function Stats() {
             <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
               <div className="font-heading text-4xl font-bold text-white lg:text-5xl">€50m+</div>
               <p className="mt-3 text-base text-white/90">
-                Deployed across 15+ deep-tech investments
+                GP track record across angel, CVC, and fund investments
               </p>
             </div>
             {/* Card: 2 CVCs */}
             <div data-stat-card className="rounded-3xl bg-[#181818] p-8 lg:p-10">
               <div className="font-heading text-4xl font-bold text-white lg:text-5xl">2 CVCs</div>
               <p className="mt-3 text-base text-white/90">
-                Built from zero - we've been operators, not just investors
+                Corporate venture arms built and led by our GP before launching the fund
               </p>
             </div>
 

@@ -7,7 +7,7 @@ import { gsap, ScrollTrigger } from "@/hooks/useGsapScrollTrigger";
 const verticals = [
   "All",
   "Robotics",
-  "Enabling Technologies",
+  "Industrial AI",
   "Computation",
   "Cybersecurity / Dual use",
 ] as const;
@@ -16,7 +16,7 @@ type Vertical = (typeof verticals)[number];
 
 const verticalPillColor: Record<Exclude<Vertical, "All">, string> = {
   Robotics: "#FEB180",
-  "Enabling Technologies": "#D4FFEF",
+  "Industrial AI": "#D4FFEF",
   "Computation": "#FEB180",
   "Cybersecurity / Dual use": "#D4FFEF",
 };
@@ -30,7 +30,7 @@ const companies = [
   {
     name: "Hefring",
     logo: "/Logos+Font/Hefring.svg",
-    vertical: "Enabling Technologies",
+    vertical: "Industrial AI",
   },
   {
     name: "Pixel Photonics",
@@ -40,7 +40,7 @@ const companies = [
   {
     name: "Quality Match",
     logo: "/Logos+Font/Quality_Match.svg",
-    vertical: "Enabling Technologies",
+    vertical: "Industrial AI",
   },
   {
     name: "Qambria",

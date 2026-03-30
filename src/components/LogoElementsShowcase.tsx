@@ -21,11 +21,11 @@ const stories: StoryItem[] = [
   {
     id: "technical",
     index: "01",
-    titleMain: "Technical",
-    titleAccent: "Fluency",
+    titleMain: "First",
+    titleAccent: "Principles",
     kicker: "No translating. No dumbing down.",
     description:
-      "We start with your technology, not your TAM slide. Whether it's post-quantum algorithms, autonomous perception, or photonic detectors, we invest the time to understand what you've actually built. Not to nod along. To challenge it, pressure-test it, and back it with conviction.",
+      "We start with your technology, not your TAM slide. Our GP has spent over a decade in deep-tech \u2014 building CVCs, leading technical due diligence, working alongside quantum researchers and robotics teams. We do not need it simplified. We need to understand what is actually defensible.",
     image:
       "/This_is_Kensho/Technical_Fluency.webp",
     form: "1",
@@ -38,7 +38,7 @@ const stories: StoryItem[] = [
     titleAccent: "Commitment",
     kicker: "Every door we can open. We open.",
     description:
-      "B2B lead generation, investor introductions, defense and enterprise access, expansion into new markets. Our GP works directly with every portfolio company - from technical evaluation to commercial execution. One decision-maker, fully invested. We activate our full network for every founder we back. Not as a promise. As how we operate.",
+      "B2B lead generation, investor introductions, defense and enterprise access, expansion into new markets. Our GP works directly with every portfolio company - from technical evaluation to commercial execution. One decision-maker, fully invested. We activate our full network for every founder we back. That is how we operate.",
     image:
       "/This_is_Kensho/Full_Commitment.webp",
     form: "2",
@@ -85,9 +85,9 @@ const investmentAreas = [
   {
     id: 2,
     number: "02",
-    title: "Enabling Technologies",
+    title: "Industrial AI",
     description:
-      "Specialized AI, photonics, and the commercial infrastructure layer that deep tech needs to scale. The substrate - not the application.",
+      "AI built for physical systems \u2014 machine perception, predictive maintenance, autonomous decision-making at the edge. Not chatbots. The intelligence layer that makes factories, warehouses, and defense systems work.",
     color: "#D4FFEF",
     formNumber: "2",
     image: "/This_is_Kensho/Enabling_Technologies.webp",

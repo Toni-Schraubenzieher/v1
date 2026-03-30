@@ -45,7 +45,7 @@ export default function StructuredData() {
         name: "What's the best way to reach out to Kensho Ventures?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Come introduced through someone we know. That works best. You can also use the contact form - but fewer than 1 in 20 cold submissions lead to an investment. Most of our portfolio started with us reaching out first.",
+          text: "Come introduced through someone we know. That works best. You can also use the contact form - but fewer than 1 in 200 cold submissions lead to an investment. Most of our portfolio started with us reaching out first.",
         },
       },
       {

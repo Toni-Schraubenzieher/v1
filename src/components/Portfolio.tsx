@@ -32,7 +32,7 @@ const startups = [
     wordmarkLogo: "/Logos+Font/Hefring.svg",
     accent: "#D4FFEF",
     logoFilter: FILTER_MINT,
-    category: "ENABLING TECHNOLOGIES",
+    category: "INDUSTRIAL AI",
     description:
       "Hefring built IMAS®, an AI-powered maritime intelligence platform that unifies data from navigation, propulsion, and environmental sensors across entire vessel fleets. Edge computing onboard, cloud analytics off-ship, delivering real-time safety guidance, fuel optimization, predictive maintenance, and regulatory compliance. The system is hardware-agnostic, designed to operate across commercial shipping, defense, and leisure maritime, integrating with existing protocols and third-party equipment. Founded by a team with 50+ years of combined expertise in maritime operations, corporate development, and condition monitoring.",
     points: [],
@@ -60,7 +60,7 @@ const startups = [
     wordmarkLogo: "/Logos+Font/Quality_Match.svg",
     accent: "#D4FFEF",
     logoFilter: FILTER_MINT,
-    category: "ENABLING TECHNOLOGIES",
+    category: "INDUSTRIAL AI",
     description:
       "Quality Match built AI-powered visual quality inspection that cut QA costs by 90% while drastically improving labeled data accuracy across manufacturing. Their technology capitalized on the industry shift from data quantity to data quality, making QA accessible to a far broader customer base as the EU AI Act raised provable data standards. Founded by Dr. Daniel Kondermann, who previously sold Pallas Ludens to Apple and led their data science team. Acquired by Wayve.",
     points: [],
