@@ -2,12 +2,7 @@
 
 import SquircleShift from "@/components/SquircleShift";
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { gsap, ScrollTrigger } from "@/hooks/useGsapScrollTrigger";
 
 export default function GetInTouch() {
   const sectionRef = useRef<HTMLElement>(null);

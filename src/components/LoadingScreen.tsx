@@ -10,33 +10,29 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     // Wait for loading bar to appear before starting progress
-    const loadingBarDelay = 600; // Wait for loading bar fade-in animation
-    let interval: NodeJS.Timeout;
-
+    const loadingBarDelay = 600;
+    let rafId: number;
     const startTimeout = setTimeout(() => {
-      // Simulate loading progress with ease-out
-      const duration = 2100; // 2.1 seconds
-      const startTime = Date.now();
-
+      const duration = 1500;
+      const startTime = performance.now();
       const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-      interval = setInterval(() => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeOutCubic(progress) * 100;
-
-        setProgress(easedProgress);
-
-        if (progress >= 1) {
-          clearInterval(interval);
-          setTimeout(() => setIsLoading(false), 200);
+      const tick = (now: number) => {
+        const elapsed = now - startTime;
+        const t = Math.min(elapsed / duration, 1);
+        setProgress(easeOutCubic(t) * 100);
+        if (t < 1) {
+          rafId = requestAnimationFrame(tick);
+        } else {
+          setTimeout(() => setIsLoading(false), 100);
         }
-      }, 16); // ~60fps
+      };
+      rafId = requestAnimationFrame(tick);
     }, loadingBarDelay);
 
     return () => {
       clearTimeout(startTimeout);
-      if (interval) clearInterval(interval);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -46,7 +42,7 @@ export default function LoadingScreen() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0A0A0A]"
         >
           <motion.div

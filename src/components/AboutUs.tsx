@@ -2,14 +2,9 @@
 
 import { useRef, useEffect, useState } from "react";
 import { animate, motion, useAnimationFrame, useMotionValue, AnimatePresence } from "motion/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/hooks/useGsapScrollTrigger";
 import Image from "next/image";
 import "./modal-cards.css";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface TeamMember {
   id: string;

@@ -1,12 +1,7 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/hooks/useGsapScrollTrigger";
 import { useEffect, useRef } from "react";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const entrepreneurs = [
   {

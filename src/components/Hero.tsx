@@ -1,4 +1,5 @@
-import SquircleShift from "@/components/SquircleShift";
+import dynamic from "next/dynamic";
+const SquircleShift = dynamic(() => import("@/components/SquircleShift"), { ssr: false });
 
 export default function Hero() {
   const fadeMaskX = "linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%)";
@@ -35,7 +36,7 @@ export default function Hero() {
           <h1 className="font-heading text-[clamp(4rem,12vw,10.5rem)] font-bold text-white leading-[0.88] tracking-tight -ml-3">
             KENSHŌ
           </h1>
-          <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[35rem] text-balance">
+          <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[56rem] text-balance">
             We invest in European resilience technologies - robotics, cybersecurity, quantum, industrial AI. Understood at first principles. Backed with patient capital and the infrastructure to scale.
           </p>
         </div>

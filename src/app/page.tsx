@@ -5,15 +5,15 @@ import { motion } from "motion/react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import LogoElementsShowcase from "@/components/LogoElementsShowcase";
+import LargeText from "@/components/LargeText";
 import Statement from "@/components/Statement";
 import LoadingScreen from "@/components/LoadingScreen";
 import LazySection from "@/components/LazySection";
 import Footer from "@/components/Footer";
 
+const LogoElementsShowcase = dynamic(() => import("@/components/LogoElementsShowcase"), { ssr: false });
 const PortfolioOverview = dynamic(() => import("@/components/PortfolioOverview"), { ssr: false });
 const Portfolio = dynamic(() => import("@/components/Portfolio"), { ssr: false });
-const LargeText = dynamic(() => import("@/components/LargeText"));
 const Stats = dynamic(() => import("@/components/Stats"), { ssr: false });
 const AboutUs = dynamic(() => import("@/components/AboutUs"), { ssr: false });
 const FAQ = dynamic(() => import("@/components/FAQ"), { ssr: false });
@@ -31,7 +31,7 @@ export default function Home() {
     // Show content after loading screen duration
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 4100); // 600ms delay + 2100ms loading + 200ms pause + 1200ms fade-out
+    }, 3000); // 600ms delay + 1500ms loading + 100ms pause + 600ms fade-out
 
     return () => clearTimeout(timer);
   }, []);
@@ -46,7 +46,9 @@ export default function Home() {
       >
         <Navbar />
         <Hero />
-        <LogoElementsShowcase />
+        <LazySection>
+          <LogoElementsShowcase />
+        </LazySection>
         <Statement />
         <LazySection>
           <PortfolioOverview />
@@ -54,9 +56,7 @@ export default function Home() {
         <LazySection>
           <Portfolio />
         </LazySection>
-        <LazySection>
-          <LargeText />
-        </LazySection>
+        <LargeText />
         <LazySection>
           <Stats />
         </LazySection>

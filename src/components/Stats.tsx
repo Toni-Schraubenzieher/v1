@@ -1,13 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/hooks/useGsapScrollTrigger";
 import SquircleShift from "@/components/SquircleShift";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 export default function Stats() {
   const sectionRef = useRef<HTMLElement>(null);

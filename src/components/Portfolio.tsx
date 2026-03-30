@@ -1,14 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/hooks/useGsapScrollTrigger";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 import Image from "next/image";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const FILTER_MINT =
   "brightness(0) saturate(100%) invert(95%) sepia(8%) saturate(600%) hue-rotate(95deg) brightness(105%) contrast(92%)";
