@@ -23,6 +23,9 @@ export default function Home() {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
+    // Preload Three.js/SquircleShift chunk during loading screen
+    import("@/components/SquircleShift").catch(() => {});
+
     // Ensure page starts at the top on initial load
     if (!window.location.hash || window.location.hash === '#hero') {
       window.scrollTo(0, 0);

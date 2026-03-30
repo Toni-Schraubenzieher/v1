@@ -304,7 +304,9 @@ export default function SquircleShift({
   logoMask,
 }: SquircleShiftProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const widthStyle = typeof width === "number" ? `${width}px` : width;
   const heightStyle = typeof height === "number" ? `${height}px` : height;
   const containerClassName = className ? `squircle-shift-container ${className}` : "squircle-shift-container";
@@ -314,8 +316,11 @@ export default function SquircleShift({
     if (!el) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { rootMargin: "100px" }
+      ([entry]) => {
+        if (entry.isIntersecting) setIsMounted(true);
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "500px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -327,14 +332,24 @@ export default function SquircleShift({
   }, []);
 
   return (
-    <div ref={containerRef} className={containerClassName} style={{ width: widthStyle, height: heightStyle }}>
-      {isVisible && (
+    <div
+      ref={containerRef}
+      className={containerClassName}
+      style={{
+        width: widthStyle,
+        height: heightStyle,
+        opacity: isReady ? 1 : 0,
+        transition: "opacity 0.8s ease-out",
+      }}
+    >
+      {isMounted && (
         <Canvas
           className="squircle-shift-canvas"
           gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
           camera={{ position: [0, 0, 1], fov: 75 }}
           dpr={dpr}
           frameloop="always"
+          onCreated={() => setIsReady(true)}
         >
           <ShaderPlane
             speed={speed}
@@ -352,7 +367,7 @@ export default function SquircleShift({
             colorTintSecondary={colorTintSecondary}
             brightness={brightness}
             phaseOffset={phaseOffset}
-            isVisible={isVisible}
+            isVisible={isInView}
             logoMask={logoMask}
           />
         </Canvas>
