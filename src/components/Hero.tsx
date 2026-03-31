@@ -38,7 +38,7 @@ export default function Hero() {
             <span className="sr-only"> | European Deep-Tech Venture Capital</span>
           </h1>
           <p className="mt-8 text-lg sm:text-xl text-white/90 leading-relaxed max-w-[56rem] text-balance">
-            Kensho is a solo-GP venture fund investing in European resilience technologies: robotics, cybersecurity, quantum, industrial AI. Understood at first principles. Backed with patient capital and the infrastructure to scale.
+            Early-stage solo-GP venture fund investing in European resilience technologies: robotics, cybersecurity, quantum, industrial AI.
           </p>
         </div>
       </div>
