@@ -512,6 +512,21 @@ export default function Portfolio() {
         </div>
       </div>
 
+      {/* Preload portfolio team images for instant popup */}
+      <div aria-hidden="true" style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
+        {startups.map(s => (
+          <Image
+            key={s.id}
+            src={s.image}
+            alt=""
+            width={760}
+            height={507}
+            quality={95}
+            loading="eager"
+          />
+        ))}
+      </div>
+
       <AnimatePresence>
         {activeStartup && (
           <motion.div
