@@ -78,7 +78,9 @@ export default function GetInTouch() {
               transformative technology, let&apos;s talk.
             </p>
             <a
-              href="mailto:info@kensho.vc"
+              href="https://separated-daphne-4f9.notion.site/1305982cefb680fd9a94fa74b25506e8"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-9 inline-flex items-center rounded-full bg-[#FEB180] px-7 py-3 text-base font-semibold text-[#101010] transition-transform duration-200 hover:scale-[1.03] cursor-pointer"
             >
               Talk to us
