@@ -249,7 +249,7 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
 
       <div className="w-full max-w-[32.5rem]">
         <p className="text-lg font-medium text-white/55">{item.index}</p>
-        <h3 className="mt-3 font-heading text-3xl font-bold leading-[0.92] text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        <h3 className="mt-3 font-heading text-[clamp(1.75rem,4.5vw,3.75rem)] font-bold leading-[0.92] text-white whitespace-nowrap">
           {item.titleMain}{" "}
           <span className="font-medium">{item.titleAccent}</span>
         </h3>
@@ -307,7 +307,7 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
                     <div className="relative z-10 flex items-start gap-4 h-full py-6">
                       <div className="flex-1">
                         <motion.h4
-                          className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold"
+                          className="font-heading text-[clamp(1.125rem,3vw,2rem)] font-bold whitespace-nowrap"
                           animate={{
                             color: isActive ? '#101010' : 'rgba(255, 255, 255, 0.3)',
                           }}
@@ -400,9 +400,8 @@ export default function LogoElementsShowcase() {
                   <p className="text-sm font-medium uppercase tracking-[0.16em] text-white/80">
                     {activeItem.index}
                   </p>
-                  <h3 className="mt-3 max-w-[35rem] font-heading text-5xl font-bold leading-[0.9] text-white sm:text-6xl lg:text-7xl">
-                    {activeItem.titleMain}
-                    <br />
+                  <h3 className="mt-3 max-w-[35rem] font-heading text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.9] text-white whitespace-nowrap">
+                    {activeItem.titleMain}{" "}
                     <span className="font-medium">{activeItem.titleAccent}</span>
                   </h3>
                 </div>
