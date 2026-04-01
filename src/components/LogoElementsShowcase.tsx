@@ -21,8 +21,8 @@ const stories: StoryItem[] = [
   {
     id: "technical",
     index: "01",
-    titleMain: "First",
-    titleAccent: "Principles",
+    titleMain: "FIRST",
+    titleAccent: "PRINCIPLES",
     kicker: "No translating. No dumbing down.",
     description:
       "We start with your technology, not your TAM slide. Our GP has spent over a decade in deep-tech. Building CVCs, leading technical due diligence, working alongside quantum researchers and robotics teams. We do not need it simplified. We need to understand what is actually defensible.",
@@ -34,8 +34,8 @@ const stories: StoryItem[] = [
   {
     id: "commitment",
     index: "02",
-    titleMain: "Full",
-    titleAccent: "Commitment",
+    titleMain: "FULL",
+    titleAccent: "COMMITMENT",
     kicker: "Every door we can open. We open.",
     description:
       "B2B lead generation, investor introductions, defense and enterprise access, expansion into new markets. Our GP works directly with every portfolio company - from technical evaluation to commercial execution. One decision-maker, fully invested. We activate our full network for every founder we back. That is how we operate.",
@@ -47,8 +47,8 @@ const stories: StoryItem[] = [
   {
     id: "capital",
     index: "03",
-    titleMain: "Patient",
-    titleAccent: "Capital",
+    titleMain: "PATIENT",
+    titleAccent: "CAPITAL",
     kicker: "Fewer bets. Full attention.",
     description:
       "€500K first checks into Pre-Seed and Seed. Five to seven investments per year. Small fund by design. That means more time per founder, more resources per company, and a long-horizon commitment to technology that takes time to mature.",
@@ -60,8 +60,8 @@ const stories: StoryItem[] = [
   {
     id: "focus",
     index: "04",
-    titleMain: "Where we",
-    titleAccent: "invest",
+    titleMain: "WHERE WE",
+    titleAccent: "INVEST",
     kicker: "Our four verticals",
     description: "",
     image:
@@ -75,7 +75,7 @@ const investmentAreas = [
   {
     id: 1,
     number: "01",
-    title: "Robotics",
+    title: "ROBOTICS",
     description:
       "Autonomous systems for industrial and defense applications. From warehouse automation to field robotics. Machines that replace risk, not just labor.",
     color: "#FEB180",
@@ -85,7 +85,7 @@ const investmentAreas = [
   {
     id: 2,
     number: "02",
-    title: "Industrial AI",
+    title: "INDUSTRIAL AI",
     description:
       "AI built for physical systems: machine perception, predictive maintenance, autonomous decision-making at the edge. Not chatbots. The intelligence layer that makes factories, warehouses, and defense systems work.",
     color: "#D4FFEF",
@@ -95,7 +95,7 @@ const investmentAreas = [
   {
     id: 3,
     number: "03",
-    title: "Computation",
+    title: "COMPUTATION",
     description:
       "Quantum computing, edge computing, HPC, semiconductors. The compute layer underneath every other vertical we invest in, from scientific simulation to real-time autonomous decision-making.",
     color: "#FEB180",
@@ -105,7 +105,7 @@ const investmentAreas = [
   {
     id: 4,
     number: "04",
-    title: "Cybersecurity / Dual Use",
+    title: "CYBERSECURITY / DUAL USE",
     description:
       "Post-quantum cryptography, secure communication, autonomous surveillance. The infrastructure layer of European defense sovereignty.",
     color: "#D4FFEF",
