@@ -5,52 +5,52 @@ import { motion } from "motion/react";
 import { gsap, ScrollTrigger } from "@/hooks/useGsapScrollTrigger";
 
 const verticals = [
-  "All",
-  "Robotics",
-  "Industrial AI",
-  "Computation",
-  "Cybersecurity / Dual use",
+  "ALL",
+  "ROBOTICS",
+  "INDUSTRIAL AI",
+  "COMPUTATION",
+  "CYBERSECURITY / DUAL USE",
 ] as const;
 
 type Vertical = (typeof verticals)[number];
 
-const verticalPillColor: Record<Exclude<Vertical, "All">, string> = {
-  Robotics: "#FEB180",
-  "Industrial AI": "#D4FFEF",
-  "Computation": "#FEB180",
-  "Cybersecurity / Dual use": "#D4FFEF",
+const verticalPillColor: Record<Exclude<Vertical, "ALL">, string> = {
+  ROBOTICS: "#FEB180",
+  "INDUSTRIAL AI": "#D4FFEF",
+  "COMPUTATION": "#FEB180",
+  "CYBERSECURITY / DUAL USE": "#D4FFEF",
 };
 
 const companies = [
   {
     name: "Energy Robotics",
     logo: "/Logos+Font/Energy_Robotics.svg",
-    vertical: "Robotics",
+    vertical: "ROBOTICS",
   },
   {
     name: "Hefring",
     logo: "/Logos+Font/Hefring.svg",
-    vertical: "Industrial AI",
+    vertical: "INDUSTRIAL AI",
   },
   {
     name: "Pixel Photonics",
     logo: "/Logos+Font/Pixel_Photonics.svg",
-    vertical: "Computation",
+    vertical: "COMPUTATION",
   },
   {
     name: "Quality Match",
     logo: "/Logos+Font/Quality_Match.svg",
-    vertical: "Industrial AI",
+    vertical: "INDUSTRIAL AI",
   },
   {
     name: "Qambria",
     logo: "/Logo_Loop/Qambria.svg",
-    vertical: "Computation",
+    vertical: "COMPUTATION",
   },
   {
     name: "CryptoNext Security",
     logo: "/Logos+Font/CryptoNext.svg",
-    vertical: "Cybersecurity / Dual use",
+    vertical: "CYBERSECURITY / DUAL USE",
   },
 ] as const;
 
@@ -72,7 +72,7 @@ const companyLogoPreset: Record<(typeof companies)[number]["name"], keyof typeof
 };
 
 export default function PortfolioOverview() {
-  const [activeVertical, setActiveVertical] = useState<Vertical>("All");
+  const [activeVertical, setActiveVertical] = useState<Vertical>("ALL");
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
@@ -159,8 +159,8 @@ export default function PortfolioOverview() {
           <div className="inline-flex flex-wrap items-center justify-center gap-1.5 rounded-full bg-[#181818] p-2">
             {verticals.map((vertical) => {
               const isActive = activeVertical === vertical;
-              const isColorPillActive = isActive && vertical !== "All";
-              const activeColor = vertical === "All" ? "rgba(255,255,255,0.12)" : verticalPillColor[vertical];
+              const isColorPillActive = isActive && vertical !== "ALL";
+              const activeColor = vertical === "ALL" ? "rgba(255,255,255,0.12)" : verticalPillColor[vertical];
               return (
                 <button
                   key={vertical}
@@ -186,7 +186,7 @@ export default function PortfolioOverview() {
 
         <div ref={gridRef} className="mt-12 grid w-full grid-cols-2 gap-x-8 gap-y-12 px-8 sm:px-12 md:grid-cols-3 lg:grid-cols-4">
           {companies.map((company) => {
-            const isActive = activeVertical === "All" || company.vertical === activeVertical;
+            const isActive = activeVertical === "ALL" || company.vertical === activeVertical;
             const logoSizeClass = logoSizePresets[companyLogoPreset[company.name]];
             return (
               <div
