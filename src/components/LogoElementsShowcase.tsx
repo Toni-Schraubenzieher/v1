@@ -251,7 +251,7 @@ function StoryItemComponent({ item, index, activeInvestmentArea, setActiveInvest
         <p className="text-lg font-medium text-white/55">{item.index}</p>
         <h3 className="mt-3 font-heading text-[clamp(1.75rem,4.5vw,3.75rem)] font-bold leading-[0.92] text-white whitespace-nowrap">
           {item.titleMain}{" "}
-          <span className="font-medium">{item.titleAccent}</span>
+          <span className="font-bold">{item.titleAccent}</span>
         </h3>
 
         {item.index === "04" ? (
@@ -402,7 +402,7 @@ export default function LogoElementsShowcase() {
                   </p>
                   <h3 className="mt-3 max-w-[35rem] font-heading text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[0.9] text-white whitespace-nowrap">
                     {activeItem.titleMain}{" "}
-                    <span className="font-medium">{activeItem.titleAccent}</span>
+                    <span className="font-bold">{activeItem.titleAccent}</span>
                   </h3>
                 </div>
                 <button
